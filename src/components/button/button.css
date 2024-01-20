@@ -1,0 +1,70 @@
+#popup-overlay .btn-space{
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 55%;
+	height: 50px;
+}
+.cardProduct .btn-space{
+	padding: 10px 0 10px 0;
+	height: 40px;
+	text-align: center;
+}
+.buttonAddToBasket{
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	font-size: 14px;
+	color: var(--tg-theme-button-text-color);
+	background: var(--tg-theme-button-color);
+	border: none;
+}
+#popup-overlay .buttonAddToBasket{
+	font-size: 22px;
+}
+.buttonRemove{
+    width: calc(35% - 10px);
+    height: 100%;
+    padding: 0;
+    margin-right: 10px;
+	border-radius: 5px;
+	font-size: 14px;
+	color: var(--tg-theme-button-text-color);
+	background: var(--tg-theme-button-color);
+	border: none;
+}
+.quantity{
+    width: calc(30% - 10px);
+    height: 100%;
+    padding: 0;
+    text-align: center;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	color: var(--tg-theme-text-color);
+	background: var(--tg-theme-bg-color);
+}
+.quantity:focus{
+    outline: none;
+}
+.buttonAdd{
+    width: calc(35% - 10px);
+    height: 100%;
+    padding: 0;
+    margin-left: 10px;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	color: var(--tg-theme-button-text-color);
+	background: var(--tg-theme-button-color);
+}
+#popup-overlay .buttonRemove{
+    font-size: 22px;
+}
+#popup-overlay .quantity{
+    font-size: 22px;
+}
+#popup-overlay .buttonAdd{
+    font-size: 22px;
+}

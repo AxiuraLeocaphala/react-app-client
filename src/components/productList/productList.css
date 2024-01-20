@@ -1,0 +1,9 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.cardProduct{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
