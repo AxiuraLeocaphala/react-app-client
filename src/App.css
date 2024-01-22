@@ -11,7 +11,3 @@ body{
 ::-webkit-scrollbar{
 	width: 0;
 }
-.categoryElem{
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-}

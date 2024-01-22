@@ -1,34 +1,29 @@
-import React from "react";
-import Flickity from "react-flickity-component";
-import './../../static/libraries/flickity.min.css';
+import React, { useEffect } from "react";
+import Flickity from 'flickity';
 import "./header.css";
 
-const Header = () => {
+const Header = ( {data} ) => {
 
-	const flickityOptions = {
-		initialIndex: 0,
-		freeScroll: true,
-		contain: true,
-		cellAlign: 'center',
-		dragThreshold: 10,
-		prevNextButtons: false,
-		pageDots: false
-	}
+	useEffect(() => {
+        new Flickity('.sliderCategory', {
+            freeScroll: true,
+            contain: true,
+            cellAlign: 'center',
+            dragThreshold: 10,
+            prevNextButtons: false,
+            pageDots: false,
+        });
+    }, []);
+
 	const flickitySlides = {
-		id: [1, 2, 3, 4, 5, 6, 7],
+		id: [0, 1, 2, 3, 4, 5, 6],
 		categoryName: ['🍳 Завтраки', '☕️ Класические напитки', '🍰 Десерты', '🍹 Летнее меню', '🍬 Коробки конфет', '🥐 Выпечка', '🥞 Блинчики'],
 	}
 
     return (	
 		<div className="header">
 			<div className="sliderCategory">
-				<Flickity
-				className='slider'
-				elementType='div'
-				disableImagesLoaded={false}
-				options={flickityOptions}
-				static
-				>
+				
 				{flickitySlides['id'].map((index, idx) =>{
 					return (
 						<a 
@@ -40,7 +35,6 @@ const Header = () => {
 						</a>
 					)
 				})}
-				</Flickity>
 			</div>
 		</div>
     );

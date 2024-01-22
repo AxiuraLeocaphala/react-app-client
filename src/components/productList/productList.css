@@ -1,9 +1,6 @@
 .list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.cardProduct{
-    margin-right: 10px;
-    margin-bottom: 10px;
+	display: grid;
+    margin-top: 65px;
+    margin-left: 10px;
+	grid-template-columns: 1fr 1fr;
 }

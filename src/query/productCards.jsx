@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductList from './../components/productList/productList.jsx';
+import ProductList from '../components/productList/productList.jsx';
 
 function Query() {
   const [data, setData] = useState([]);
@@ -19,7 +19,9 @@ function Query() {
 
   }, []);
   
-  return <ProductList data={data} />
+  return (
+    <ProductList data={data} />
+  );
 }
 
 export default Query;

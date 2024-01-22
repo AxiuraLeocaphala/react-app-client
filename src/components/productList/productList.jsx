@@ -36,21 +36,21 @@ const ProductList = ({ data }) => {
         }
     }
     
-    if (!data || data.length === 0) {
-        return <p>Данные отсутствуют</p>;
-    }
-    
     return (
-        <div className={'list'}>
-            {data.map((product) => (
-                <ProductItem
-                    key={product["ID товара"]}
-                    product={product}
-                    onAdd={onAdd}
-                />
-            ))}
-        </div>
-    );
+        <>
+        {data && data.length > 0 ? (
+            <div className={'list'}>
+                {data.map((product) => (
+                    <ProductItem
+                        key={product["ID товара"]}
+                        product={product}
+                        onAdd={onAdd}
+                    />
+                ))}
+            </div>
+        ) : null}
+        </>
+      );
 }
 
 export default ProductList
