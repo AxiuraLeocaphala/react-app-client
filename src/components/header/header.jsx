@@ -13,26 +13,26 @@ const Header = ( {data} ) => {
             prevNextButtons: false,
             pageDots: false,
         });
-    }, []);
+    });
 
 	const flickitySlides = {
 		id: [0, 1, 2, 3, 4, 5, 6],
 		categoryName: ['🍳 Завтраки', '☕️ Класические напитки', '🍰 Десерты', '🍹 Летнее меню', '🍬 Коробки конфет', '🥐 Выпечка', '🥞 Блинчики'],
 	}
+	
     return (	
 		<div className="header">
 			<div className="sliderCategory">
-				
-				{flickitySlides['id'].map((index, idx) =>{
+				{data && data.map((item, idx) => {
 					return (
 						<a 
-							key={index}
-							href={`#categoryCell_${index}`} 
-							className={`categoryName${idx === 0 ? ' active' : ''}`}
+						key={idx}
+						href={`#categoryCell_${idx}`} 
+						className={`categoryName${idx === 0 ? ' active' : ''}`}
 						>
-							{flickitySlides.categoryName[index]}
+						{item["Название категории"]}
 						</a>
-					)
+					);
 				})}
 			</div>
 		</div>

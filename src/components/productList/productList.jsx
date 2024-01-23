@@ -50,7 +50,7 @@ const ProductList = ({ data }) => {
             </div>
         ) : null}
         </>
-      );
+    );
 }
 
 export default ProductList

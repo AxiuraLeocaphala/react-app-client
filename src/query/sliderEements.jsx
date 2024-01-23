@@ -15,11 +15,13 @@ function Query() {
                 console.error('Ошибка при получении данных:', error);
             }
         };
+        
         fetchDataFromServer();
   
     },  []);
-    
-    return <Header data={data} />
-  }
-  
-  export default Query;
+    return ( 
+        <Header data={data} />
+    );
+}
+
+export default Query;
