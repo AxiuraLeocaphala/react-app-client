@@ -10,7 +10,6 @@ function Query() {
             try {
                 const response = await axios.get('http://127.0.0.1:3001/data/food-categories');
                 setData(response.data);
-                console.log(data);
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
             }
@@ -19,6 +18,7 @@ function Query() {
         fetchDataFromServer();
   
     },  []);
+    
     return ( 
         <Header data={data} />
     );

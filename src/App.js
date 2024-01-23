@@ -1,17 +1,17 @@
 import {Route, Routes} from 'react-router-dom';
 import ProductList from './components/productList/productList.jsx';
-import Header from './components/header/header.jsx';
-import Query from './query/productCards.jsx'
+import Query1 from './query/sliderEements.jsx';
+import Query2 from './query/productCards.jsx';
 import './App.css';
 
 function App() {
    return (
       <div className="webApp">
-         <Header/>
+         <Query1/>
          <Routes>
             <Route index element={<ProductList/>}/>
          </Routes>
-         <Query/>
+         <Query2/>
       </div>
    );
 }
