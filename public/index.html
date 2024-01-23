@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web site created using create-react-app"/>
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="static/libraries/flickity.min.css">
-    <script src="static/libraries/telegram-web-app.js"></script>
-    <script src="static/libraries/jquery.min.js"></script>
-    <title>React App</title>
+      <meta charset="utf-8" />
+      <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+      <link rel="stylesheet" href="static/css/preloader.css">
+      <link rel="stylesheet" href="static/libraries/flickity.min.css">
+      <script src="static/libraries/telegram-web-app.js"></script>
+      <script src="static/libraries/jquery.min.js"></script>
+      <title>React App</title>
   </head>
   <body>
-    <div id="root"></div>
+   <div id="root">
+      <div class="preloader">
+         <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+         </div>
+      </div>
+   </div>
 
-    <script src="static/libraries/flickity.pkgd.min.js"></script>
-    <script src="static/js/main.js"></script>
+   <script src="static/libraries/flickity.pkgd.min.js"></script>
+   <script src="static/js/main.js"></script>
+   <script src="static/js/preloader.js"></script>
   </body>
 </html>

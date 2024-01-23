@@ -6,18 +6,18 @@ function Query() {
     const [data, setData] = useState([]);
   
     useEffect(() => {
-      const fetchDataFromServer = async () => {
-          try {
-              const response = await axios.get('http://127.0.0.1:3001/data/категорииБлюд');
-              setData(response.data);
-          } catch (error) {
-              console.error('Ошибка при получении данных:', error);
-          }
-      };
+        const fetchDataFromServer = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:3001/data/food-categories');
+                setData(response.data);
+                console.log(data);
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            }
+        };
+        fetchDataFromServer();
   
-      fetchDataFromServer();
-  
-    }, []);
+    },  []);
     
     return <Header data={data} />
   }
