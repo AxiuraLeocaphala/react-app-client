@@ -1,5 +1,5 @@
-/*import {Route, Routes} from 'react-router-dom';*/
-import Query1 from './query/sliderEements.jsx';
+import React from 'react';
+import Query1 from './query/sliderElements.jsx';
 import Query2 from './query/productCards.jsx';
 import './App.css';
 
