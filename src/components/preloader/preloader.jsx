@@ -3,33 +3,35 @@ import ReactDOM from 'react-dom';
 import App from './../../App.js';
 import './preloader.css';
 
+const Preloader = () => {
+    return (
+        <div id="root">
+            <div className="preloader">
+                <div className="sk-chase">
+                    <div className="sk-chase-dot"></div>
+                    <div className="sk-chase-dot"></div>
+                    <div className="sk-chase-dot"></div>
+                    <div className="sk-chase-dot"></div>
+                    <div className="sk-chase-dot"></div>
+                    <div className="sk-chase-dot"></div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const Root = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => {
+        window.onload = () => {
             setIsLoaded(true);
-        }, 5000); // Замените это на реальную логику завершения рендеринга
+        };
     }, []);
 
     return (
         <>
-        {!isLoaded ? (
-            <div id="root">
-                <div className="preloader">
-                    <div className="sk-chase">
-                        <div class="sk-chase-dot"></div>
-                        <div class="sk-chase-dot"></div>
-                        <div class="sk-chase-dot"></div>
-                        <div class="sk-chase-dot"></div>
-                        <div class="sk-chase-dot"></div>
-                        <div class="sk-chase-dot"></div>
-                    </div>
-                </div>
-            </div>
-        ) : (
-        <App />
-        )}
+            {!isLoaded ? <Preloader /> : <App />}
         </>
     );
 };
