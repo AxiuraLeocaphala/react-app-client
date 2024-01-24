@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Query1 from './query/sliderElements.jsx';
 import Query2 from './query/productCards.jsx';
 import TruncateTextName from './components/trancateText/trancateTextName.jsx';
@@ -7,8 +7,6 @@ import './App.css';
 
 function App() {
    const [renderedQueries, setRenderedQueries] = useState(false);
-   
-   
 
    return (
       <div className="webApp">
