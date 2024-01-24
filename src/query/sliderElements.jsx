@@ -24,7 +24,7 @@ function Query() {
     },  []);
     
     return ( 
-        loading ? <Preloader /> : <Header data={data} />
+        loading ? (<Preloader />) : (<Header data={data} />)
     );
 }
 

@@ -10,15 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 1;
-    visibility: visible;
     background-color: var(--tg-theme-bg-color);
-    transition: opacity 1s, visibility 0s 0s;
-}
-.preloader_hidden {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 1s, visibility 0s 1s;
 }
 .sk-chase {
     width: 128px;
