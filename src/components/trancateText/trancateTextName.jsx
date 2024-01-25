@@ -1,6 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Preloader from './../preloader/preloader.jsx';
 
 function TruncateTextName({ text }) {
+	const [loading, setLoading] = useState(true);
+
    useEffect(() => {
       const elements = document.querySelectorAll('#nameProduct');
       elements.forEach(element => {
@@ -15,9 +18,12 @@ function TruncateTextName({ text }) {
             }
          }
       });
+		setLoading(false);
     }, [text]);
  
-   return text;
+   return (
+      loading ? (<Preloader />) : (text)
+   );
 }
  
  export default TruncateTextName;

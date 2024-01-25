@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductList from './../components/productList/productList.jsx';
-import Preloader from './../components/preloader/preloader.jsx';
+import ProductList from './../productList/productList.jsx';
+import Preloader from './../preloader/preloader.jsx';
 
 function Query({ onRender }) {
+    console.log("rendered productCards");
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -18,7 +19,6 @@ function Query({ onRender }) {
 				}
 			} catch (error) {
 				console.error('Ошибка при получении данных:', error);
-				setLoading(false);
 			}
 		};
 		

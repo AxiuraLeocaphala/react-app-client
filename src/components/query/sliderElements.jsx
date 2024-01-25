@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from '../components/header/header.jsx';
-import Preloader from './../components/preloader/preloader.jsx';
+import Header from './../header/header.jsx';
+import Preloader from './../preloader/preloader.jsx';
 
 function Query() {
+    console.log("rendered sliderElemets")
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
   
@@ -15,7 +16,6 @@ function Query() {
                 setLoading(false);
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
-                setLoading(false);
             }
         };
         

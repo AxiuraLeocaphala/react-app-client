@@ -1,6 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Preloader from './../preloader/preloader.jsx';
 
-function TruncateTextDescription({ text }) {
+function TruncateTextDescription({ text, onRender }) {
+	const [loading, setLoading] = useState(true);
+
    useEffect(() => {
       const elements = document.querySelectorAll('#descriptionProduct');
       elements.forEach(element => {
@@ -15,9 +18,15 @@ function TruncateTextDescription({ text }) {
             }
          }
       });
-    }, [text]);
+		setLoading(false);
+      if (typeof onRender === 'function') {
+         onRender(); // Вызываем функцию обратного вызова, чтобы уведомить родительский компонент
+      }
+    }, [text, onRender]);
  
-   return text;
+   return (
+      loading ? (<Preloader />) : (text)
+   );
 }
  
  export default TruncateTextDescription;
