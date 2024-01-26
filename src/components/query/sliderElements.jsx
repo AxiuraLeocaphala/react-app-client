@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './../header/header.jsx';
+import Categories from './../categories/categories.jsx';
 import Preloader from './../preloader/preloader.jsx';
 
 function Query() {
-    console.log("rendered sliderElemets")
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
   
@@ -24,7 +24,12 @@ function Query() {
     },  []);
     
     return ( 
-        loading ? (<Preloader />) : (<Header data={data} />)
+        loading ? (<Preloader />) : (
+            <>
+                <Header data={data}/>
+                < Categories data={data}/>
+            </>
+        )
     );
 }
 

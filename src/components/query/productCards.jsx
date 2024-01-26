@@ -4,7 +4,6 @@ import ProductList from './../productList/productList.jsx';
 import Preloader from './../preloader/preloader.jsx';
 
 function Query({ onRender }) {
-    console.log("rendered productCards");
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 

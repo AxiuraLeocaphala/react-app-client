@@ -2,10 +2,7 @@ import React from 'react';
 import './productItem.css';
 import Button from './../button/button.jsx';
 
-const ProductItem = ({product, onAdd}) => {
-    const onAddHandler = () => {
-        onAdd(product);
-    }
+const ProductItem = ({ product }) => {
     
     return (
         <div className="col-6">
@@ -18,7 +15,7 @@ const ProductItem = ({product, onAdd}) => {
                 <p id='descriptionProduct'>
                     {product["Описание"]}
                 </p>
-                <Button price={product["Стоимость"]} onClick={onAddHandler}/>
+                <Button price={product["Стоимость"]}/>
 
             </div>
         </div>
