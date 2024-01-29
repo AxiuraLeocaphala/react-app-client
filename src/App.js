@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import SliderElements from './components/query/sliderElements.jsx';
-import ProductCards from './components/query/productCards.jsx';
+import Query from './components/query/query.jsx';
 import TruncateTextName from './components/trancateText/trancateTextName.jsx';
 import TruncateTextDescription from './components/trancateText/trancateTextDescription.jsx';
 import './App.css';
@@ -10,8 +9,7 @@ function App() {
 
    return (
       <div className="webApp">
-            <SliderElements/>
-            <ProductCards onRender={() => setRenderedCards(true)} />
+            <Query onRender={() => setRenderedCards(true)} />
             {renderedCards && <TruncateTextName/>}
             {renderedCards && <TruncateTextDescription/>}
       </div>
