@@ -9,9 +9,9 @@ function App() {
 
    return (
       <div className="webApp">
-            <Query onRender={() => setRenderedCards(true)} />
-            {renderedCards && <TruncateTextName/>}
-            {renderedCards && <TruncateTextDescription/>}
+         <Query onRender={() => setRenderedCards(true)} />
+         {renderedCards && <TruncateTextName/>}
+         {renderedCards && <TruncateTextDescription/>}
       </div>
    );
 }
