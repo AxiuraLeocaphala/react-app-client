@@ -20,7 +20,7 @@ function Query({ onRender }) {
                 setLoading(false);
                 
 				if (typeof onRender === 'function') {
-					onRender(); // Вызываем функцию обратного вызова, чтобы уведомить родительский компонент
+					onRender();
 				}
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);

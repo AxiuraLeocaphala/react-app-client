@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Flickity from 'flickity';
-import './main.css';
 import ProductItem from '../productItem/productItem.jsx';
+import './main.css';
 
 const tg = window.Telegram.WebApp;
 
@@ -20,9 +20,10 @@ function activeCategory(target) {
 }
 
 const Main = ({data_1, data_2}) => {
-    let flkty;
 
     useEffect(() => {
+        let flkty;
+        
         if (data_1 && data_1.length > 0) {
 			flkty = new Flickity('.sliderCategory', {
 				freeScroll: true,
@@ -38,7 +39,7 @@ const Main = ({data_1, data_2}) => {
             const categoryCells = document.querySelectorAll('[id^="categoryCell_"]');
             categoryCells.forEach((cell, i) => {
                 if (activeCategory(cell.id)) {
-                    if (flkty.selectedIndex != i) {
+                    if (flkty.selectedIndex !== i) {
                         const links = document.querySelectorAll('.sliderCategory a');
                         links.forEach(link => {
                             link.classList.remove('active');
