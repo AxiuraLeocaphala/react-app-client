@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from '../header/header.jsx';
-import ProductList from './../productList/productList.jsx';
+import Main from '../main/main.jsx';
 import Preloader from '../preloader/preloader.jsx';
 
 function Query({ onRender }) {
@@ -33,11 +32,7 @@ function Query({ onRender }) {
     }, [onRender]);
 
     return ( 
-        loading ? (<Preloader />) : (
-            <>
-                <ProductList data_1={data_1} data_2={data_2}/>
-            </>
-        )
+        loading ? (<Preloader />) : (<Main data_1={data_1} data_2={data_2}/>)
     );
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Flickity from 'flickity';
-import './productList.css';
-import ProductItem from './../productItem/productItem.jsx';
+import './main.css';
+import ProductItem from '../productItem/productItem.jsx';
 
 const tg = window.Telegram.WebApp;
 
@@ -19,7 +19,7 @@ function activeCategory(target) {
     }
 }
 
-const ProductList = ({data_1, data_2}) => {
+const Main = ({data_1, data_2}) => {
     let flkty;
 
     useEffect(() => {
@@ -120,4 +120,4 @@ const ProductList = ({data_1, data_2}) => {
     );
 };
 
-export default ProductList;
+export default Main;
