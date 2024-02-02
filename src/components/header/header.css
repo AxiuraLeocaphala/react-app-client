@@ -30,6 +30,6 @@
 	margin: 0 0 0 3px!important;
 }
 .header a.active{
-	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
+	color: /*var(--tg-theme-button-text-color)*/ #fff;
+	background: /*var(--tg-theme-button-color)*/ #1b7ccb;
 }

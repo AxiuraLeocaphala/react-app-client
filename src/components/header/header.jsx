@@ -15,6 +15,20 @@ const Header = ( {data} ) => {
 			});
 		}
 	}, [data]);
+
+	const handleClick = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const hash = e.target.getAttribute('href');
+		const targetElement = document.getElementById(hash.substring(1));
+		if (targetElement) {
+			const offsetTop = targetElement.offsetTop - 50;
+			window.scroll({
+				top: offsetTop,
+				behavior: 'smooth'
+			});
+		}
+	}
 	
     return (	
 		<div className="header">
@@ -22,11 +36,12 @@ const Header = ( {data} ) => {
 				{data && data.map((item, idx) => {
 					return (
 						<a 
-						key={idx}
-						href={`#categoryCell_${idx}`} 
-						className={`categoryName${idx === 0 ? ' active' : ''}`}
+							key={idx}
+							href={`#categoryCell_${idx}`} 
+							className={`categoryName${idx === 0 ? ' active' : ''}`}
+							onClick={handleClick}
 						>
-						{item["Лого категории"]} {item["Название категории"]}
+							{item["Лого категории"]} {item["Название категории"]}
 						</a>
 					);
 				})}

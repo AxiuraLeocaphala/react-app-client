@@ -16,7 +16,7 @@ function getActiveICatalogNav(target) {
         return false;
     }
 }
-
+/*
 $('body').on('click', '[href*="#"]', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -36,4 +36,4 @@ $(window).scroll(function() {
             }
         }
     });
-});
+});*/

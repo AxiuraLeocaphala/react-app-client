@@ -35,7 +35,6 @@ function Query({ onRender }) {
     return ( 
         loading ? (<Preloader />) : (
             <>
-                <Header data={data_1}/>
                 <ProductList data_1={data_1} data_2={data_2}/>
             </>
         )
