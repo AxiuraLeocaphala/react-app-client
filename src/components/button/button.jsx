@@ -1,12 +1,26 @@
 import React from "react";
+import axios from 'axios';
 import './button.css';
 
-const Button = (props) => {
+const Button = ({price}) => {
+
+    // Запрос серверу на добавление товара в корзину
+    const handleClick = () => {
+        axios.post('http://127.0.0.1:3001/data/addToBusket', {
+            price: price
+        })
+        .then(responce => {
+            // Обработка ответа от сервера
+        }) 
+        .catch(error => {
+            // Обработка ошибки
+        })
+    }
     return (
-        <div className="btnEnable">
-            <div className="btn-space">
-                <button className="buttonAddToBasket">{props.price}</button>
-            </div>
+        <div className="buttonSpace">
+            <button className="buttonAddToBasket" onClick={handleClick}>
+                {price}
+            </button>
         </div>
     );
 }

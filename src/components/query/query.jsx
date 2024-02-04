@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Main from '../main/main.jsx';
 import Preloader from '../preloader/preloader.jsx';
+import Main from '../main/main.jsx';
 
 function Query({ onRender }) {
     const [data_1, setData_1] = useState([]);
@@ -32,7 +32,11 @@ function Query({ onRender }) {
     }, [onRender]);
 
     return ( 
-        loading ? (<Preloader />) : (<Main data_1={data_1} data_2={data_2}/>)
+        <>
+            {data_1 && data_1.length > 0 && data_2 && data_2.length > 0 && (
+                loading ? (<Preloader />) : (<Main data_1={data_1} data_2={data_2}/>)
+            )}
+        </>
     );
 }
 
