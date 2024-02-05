@@ -4,8 +4,12 @@ import TruncateTextName from './components/trancateText/trancateTextName.jsx';
 import TruncateTextDescription from './components/trancateText/trancateTextDescription.jsx';
 import './App.css';
 
+tg = window.Telegram.WebApp;
+
 function App() {
    const [renderedCards, setRenderedCards] = useState(false);
+
+   console.log(tg.initDataUnsafe.user.id);
 
    return (
       <div className="webApp">
