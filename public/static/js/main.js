@@ -16,24 +16,3 @@ function getActiveICatalogNav(target) {
         return false;
     }
 }
-/*
-$('body').on('click', '[href*="#"]', function(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    $('html,body').stop().animate({ scrollTop: $(this.hash).offset().top - 100 }, 200);
-});
-
-$(window).scroll(function() {
-    $('.categoryElem').each(function(i) {
-        if (getActiveICatalogNav('#' + $(this).attr('id'))) {
-            if (sliderCategory.selectedIndex != i) {
-                let current = $(this).attr('id');
-                $('.sliderCategory a').each(function() {
-                    $(this).removeClass('active');
-                })
-                $('.sliderCategory a[href="#' + current + '"]').addClass('active');
-                sliderCategory.select(i);
-            }
-        }
-    });
-});*/
