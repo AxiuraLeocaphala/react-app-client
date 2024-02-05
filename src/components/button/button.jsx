@@ -12,6 +12,7 @@ const Button = ({ product }) => {
         if (typeof tg.initDataUnsafe.user !== 'undefined') {
             QueryInsert(tg.initDataUnsafe.user.id, product['Название'], 1, product['Стоимость'])
                 .then(response => {
+                    buttonSpace.innerHTML = response.data.buttons;
                 })
                 .catch(error => {
                     // Обработка ошибки
