@@ -3,7 +3,7 @@ import axios from 'axios';
 import Preloader from '../preloader/preloader.jsx';
 import Main from '../main/main.jsx';
 
-function Query({ onRender }) {
+function QuerySelect({ onRender }) {
     const [data_1, setData_1] = useState([]);
     const [data_2, setData_2] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -40,4 +40,4 @@ function Query({ onRender }) {
     );
 }
 
-export default Query;
+export default QuerySelect;

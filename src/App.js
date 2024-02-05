@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Query from './components/query/querySelect.jsx';
+import QuerySelect from './components/query/querySelect.jsx';
 import TruncateTextName from './components/trancateText/trancateTextName.jsx';
 import TruncateTextDescription from './components/trancateText/trancateTextDescription.jsx';
 import './App.css';
@@ -9,7 +9,7 @@ function App() {
 
    return (
       <div className="webApp">
-         <Query onRender={() => setRenderedCards(true)} />
+         <QuerySelect onRender={() => setRenderedCards(true)} />
          {renderedCards && <TruncateTextName/>}
          {renderedCards && <TruncateTextDescription/>}
       </div>

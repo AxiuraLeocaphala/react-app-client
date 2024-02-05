@@ -28,7 +28,7 @@ const ProductItem = ({ product }) => {
                 <p id='descriptionProduct'>
                     {product["Описание"]}
                 </p>
-                <Button price={product["Стоимость"]}/>
+                <Button product={product}/>
             </div>
             {isPopupShow && <Popup product={product} onClose={popupClose}/>}
         </>

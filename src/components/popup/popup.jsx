@@ -17,7 +17,7 @@ const Popup = ({ product , onClose}) => {
                     {product["Описание"]}
                 </p>
             </div>
-            <Button price={product["Стоимость"]}/>
+            <Button product={product}/>
         </div>
     );
 }
