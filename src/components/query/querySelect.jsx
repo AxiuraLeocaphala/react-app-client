@@ -22,6 +22,7 @@ function QuerySelect({ onRender }) {
 				if (typeof onRender === 'function') {
 					onRender();
 				}
+                
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
             }

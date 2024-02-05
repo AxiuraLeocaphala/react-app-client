@@ -5,19 +5,21 @@ import './button.css';
 const tg = window.Telegram.WebApp;
 
 const Button = ({ product }) => {
+
     const handleClick = () => {
+        const buttonSpace = document.querySelector('.cardProduct[id="' + product['ID товара'] + '"] .buttonSpace');
+
         if (typeof tg.initDataUnsafe.user !== 'undefined') {
             QueryInsert(tg.initDataUnsafe.user.id, product['Название'], 1, product['Стоимость'])
                 .then(response => {
-                    // Обработка ответа от сервера
                 })
                 .catch(error => {
                     // Обработка ошибки
                 });
         } else {
-            QueryInsert(651509930, product['Название'], 1, product['Стоимость'])
+            QueryInsert(111111111, product['Название'], 1, product['Стоимость'])
                 .then(response => {
-                    // Обработка ответа от сервера
+                    buttonSpace.innerHTML = response.data.buttons;
                 })
                 .catch(error => {
                     // Обработка ошибки
