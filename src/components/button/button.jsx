@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 import './button.css';
 
-const tg = window.Telegram.WwbApp;
+const tg = window.Telegram.WebApp;
 
 const Button = ({price}) => {
 
