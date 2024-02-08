@@ -8,7 +8,7 @@ const Popup = ({ product , onClose}) => {
 
     return (
         <div className="overlay" onClick={onClose}>
-            <div className="popup">
+            <div className="popup cardProduct" id={`${product['ID товара']}`}>
                 <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt='' /></picture>
                 <h3>
                     {product["Название"]}

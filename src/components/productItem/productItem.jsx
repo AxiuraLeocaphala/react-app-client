@@ -7,8 +7,9 @@ const ProductItem = ({ product }) => {
     const [isPopupShow, setIsPopupShow] = useState(false);
 
     const popupShow = (e) => {
-        if (e.target.className !== 'buttonAddToBasket')
+        if (!['buttonAddToBasket', 'buttonRemove', 'buttonAdd', 'quantity'].includes(e.target.className)){
             setIsPopupShow(true);
+        }
     }
 
     const popupClose = (e) => {

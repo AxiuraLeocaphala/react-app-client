@@ -92,7 +92,7 @@ const Main = ({data_1, data_2}) => {
 
             <div className='productlList'>
                 {data_1.map((category, idx) => (
-                    <div key={category['ID категории']} id={`cardProduct_${category['ID категории']}`}>
+                    <div key={category['ID категории']} id={`categoryCell_${category['ID категории']}`}>
                         <h2 style={{marginLeft: '10px'}}>
                             {category['Лого категории']} {category['Название категории']}
                         </h2>
