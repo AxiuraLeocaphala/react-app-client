@@ -4,8 +4,6 @@ import QueryAdd from './../query/queryAdd';
 import QueryReduce from './../query/queryReduce';
 import './button.css';
 
-const tg = window.Telegram.WebApp;
-
 const Button = ({ product }) => {
 
     const handleClickOnButton = () => {
