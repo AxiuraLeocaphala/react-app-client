@@ -11,13 +11,11 @@ const QuerySelect = ({ onRender }) => {
     useEffect(() => {
         const fetchDataFromServer = async () => {
             try {
-                const response_1 = await axios.get('http://192.168.1.78:3001/data/food-categories');
+                const response_1 = await axios.get('http://127.0.0.1:3001/data/food-categories');
                 setData_1(response_1.data);
-                console.log(response_1);
 
-                const response_2 = await axios.get('http://192.168.1.78:3001/data/price-list');
+                const response_2 = await axios.get('http://127.0.0.1:3001/data/price-list');
                 setData_2(response_2.data);
-                console.log(response_2);
 
                 setLoading(false);
 
