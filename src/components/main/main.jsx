@@ -20,6 +20,7 @@ function activeCategory(target) {
 }
 
 const Main = ({data_1, data_2}) => {
+    console.log('rendering Main');
 
     useEffect(() => {
         let flkty;

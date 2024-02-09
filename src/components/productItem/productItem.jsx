@@ -4,6 +4,8 @@ import Button from './../button/button.jsx';
 import Popup from './../popup/popup.jsx';
 
 const ProductItem = ({ product }) => {
+    console.log('rendering ProductItem');
+
     const [isPopupShow, setIsPopupShow] = useState(false);
 
     const popupShow = (e) => {

@@ -4,6 +4,7 @@ import Preloader from '../preloader/preloader.jsx';
 import Main from '../main/main.jsx';
 
 function QuerySelect({ onRender }) {
+    console.log('rendering QuerySelect');
     const [data_1, setData_1] = useState([]);
     const [data_2, setData_2] = useState([]);
     const [loading, setLoading] = useState(true);
