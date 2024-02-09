@@ -5,7 +5,6 @@ import TruncateTextDescription from './components/trancateText/trancateTextDescr
 import './App.css';
 
 function App() {
-   console.log('rendering App');
    const [renderedCards, setRenderedCards] = useState(false);
 
    return (
