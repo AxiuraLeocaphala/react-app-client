@@ -5,7 +5,6 @@ import QueryReduce from './../query/queryReduce';
 import './button.css';
 
 const Button = ({ product }) => {
-    console.log('rendering Button');
 
     const handleClickOnButton = () => {
         const buttonSpace = document.querySelector('.cardProduct[id="' + product['ID товара'] + '"] .buttonSpace');
