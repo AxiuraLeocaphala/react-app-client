@@ -7,7 +7,6 @@ import './button.css';
 const tg = window.Telegram.WebApp;
 
 const Button = ({ product }) => {
-
     const handleClickOnButton = () => {
         const buttonSpace = document.querySelector('.cardProduct[id="' + product['ID товара'] + '"] .buttonSpace');
         if(typeof tg.initDataUnsafe.user !== 'undefined') {    
