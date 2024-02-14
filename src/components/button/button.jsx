@@ -88,13 +88,25 @@ const Button = ({ product }) => {
                 })
         }
     }
-
+    
     return (
-        <div className="buttonSpace">
-            <button className="buttonAddToBasket" onClick={handleClickOnButton}>
-                {product['Стоимость']}
-            </button>
-        </div>
+        <>
+            {typeof product["Количество в корзине"] === 'undefined' ? (
+                <div className="buttonSpace">
+                    <button className="buttonAddToBasket" onClick={handleClickOnButton}>
+                        {product['Стоимость']}
+                    </button>
+                </div>
+            ) : (
+                <>
+                    <div className="buttonSpace">
+                        <button className="buttonRemove" onClick={handleClickOnButton}>-</button>
+                        <input className="quantity" readOnly value={product["Количество в корзине"]} />
+                        <button className="buttonAdd" onClick={handleClickOnButton}>+</button>
+                    </div>
+                </>
+            )}
+        </>
     );
 }
 

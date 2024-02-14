@@ -20,7 +20,6 @@ function activeCategory(target) {
 }
 
 const Main = ({data_1, data_2}) => {
-
     useEffect(() => {
         let flkty;
 
@@ -45,7 +44,6 @@ const Main = ({data_1, data_2}) => {
                         document.querySelector('.sliderCategory  a[href="#' + cell.id + '"]').classList.add('active');
                         flkty.select(i);
                     }
-                    
                 }
             });
         }

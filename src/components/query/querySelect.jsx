@@ -1,44 +1,46 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Preloader from '../preloader/preloader.jsx';
-import Main from '../main/main.jsx';
+import DOMPurify from 'dompurify';
+import ReactHtmlParser from 'react-html-parser';
+import TruncateText from '../trancateText/trancateText.jsx';
+import Main from './../main/main.jsx';
 
-const QuerySelect = ({ onRender }) => {
+function QuerySelect () {
     const [data_1, setData_1] = useState([]);
     const [data_2, setData_2] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loaded, setLoaded] = useState(false);
   
     useEffect(() => {
         const fetchDataFromServer = async () => {
             try {
                 const [response_1, response_2] = await Promise.all([
-                    axios.get('http://127.0.0.1:3001/data/food-categories'),
-                    axios.get('http://127.0.0.1:3001/data/price-list')
+                    axios.get(`http://127.0.0.1:3001/data/food-categories`),
+                    axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${111111111}`)
                 ]);
 
                 setData_1(response_1.data);
                 setData_2(response_2.data);
-                setLoading(false);
-
-				if (typeof onRender === 'function') {
-					onRender();
-				}
+                setLoaded(true);
                 
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
             }
         };
-        
-        fetchDataFromServer();
-  
-    }, [onRender]);
 
-    return ( 
-        <>
-            {data_1.length > 0 && data_2.length > 0 && (
-                loading ? (<Preloader />) : (<Main data_1={data_1} data_2={data_2}/>)
-            )}
-        </>
+        fetchDataFromServer();
+    }, []);
+
+
+    return (
+    <>
+        {loaded && 
+            <TruncateText data_2={data_2} />
+        } {
+            data_1.length > 0 && data_2.length > 0 && (
+                <Main data_1={data_1} data_2={data_2}/>
+            )
+        }
+    </>
     );
 }
 
