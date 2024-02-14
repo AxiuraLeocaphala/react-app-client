@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import QuerySelect from './components/query/querySelect.jsx';
 import './App.css';
 
