@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import DOMPurify from 'dompurify';
-import ReactHtmlParser from 'react-html-parser';
 import TruncateText from '../trancateText/trancateText.jsx';
 import Main from './../main/main.jsx';
 
