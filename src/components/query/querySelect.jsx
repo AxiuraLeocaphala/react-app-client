@@ -25,9 +25,9 @@ function QuerySelect () {
                 setData_1(response_1.data);
                 setData_2(response_2.data);
                 setLoaded(true);
-                
+
             } catch (error) {
-                console.error('Ошибка при получении данных:', error);
+                console.error('Ошибка при получении данных о категориях и товаров: ', error);
             }
         };
 

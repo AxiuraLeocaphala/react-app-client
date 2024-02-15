@@ -10,7 +10,7 @@
     о товарах для создания карточки товара
 */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Flickity from 'flickity';
 import ProductItem from '../productItem/productItem.jsx';
 import './main.css';

@@ -19,7 +19,6 @@ if (typeof tg.initDataUnsafe.id === "undefined") {
 }
 
 const Button = ({ product }) => {
-
     const buttonSpace = document.querySelector('.cardProduct[id="' + product['ID товара'] + '"] .buttonSpace');
     
     const handleClickOnButtonReduce = () => {
@@ -37,7 +36,7 @@ const Button = ({ product }) => {
                 }
             })
             .catch(error => {
-                console.log(error);
+                console.log('Ошибка при отправке запроса на уменьшение количества товара: ', error);
             })
     }
 
@@ -48,7 +47,7 @@ const Button = ({ product }) => {
                 quantity.value = response.data.quantity;
             })
             .catch(error => {
-                console.log(error);
+                console.log('Ошибка при отправке запроса на увеличение количества товара: ', error);
             })
     }
 
@@ -68,7 +67,7 @@ const Button = ({ product }) => {
                 })
             })
             .catch(error => {
-                console.log(error);
+                console.log('Ошибка при отправке запроса на добавление товара: ', error);
             })
     }
 
