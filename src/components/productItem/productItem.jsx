@@ -1,3 +1,12 @@
+/*
+    Компонент ProductItem рендерит карточку продукта, используя данные, 
+    полученные от компонента Main. В ProductItem также прописана логика 
+    демонстрации и скрытия компонента Popup.
+
+    При рендеринге ProductItem компоненту Button передается информация 
+    о товаре для создания кнопки/группы кнопок со счетчиком
+*/
+
 import React, { useState } from 'react';
 import './productItem.css';
 import Button from './../button/button.jsx';
@@ -8,7 +17,7 @@ const ProductItem = ({ product }) => {
     const [isPopupShow, setIsPopupShow] = useState(false);
 
     const popupShow = (e) => {
-        if (!['buttonAddToBasket', 'buttonRemove', 'buttonAdd', 'quantity'].includes(e.target.className)){
+        if (!['buttonAddToBasket', 'buttonReduce', 'buttonIncrease', 'quantity'].includes(e.target.className)){
             setIsPopupShow(true);
         }
     }

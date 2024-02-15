@@ -1,3 +1,9 @@
+/*
+    QuerySelect выполняет get-запрос серверу для получения категорий товаров и 
+    информации о товарах: название, описание, стоимость. Получив ответы, QuerySelect
+    передает их в компонент Main через пропсы. 
+*/
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import TruncateText from '../trancateText/trancateText.jsx';

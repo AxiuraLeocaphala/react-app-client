@@ -1,3 +1,15 @@
+/*
+    Main, получив данные из QuerySelect, рендерит слайдер, применяя функционал 
+    библеотеки Flickity, и витрину с товарами, используя информацию из пропсов. 
+    Также в компоненте Main прописана логика, помимо стандартной логики, 
+    обеспеченной Flickity, работы слайдера: центровка текущей (той, которая 
+    находится в поле видимости пользователя) категории при скролле страницы, 
+    плавный переход по якорям.
+
+    При рендеринге витрины с товарами компоненту ProductItem передаюся данные 
+    о товарах для создания карточки товара
+*/
+
 import React, { useEffect } from 'react';
 import Flickity from 'flickity';
 import ProductItem from '../productItem/productItem.jsx';
@@ -95,12 +107,12 @@ const Main = ({data_1, data_2}) => {
                             {category['Лого категории']} {category['Название категории']}
                         </h2>
                         <div className='list'>
-                            {data_2.map((productCard) => {
+                            {data_2.map((product) => {
                                 return (
-                                    category['ID категории'] === productCard['ID категории'] && (
+                                    category['ID категории'] === product['ID категории'] && (
                                         <ProductItem
-                                            key={productCard["ID товара"]}
-                                            product={productCard}
+                                            key={product["ID товара"]}
+                                            product={product}
                                         />
                                     )
                                 );

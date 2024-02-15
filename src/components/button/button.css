@@ -24,21 +24,16 @@
 .overlay .buttonAddToBasket{
 	font-size: 20px;
 }
-.buttonRemove, .buttonAdd{
+.buttonReduce {
     width: calc(35% - 10px);
     height: 100%;
     padding: 0;
+	margin-right: 10px;
 	border-radius: 10px;
 	font-size: 14px;
 	color: /*var(--tg-theme-button-text-color)*/ #fff;
 	background: /*var(--tg-theme-button-color)*/ #2689f3;
 	border: none;
-}
-.buttonRemove{
-	margin-right: 10px;
-}
-.buttonAdd{
-	margin-left: 10px;
 }
 .quantity{
     width: calc(30% - 10px);
@@ -54,12 +49,23 @@
 .quantity:focus{
     outline: none;
 }
-.overlay .buttonRemove{
+.buttonIncrease{
+    width: calc(35% - 10px);
+    height: 100%;
+    padding: 0;
+	margin-left: 10px;
+	border-radius: 10px;
+	font-size: 14px;
+	color: /*var(--tg-theme-button-text-color)*/ #fff;
+	background: /*var(--tg-theme-button-color)*/ #2689f3;
+	border: none;
+}
+.overlay .buttonReduce{
     font-size: 22px;
 }
 .overlay .quantity{
     font-size: 22px;
 }
-.overlay .buttonAdd{
+.overlay .buttonIncrease{
     font-size: 22px;
 }
