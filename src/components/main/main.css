@@ -31,7 +31,7 @@
 }
 .sliderCategory a.active{
 	color: var(--tg-theme-button-text-color);
-	background: /*var(--tg-theme-button-color)*/ #1258c8;
+	background: var(--tg-theme-button-color);
 }
 .categoryCell{
 	margin: 0;

@@ -17,8 +17,8 @@
 	border-radius: 10px;
 	border: none;
 	font-size: 14px;
-	color: /*var(--tg-theme-button-text-color)*/ #fff;
-	background: /*var(--tg-theme-button-color)*/ #2689f3;
+	color: var(--tg-theme-button-text-color);
+	background: var(--tg-theme-button-color);
 	transition: 0.1s;
 }
 .overlay .buttonAddToBasket{
@@ -31,8 +31,8 @@
 	margin-right: 10px;
 	border-radius: 10px;
 	font-size: 14px;
-	color: /*var(--tg-theme-button-text-color)*/ #fff;
-	background: /*var(--tg-theme-button-color)*/ #2689f3;
+	color: var(--tg-theme-button-text-color);
+	background: var(--tg-theme-button-color);
 	border: none;
 }
 .quantity{
@@ -56,8 +56,8 @@
 	margin-left: 10px;
 	border-radius: 10px;
 	font-size: 14px;
-	color: /*var(--tg-theme-button-text-color)*/ #fff;
-	background: /*var(--tg-theme-button-color)*/ #2689f3;
+	color: var(--tg-theme-button-text-color);
+	background: var(--tg-theme-button-color);
 	border: none;
 }
 .overlay .buttonReduce{
