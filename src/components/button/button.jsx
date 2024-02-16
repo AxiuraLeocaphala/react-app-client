@@ -4,7 +4,7 @@
     количество товара в корзине, уменьшение количества товара в корзине.
 */
 
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import QueryAdd from '../query/queryAdd';
 import QueryIncrease from '../query/queryIncrease';
 import QueryReduce from '../query/queryReduce';
@@ -19,17 +19,18 @@ if (typeof tg.initDataUnsafe.id === "undefined") {
 }
 
 const Button = ({ product }) => {
-    const buttonSpace = document.querySelector('.cardProduct[id="' + product['ID товара'] + '"] .buttonSpace');
+    const [quantity, setQuantity] = useState(product["Количество в корзине"] || 0);
+    const buttonSpaceRef = useRef(null);
     
     const handleClickOnButtonReduce = () => {
-        let quantity = buttonSpace.querySelector('.quantity');
+        let quantity = buttonSpaceRef.current.querySelector('.quantity');
         QueryReduce(chatId, product["Название"])
             .then(response => {
                 if (typeof response.data.quantity !== "undefined") {
                     quantity.value = response.data.quantity;
                 } else {
-                    buttonSpace.innerHTML = response.data.contentButtonSpace;
-                    const buttonAddToBasket = buttonSpace.querySelector('.buttonAddToBasket');
+                    buttonSpaceRef.current.innerHTML = response.data.contentButtonSpace;
+                    const buttonAddToBasket = buttonSpaceRef.current.querySelector('.buttonAddToBasket');
                     buttonAddToBasket.addEventListener('click', function() {
                         handleClickOnButtonMain();
                     })
@@ -41,7 +42,7 @@ const Button = ({ product }) => {
     }
 
     const handleClickOnButtonIncrease = () => {
-        let quantity = buttonSpace.querySelector('.quantity');
+        let quantity = buttonSpaceRef.current.querySelector('.quantity');
         QueryIncrease(chatId, product["Название"])
             .then(response => {
                 quantity.value = response.data.quantity;
@@ -54,10 +55,10 @@ const Button = ({ product }) => {
     const handleClickOnButtonMain = () => {
         QueryAdd(chatId, product["Название"], 1, product["Стоимость"])
             .then(response => {
-                buttonSpace.innerHTML = response.data.contentButtonSpace;
+                buttonSpaceRef.current.innerHTML = response.data.contentButtonSpace;
 
-                const buttonReduce = buttonSpace.querySelector('.buttonReduce');
-                const buttonIncrease = buttonSpace.querySelector('.buttonIncrease');
+                const buttonReduce = buttonSpaceRef.current.querySelector('.buttonReduce');
+                const buttonIncrease = buttonSpaceRef.current.querySelector('.buttonIncrease');
 
                 buttonReduce.addEventListener('click', function() {
                     handleClickOnButtonReduce();
@@ -72,22 +73,19 @@ const Button = ({ product }) => {
     }
 
     return (
-        <>
-            {typeof product["Количество в корзине"] === "undefined" ? (
-                <div className='buttonSpace'>
+        <div ref={buttonSpaceRef} className='buttonSpace'>
+            { quantity === 0 ? (
                     <button className='buttonAddToBasket' onClick={handleClickOnButtonMain}>
                         {product["Стоимость"]} ₽
                     </button>
-                </div>
             ) : (
-
-                <div className='buttonSpace'>
+                <>
                     <button className='buttonReduce' onClick={handleClickOnButtonReduce}>-</button>
                     <input className='quantity' type="text" readOnly value={product["Количество в корзине"]} />
                     <button className='buttonIncrease' onClick={handleClickOnButtonIncrease}>+</button>
-                </div>
+                </>
             )}
-        </>
+        </div>
         
     );
 }

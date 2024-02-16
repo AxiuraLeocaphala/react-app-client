@@ -39,11 +39,13 @@ const ProductItem = ({ product }) => {
                 <p id='descriptionProduct'>
                     {product["Описание"]}
                 </p>
-                <Button product={product}/>
+                <Button 
+                    product={product}
+                />
             </div>
             {isPopupShow && <Popup product={product} onClose={popupClose}/>}
         </>
     );
-}
+} 
 
 export default ProductItem;

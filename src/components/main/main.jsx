@@ -31,11 +31,14 @@ function activeCategory(target) {
     }
 }
 
-const Main = ({data_1, data_2}) => {
+function Main ({data_1, data_2}) {
+    const sliderCategoryRef = useRef(null);
+    const aRefs = useRef(Array(data_1.length).fill(null).map(() => React.createRef()));
+
     useEffect(() => {
         let flkty;
 
-        flkty = new Flickity('.sliderCategory', {
+        flkty = new Flickity(sliderCategoryRef.current, {
             freeScroll: true,
             contain: true,
             cellAlign: 'center',
@@ -44,20 +47,19 @@ const Main = ({data_1, data_2}) => {
             pageDots: false,
         });
 
-        function handleScroll() {
-            const categoryCells = document.querySelectorAll('[id^="categoryCell_"]');
-            categoryCells.forEach((cell, i) => {
-                if (activeCategory(cell.id)) {
-                    if (flkty.selectedIndex !== i) {
-                        const links = document.querySelectorAll('.sliderCategory a');
-                        links.forEach(link => {
-                            link.classList.remove('active');
+        const handleScroll = () => {
+            aRefs.current.forEach((ref, index) => {
+                const categoryCellHref = ref.current.getAttribute('href').replace("#", "");
+                if (activeCategory(categoryCellHref)) {
+                    if (flkty.selectedIndex !== index) {
+                        aRefs.current.forEach((ref, index) => {
+                            ref.current.classList.remove('active');
                         });
-                        document.querySelector('.sliderCategory  a[href="#' + cell.id + '"]').classList.add('active');
-                        flkty.select(i);
+                        ref.current.classList.add('active');
+                        flkty.select(index);
                     }
                 }
-            });
+            })
         }
     
         window.addEventListener('scroll', handleScroll);
@@ -84,10 +86,12 @@ const Main = ({data_1, data_2}) => {
     return (
         <>
             <div className="header">
-                <div className="sliderCategory">
+                <div ref={sliderCategoryRef} className="sliderCategory">
                     {data_1.map((item, idx) => {
+
                         return (
                             <a 
+                                ref={aRefs.current[idx]}
                                 key={idx}
                                 href={`#categoryCell_${idx}`} 
                                 className={`categoryName${idx === 0 ? ' active' : ''}`}
