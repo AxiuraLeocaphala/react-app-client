@@ -19,7 +19,7 @@ if (typeof tg.initDataUnsafe.id === "undefined") {
 }
 
 const Button = ({ product }) => {
-    const [quantity, setQuantity] = useState(product["Количество в корзине"] || 0);
+    const [quantity] = useState(product["Количество в корзине"] || 0);
     const buttonSpaceRef = useRef(null);
 
     const handleClickOnButtonReduce = () => {
