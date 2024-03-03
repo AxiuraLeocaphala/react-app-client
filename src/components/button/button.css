@@ -1,25 +1,21 @@
-.overlay .buttonSpace{
-	width: 55%;
-	height: 50px;
-	position: absolute;
-	bottom: 5%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
 .cardProduct .buttonSpace{
 	height: 40px;
-	padding: 10px 0 10px 0;
+	text-align: center;
+	align-self: end;
+}
+.overlay .buttonSpace{
+	height: 50px;
+	margin-top: 15px;
 	text-align: center;
 }
 .buttonAddToBasket{
 	width: 100%;
 	height: 100%;
-	border-radius: 10px;
 	border: none;
+	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
-	transition: 0.1s;
+	background: /*var(--tg-theme-button-color)*/ #1e74ff;
 }
 .overlay .buttonAddToBasket{
 	font-size: 20px;
@@ -27,18 +23,17 @@
 .buttonReduce {
     width: calc(35% - 10px);
     height: 100%;
-    padding: 0;
-	margin-right: 10px;
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
+	background: /*var(--tg-theme-button-color)*/ #1e74ff;
 	border: none;
 }
 .quantity{
     width: calc(30% - 10px);
     height: 100%;
     padding: 0;
+	margin: 0 10px 0 10px;
     text-align: center;
 	border: none;
 	border-radius: 5px;
@@ -52,20 +47,14 @@
 .buttonIncrease{
     width: calc(35% - 10px);
     height: 100%;
-    padding: 0;
-	margin-left: 10px;
+	border: none;
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
-	border: none;
+	background: /*var(--tg-theme-button-color)*/ #1e74ff;
 }
-.overlay .buttonReduce{
-    font-size: 22px;
-}
-.overlay .quantity{
-    font-size: 22px;
-}
+.overlay .buttonReduce, 
+.overlay .quantity, 
 .overlay .buttonIncrease{
     font-size: 22px;
 }

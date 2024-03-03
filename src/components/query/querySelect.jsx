@@ -9,6 +9,14 @@ import axios from 'axios';
 import TruncateText from '../trancateText/trancateText.jsx';
 import Main from './../main/main.jsx';
 
+const tg = window.Telegram.WebApp;
+let chatId;
+if (typeof tg.initDataUnsafe.id === "undefined") {
+    chatId = 111111111;
+} else {
+    chatId = tg.initDataUnsafe.id;
+}
+
 function QuerySelect () {
     const [data_1, setData_1] = useState([]);
     const [data_2, setData_2] = useState([]);
@@ -19,7 +27,7 @@ function QuerySelect () {
             try {
                 const [response_1, response_2] = await Promise.all([
                     axios.get(`http://127.0.0.1:3001/data/food-categories`),
-                    axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${111111111}`)
+                    axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${chatId}`)
                 ]);
 
                 setData_1(response_1.data);

@@ -31,17 +31,19 @@
 }
 .sliderCategory a.active{
 	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
-}
-.categoryCell{
-	margin: 0;
-	margin-left: 10px;
+	background: /*var(--tg-theme-button-color)*/ #1e74ff;
 }
 .productlList{
 	padding-top: 40px;
 }
+.categoryCell{
+	margin-left: 10px;
+}
 .list{
 	display: grid;
-    margin-left: 10px;
 	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	margin: 0 10px 0 10px;/*
+    margin-left: 10px;*/
 }

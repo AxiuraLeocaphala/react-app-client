@@ -4,7 +4,7 @@
     количество товара в корзине, уменьшение количества товара в корзине.
 */
 
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import QueryAdd from '../query/queryAdd';
 import QueryIncrease from '../query/queryIncrease';
 import QueryReduce from '../query/queryReduce';
@@ -21,14 +21,16 @@ if (typeof tg.initDataUnsafe.id === "undefined") {
 const Button = ({ product }) => {
     const [quantity, setQuantity] = useState(product["Количество в корзине"] || 0);
     const buttonSpaceRef = useRef(null);
-    
+
     const handleClickOnButtonReduce = () => {
         let quantity = buttonSpaceRef.current.querySelector('.quantity');
         QueryReduce(chatId, product["Название"])
             .then(response => {
                 if (typeof response.data.quantity !== "undefined") {
+                    product["Количество в корзине"] = response.data.quantity;
                     quantity.value = response.data.quantity;
                 } else {
+                    product["Количество в корзине"] = 0;
                     buttonSpaceRef.current.innerHTML = response.data.contentButtonSpace;
                     const buttonAddToBasket = buttonSpaceRef.current.querySelector('.buttonAddToBasket');
                     buttonAddToBasket.addEventListener('click', function() {
@@ -45,6 +47,7 @@ const Button = ({ product }) => {
         let quantity = buttonSpaceRef.current.querySelector('.quantity');
         QueryIncrease(chatId, product["Название"])
             .then(response => {
+                product["Количество в корзине"] = response.data.quantity
                 quantity.value = response.data.quantity;
             })
             .catch(error => {
@@ -56,16 +59,13 @@ const Button = ({ product }) => {
         QueryAdd(chatId, product["Название"], 1, product["Стоимость"])
             .then(response => {
                 buttonSpaceRef.current.innerHTML = response.data.contentButtonSpace;
-
-                const buttonReduce = buttonSpaceRef.current.querySelector('.buttonReduce');
-                const buttonIncrease = buttonSpaceRef.current.querySelector('.buttonIncrease');
-
-                buttonReduce.addEventListener('click', function() {
+                product["Количество в корзине"] = 1;
+                buttonSpaceRef.current.querySelector('.buttonReduce').addEventListener('click', function() {
                     handleClickOnButtonReduce();
-                }) 
-                buttonIncrease.addEventListener('click', function() {
+                }) ;
+                buttonSpaceRef.current.querySelector('.buttonIncrease').addEventListener('click', function() {
                     handleClickOnButtonIncrease();
-                })
+                });
             })
             .catch(error => {
                 console.log('Ошибка при отправке запроса на добавление товара: ', error);
@@ -73,8 +73,11 @@ const Button = ({ product }) => {
     }
 
     return (
-        <div ref={buttonSpaceRef} className='buttonSpace'>
-            { quantity === 0 ? (
+        <div 
+            ref={buttonSpaceRef}
+            className='buttonSpace'
+        >
+            { quantity === 0  ? (
                     <button className='buttonAddToBasket' onClick={handleClickOnButtonMain}>
                         {product["Стоимость"]} ₽
                     </button>
