@@ -32,8 +32,8 @@ const Button = ({ product }) => {
                 } else {
                     product["Количество в корзине"] = 0;
                     buttonSpaceRef.current.innerHTML = response.data.contentButtonSpace;
-                    const buttonAddToBasket = buttonSpaceRef.current.querySelector('.buttonAddToBasket');
-                    buttonAddToBasket.addEventListener('click', function() {
+                    const buttonAddToBusket = buttonSpaceRef.current.querySelector('.buttonAddToBusket');
+                    buttonAddToBusket.addEventListener('click', function() {
                         handleClickOnButtonMain();
                     })
                 }
@@ -78,7 +78,7 @@ const Button = ({ product }) => {
             className='buttonSpace'
         >
             { quantity === 0  ? (
-                    <button className='buttonAddToBasket' onClick={handleClickOnButtonMain}>
+                    <button className='buttonAddToBusket' onClick={handleClickOnButtonMain}>
                         {product["Стоимость"]} ₽
                     </button>
             ) : (

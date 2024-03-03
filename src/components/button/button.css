@@ -8,16 +8,16 @@
 	margin-top: 15px;
 	text-align: center;
 }
-.buttonAddToBasket{
+.buttonAddToBusket{
 	width: 100%;
 	height: 100%;
 	border: none;
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: /*var(--tg-theme-button-color)*/ #1e74ff;
+	background: var(--tg-theme-button-color);
 }
-.overlay .buttonAddToBasket{
+.overlay .buttonAddToBusket{
 	font-size: 20px;
 }
 .buttonReduce {
@@ -26,7 +26,7 @@
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: /*var(--tg-theme-button-color)*/ #1e74ff;
+	background: var(--tg-theme-button-color);
 	border: none;
 }
 .quantity{
@@ -51,7 +51,7 @@
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: /*var(--tg-theme-button-color)*/ #1e74ff;
+	background: var(--tg-theme-button-color);
 }
 .overlay .buttonReduce, 
 .overlay .quantity, 
