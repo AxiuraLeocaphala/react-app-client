@@ -5,6 +5,8 @@ import './popup.css';
 const Popup = ({ product, onClose, optionsCardProduct }) => {
     return (
         <div className="overlay" onClick={onClose}>
+        {console.log(optionsCardProduct.left, document.body.clientWidth/2)}
+        {console.log(optionsCardProduct.left < document.body.clientWidth/2)}
             <div 
                 className="popup"
                 style={{
