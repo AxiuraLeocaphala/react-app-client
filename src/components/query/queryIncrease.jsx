@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const  QueryIncrease = (chatId, productName) => {
-    return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
+    return axios.post('http://192.168.56.1:3001/data/increaseQuantity', {
         chatId,
         productName
     });

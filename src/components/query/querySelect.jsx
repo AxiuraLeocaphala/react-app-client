@@ -26,8 +26,8 @@ function QuerySelect () {
         const fetchDataFromServer = async () => {
             try {
                 const [response_1, response_2] = await Promise.all([
-                    axios.get(`http://127.0.0.1:3001/data/food-categories`),
-                    axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${chatId}`)
+                    axios.get(`http://192.168.56.1:3001/data/food-categories`),
+                    axios.get(`http://192.168.56.1:3001/data/price-list?chatId=${chatId}`)
                 ]);
 
                 setData_1(response_1.data);
