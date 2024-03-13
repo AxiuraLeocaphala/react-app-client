@@ -1,59 +1,15 @@
-/*
-    QuerySelect выполняет get-запрос серверу для получения категорий товаров и 
-    информации о товарах: название, описание, стоимость. Получив ответы, QuerySelect
-    передает их в компонент Main через пропсы. 
-*/
-
-import { useState, useEffect } from 'react';
+import {useEffect} from 'react';
 import axios from 'axios';
-import TruncateText from '../trancateText/trancateText.jsx';
-import Main from './../main/main.jsx';
+import {HookTelegram} from '../hookTelegram/hookTelegram.jsx';
 
-const tg = window.Telegram.WebApp;
-let chatId;
-if (typeof tg.initDataUnsafe.id === "undefined") {
-    chatId = 111111111;
-} else {
-    chatId = tg.initDataUnsafe.id;
-}
-
-function QuerySelect () {
-    const [data_1, setData_1] = useState([]);
-    const [data_2, setData_2] = useState([]);
-    const [loaded, setLoaded] = useState(false);
-  
+export function QuerySelect (handleData) {
     useEffect(() => {
-        const fetchDataFromServer = async () => {
-            try {
-                const [response_1, response_2] = await Promise.all([
-                    axios.get(`http://192.168.56.1:3001/data/food-categories`),
-                    axios.get(`http://192.168.56.1:3001/data/price-list?chatId=${chatId}`)
-                ]);
-
-                setData_1(response_1.data);
-                setData_2(response_2.data);
-                setLoaded(true);
-
-            } catch (error) {
-                console.error('Ошибка при получении данных о категориях и товаров: ', error);
-            }
-        };
-
-        fetchDataFromServer();
-    }, []);
-
-
-    return (
-    <>
-        {loaded && 
-            <TruncateText data_2={data_2} />
-        } {
-            data_1.length > 0 && data_2.length > 0 && (
-                <Main data_1={data_1} data_2={data_2}/>
-            )
-        }
-    </>
-    );
+        axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${HookTelegram().chatId}`)
+        .then(response => {
+            handleData.onDataReceived(response.data);
+        })
+        .catch(error => {
+            console.error('Ошибка при получении данных о категориях и товаров: ', error);
+        })
+    }, [])
 }
-
-export default QuerySelect;
