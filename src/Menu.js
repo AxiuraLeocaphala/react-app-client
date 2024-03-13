@@ -17,9 +17,7 @@ function Menu() {
     return (
         <div className="WebApp">
             <QuerySelect onDataReceived={handleData}/>
-            {loadData ? (
-                <Preloader/>
-            ):(
+            {loadData && (
                 <>
                     <Header productCategory={data[0]}/>
                     <Main productCategory={data[0]} productInfo={data[1]}/>
