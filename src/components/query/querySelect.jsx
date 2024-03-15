@@ -11,5 +11,5 @@ export function QuerySelect (handleData) {
         .catch(error => {
             console.error('Ошибка при получении данных о категориях и товаров: ', error);
         })
-    })
+    }, [handleData])
 }
