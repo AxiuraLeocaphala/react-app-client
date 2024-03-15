@@ -35,6 +35,8 @@ function Menu() {
             }
         }
     }, [data, tg])
+    tg.PopupButton.show();
+    tg.PopupButton.text = "Привет";
 
     tg.MainButton.onClick(() => {
         <Navigate to="/busket"/>
