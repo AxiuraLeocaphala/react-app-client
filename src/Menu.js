@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
+//import { Navigate } from 'react-router-dom';
 import { HookTelegram } from './components/hookTelegram/hookTelegram.jsx';
 import Main from './components/main/main.jsx';
 import Header from './components/header/header.jsx';
@@ -34,10 +34,7 @@ function Menu() {
                 })
             }
         }
-        tg.MainButton.onClick(() => {
-            useHistory.push('/busket');
-        });
-    }, [data])
+    }, [data, tg])
 
     return (
         <div className="WebApp">
