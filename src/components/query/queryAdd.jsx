@@ -1,3 +1,4 @@
+import { HookTelegram } from '../hookTelegram/hookTelegram';
 import {QueryReduce} from './queryReduce';
 import {QueryIncrease} from './queryIncrease';
 import axios from 'axios';
@@ -12,6 +13,7 @@ export function  QueryAdd (chatId, product, buttonSpace) {
     .then(response => {
         buttonSpace.innerHTML = response.data.contentButtonSpace;
         product["Количество в корзине"] = 1;
+        HookTelegram().tg.MainButton.text = `Корзина ${product["Стоимость"]}`;
         buttonSpace.querySelector('.buttonReduce').addEventListener('click', () =>{
             QueryReduce(chatId, product, buttonSpace)
         })

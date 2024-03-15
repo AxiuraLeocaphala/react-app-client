@@ -29,9 +29,7 @@ function Menu() {
             if (totalPrice === 0){
                 tg.MainButton.text = 'Корзина';
             } else {
-                tg.MainButton.setParams({
-                    text: `Корзина ${totalPrice}`
-                })
+                tg.MainButton.text = `Корзина ${totalPrice}`;
             }
         }
     }, [data, tg])
