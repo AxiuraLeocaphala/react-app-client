@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import axios from 'axios';
-import {HookTelegram} from '../hookTelegram/hookTelegram.jsx';
+import {HookTelegram} from '../hooks/hookTelegram.jsx';
 
 export function QuerySelect (handleData) {
     useEffect(() => {

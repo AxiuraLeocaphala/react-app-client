@@ -1,15 +1,13 @@
-import { HookTelegram } from '../hookTelegram/hookTelegram';
 import axios from 'axios';
 
-export function QueryIncrease (chatId, product, buttonSpace) {
+export function QueryIncrease (hookTelegram, product, buttonSpace) {
     return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
-        chatId: chatId,
+        chatId: hookTelegram.chatId,
         productName: product["Название"]
     })
     .then(response => {
         product["Количество в корзине"] = response.data.quantity;
-        console.log(HookTelegram().tg.MainButton.text.replace(/\D/g, ''));
-        HookTelegram().tg.MainButton.text = `Корзина ${parseInt(HookTelegram().tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]}`;
+        hookTelegram.tg.MainButton.text = `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]}`;
         buttonSpace.querySelector('.quantity').value = response.data.quantity;
     })
     .catch(error => {

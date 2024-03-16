@@ -1,4 +1,5 @@
 const tg = window.Telegram.WebApp;
+tg.ready();
 tg.expand();
 tg.MainButton.show();
 
@@ -10,7 +11,6 @@ if (typeof tg.initDataUnsafe.id != "undefined") {
 }
 
 export function HookTelegram () {
-
     return {
         tg,
         chatId

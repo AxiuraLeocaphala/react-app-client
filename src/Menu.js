@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Navigate } from 'react-router-dom';
-import { HookTelegram } from './components/hookTelegram/hookTelegram.jsx';
-import Main from './components/main/main.jsx';
+import { HookTelegram } from './components/hooks/hookTelegram.jsx';
+import Main from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
 import {QuerySelect} from './components/query/querySelect.jsx';
 import './App.css';
@@ -17,8 +17,6 @@ function Menu() {
     }
 
     useEffect(() => {
-        tg.ready();
-        tg.MainButton.show();
         if (typeof data[0] !== 'undefined') {
             let totalPrice = 0; 
             data[1].forEach(element => {

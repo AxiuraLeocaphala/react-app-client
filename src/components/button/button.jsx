@@ -1,23 +1,26 @@
 import React, { useRef, useState } from 'react';
-import {HookTelegram} from './../hookTelegram/hookTelegram.jsx';
+import { HookTelegram } from '../hooks/hookTelegram';
 import {QueryAdd} from '../query/queryAdd';
 import {QueryIncrease} from '../query/queryIncrease';
 import {QueryReduce} from '../query/queryReduce';
 import './button.css'
 ;
-const Button = ({ product }) => {
+import { RouterProvider } from 'react-router-dom';
+const Button = ({ product}) => { 
     const [quantity] = useState(product["Количество в корзине"] || 0);
-    const buttonSpaceRef = useRef(null);
+    const buttonSpaceRef = useRef(null); 
+    const hookTelegram = HookTelegram();
+
     const handleClickOnButtonReduce = () => {
-        QueryReduce(HookTelegram().chatId, product, buttonSpaceRef.current);
+        QueryReduce(hookTelegram, product, buttonSpaceRef.current);
     }
 
     const handleClickOnButtonIncrease = () => {
-        QueryIncrease(HookTelegram().chatId, product, buttonSpaceRef.current)
+        QueryIncrease(hookTelegram, product, buttonSpaceRef.current)
     }
 
     const handleClickOnButtonMain = () => {
-        QueryAdd(HookTelegram().chatId, product, buttonSpaceRef.current);
+        QueryAdd(hookTelegram, product, buttonSpaceRef.current);
     }
     
     return (

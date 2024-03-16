@@ -1,25 +1,24 @@
 import React, { useEffect, useRef } from "react";
-import {HookTelegram} from './../hookTelegram/hookTelegram.jsx';
+import {HookTelegram} from '../hooks/hookTelegram.jsx';
 import Flickity from 'flickity';
 import './header.css'
-
-function activeCategory(target) {
-    let w = window;
-    let t = document.getElementById(target);
-    let wt = w.scrollY;
-    let wh = w.innerHeight - HookTelegram().tg.viewportHeight / 2;
-    let eh = t.offsetHeight;
-    let et = t.offsetTop;
-    if (wt + wh >= et && wt + wh - eh * 2 <= et + (wh - eh)) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 const Header = ({ productCategory }) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategory.length).fill(null).map(() => React.createRef()));
+    const activeCategory = (target) => {
+        let w = window;
+        let t = document.getElementById(target);
+        let wt = w.scrollY;
+        let wh = w.innerHeight - HookTelegram().tg.viewportHeight / 2;
+        let eh = t.offsetHeight;
+        let et = t.offsetTop;
+        if (wt + wh >= et && wt + wh - eh * 2 <= et + (wh - eh)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     useEffect(() => {
         let flkty;
         flkty = new Flickity(sliderCategoryRef.current, {

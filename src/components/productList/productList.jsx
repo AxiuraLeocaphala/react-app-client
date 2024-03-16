@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import TruncateText from '../trancateText/truncateText.jsx';
 import ProductItem from '../productItem/productItem.jsx';
-import './main.css';
+import './productList.css';
 
-const Main = ({ productCategory, productInfo }) => {
+const Main = ({ productCategory, productInfo }) => { 
     useEffect(() => {
         TruncateText();
     }, [])
