@@ -3,9 +3,7 @@ import { HookTelegram } from '../hooks/hookTelegram';
 import {QueryAdd} from '../query/queryAdd';
 import {QueryIncrease} from '../query/queryIncrease';
 import {QueryReduce} from '../query/queryReduce';
-import './button.css'
-;
-import { RouterProvider } from 'react-router-dom';
+import './button.css';
 const Button = ({ product}) => { 
     const [quantity] = useState(product["Количество в корзине"] || 0);
     const buttonSpaceRef = useRef(null); 
