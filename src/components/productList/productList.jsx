@@ -7,7 +7,6 @@ const Main = ({ productCategory, productInfo }) => {
     useEffect(() => {
         TruncateText();
     }, [])
-    
 
     return (
         <div className='productlList'>

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import {HookTelegram} from '../hooks/hookTelegram.jsx';
 import Flickity from 'flickity';
-import './header.css'
+import './header.css';
 
-const Header = ({ productCategory }) => {
+const Header = ({ productCategory, handleIsPainted }) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategory.length).fill(null).map(() => React.createRef()));
 
@@ -48,6 +48,7 @@ const Header = ({ productCategory }) => {
         }
 
         window.addEventListener('scroll', handleScroll);
+        handleIsPainted();
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -69,7 +70,6 @@ const Header = ({ productCategory }) => {
 
     return (
         <div className="header">
-            {console.log('index.js')}
             <div ref={sliderCategoryRef} className="sliderCategory">
                 {productCategory.map((item, idx) => {
                     return (
