@@ -38,7 +38,6 @@ const Button = ({ product}) => {
                 </>
             )}
         </div>
-        
     );
 }
 

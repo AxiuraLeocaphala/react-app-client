@@ -6,6 +6,7 @@ import './header.css'
 const Header = ({ productCategory }) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategory.length).fill(null).map(() => React.createRef()));
+
     const activeCategory = (target) => {
         let w = window;
         let t = document.getElementById(target);
@@ -19,6 +20,7 @@ const Header = ({ productCategory }) => {
             return false;
         }
     }
+
     useEffect(() => {
         let flkty;
         flkty = new Flickity(sliderCategoryRef.current, {
@@ -67,6 +69,7 @@ const Header = ({ productCategory }) => {
 
     return (
         <div className="header">
+            {console.log('index.js')}
             <div ref={sliderCategoryRef} className="sliderCategory">
                 {productCategory.map((item, idx) => {
                     return (

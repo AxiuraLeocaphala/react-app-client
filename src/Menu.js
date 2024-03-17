@@ -1,53 +1,44 @@
 import React, {useState, useEffect} from 'react';
-import { Navigate } from 'react-router-dom';
+import axios from 'axios';
 import { HookTelegram } from './components/hooks/hookTelegram.jsx';
-import Main from './components/productList/productList.jsx';
+import Preloader from './components/preloader/preloader.jsx'; 
+import ProductList from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
-import {QuerySelect} from './components/query/querySelect.jsx';
 import './App.css';
 
 function Menu() {
-    const [loadData, setLoadData] = useState(false);
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
-    const {tg} = HookTelegram();
-
-    const handleData = (data) => {
-        setData(data);
-        setLoadData(true);
-    }
 
     useEffect(() => {
-        if (typeof data[0] !== 'undefined') {
-            let totalPrice = 0; 
-            data[1].forEach(element => {
-                if (typeof element['Количество в корзине'] !== 'undefined'){
-                    totalPrice += element['Стоимость'];
-                }
-            });
-            if (totalPrice === 0){
-                tg.MainButton.text = 'Корзина';
-            } else {
-                tg.MainButton.text = `Корзина ${totalPrice}`;
+        axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${HookTelegram().chatId}`)
+        .then(
+            (response) => {
+                setIsLoaded(true);
+                setData(response.data);
+            },
+            (error) => {
+                setIsLoaded(true);
+                setError(error);
             }
-        }
-    }, [data, tg])
+        )
+    }, []);
 
-    tg.MainButton.onClick(() => {
-        <Navigate to="busket"/>
-    })
-
-    return (
-        <div className="WebApp">
-            {loadData ? (
+    if (error){
+        return <div>Ошибка: {error.message}</div>
+    } else if (!isLoaded){
+        return <Preloader/>
+    } else {
+        return (
+            <div className="WebApp">
                 <>
                     <Header productCategory={data[0]}/>
-                    <Main productCategory={data[0]} productInfo={data[1]}/>
+                    <ProductList productCategory={data[0]} productInfo={data[1]}/>
                 </>
-            ):(
-                <QuerySelect onDataReceived={handleData}/>
-            )}
-        </div>
-    );
+            </div>
+        );
+    }
 }
 
 export default Menu;
