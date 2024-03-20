@@ -141,7 +141,7 @@
     display: block;
     width: 25%;
     height: 25%;
-    background-color: /*var(--tg-theme-button-color)*/ #3626a7;
+    background-color: var(--tg-theme-button-color);
     border-radius: 100%;
     animation: sk-chase-dot-before 2.0s infinite ease-in-out both;
 }

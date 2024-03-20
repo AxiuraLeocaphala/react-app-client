@@ -3,16 +3,17 @@ import TruncateText from '../trancateText/truncateText.jsx';
 import ProductItem from '../productItem/productItem.jsx';
 import './productList.css';
 
-const Main = ({ productCategory, productInfo }) => { 
+const Main = ({ productCategories, productInfo, handleLoadedMenu }) => { 
     useEffect(() => {
         TruncateText();
-    }, [])
+        handleLoadedMenu();
+    }, [handleLoadedMenu])
 
     return (
         <div className='productlList'>
-            {productCategory.map((category, idx) => (
+            {productCategories.map((category, idx) => (
                 <div key={category['ID категории']} id={`categoryCell_${category['ID категории']}`}>
-                    <h2 style={{marginLeft: '10px'}}>
+                    <h2>
                         {category['Лого категории']} {category['Название категории']}
                     </h2>
                     <div className='list'>

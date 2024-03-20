@@ -1,11 +1,21 @@
-import React, { useEffect, useRef } from "react";
-import {HookTelegram} from '../hooks/hookTelegram.jsx';
+import React, {useEffect, useRef, createRef} from 'react';
 import Flickity from 'flickity';
+import { HookTelegram } from '../hooks/hookTelegram';
 import './header.css';
 
-const Header = ({ productCategory, handleIsPainted }) => {
+const Header = ({productCategories, handleLoadedHeader}) => {
     const sliderCategoryRef = useRef(null);
-    const aRefs = useRef(Array(productCategory.length).fill(null).map(() => React.createRef()));
+    const aRefs = useRef(Array(productCategories.length).map(() => createRef()));
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const target = document.getElementById(e.target.getAttribute('href').substring(1));
+        window.scroll({
+            top: target.offsetTop - 60,
+            behavior: 'smooth'
+        });
+    }
 
     const activeCategory = (target) => {
         let w = window;
@@ -22,8 +32,7 @@ const Header = ({ productCategory, handleIsPainted }) => {
     }
 
     useEffect(() => {
-        let flkty;
-        flkty = new Flickity(sliderCategoryRef.current, {
+        let flickity = new Flickity(sliderCategoryRef.current, {
             freeScroll: true,
             contain: true,
             cellAlign: 'center',
@@ -31,62 +40,46 @@ const Header = ({ productCategory, handleIsPainted }) => {
             prevNextButtons: false,
             pageDots: false,
         });
-
         const handleScroll = () => {
+            console.log(aRefs.current);
             aRefs.current.forEach((ref, index) => {
-                const categoryCellHref = ref.current.getAttribute('href').replace("#", "");
-                if (activeCategory(categoryCellHref)) {
-                    if (flkty.selectedIndex !== index) {
+                if (activeCategory(ref.current.getAttribute('href').substring(1))) {
+                    if (flickity.selectedIndex !== index) {
                         aRefs.current.forEach((ref, index) => {
                             ref.current.classList.remove('active');
                         });
                         ref.current.classList.add('active');
-                        flkty.select(index);
+                        flickity.select(index);
                     }
                 }
             })
         }
-
-        window.addEventListener('scroll', handleScroll);
-        handleIsPainted();
-
+        document.addEventListener('scroll', handleScroll);
+        handleLoadedHeader();
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [productCategory]);
-    
-    const handleClick = (e) => {
-		e.preventDefault();
-		e.stopPropagation();
-		const hash = e.target.getAttribute('href');
-		const targetElement = document.getElementById(hash.substring(1));
-		if (targetElement) {
-			window.scroll({
-				top: targetElement.offsetTop - 60,
-				behavior: 'smooth'
-			});
-		}
-	}
+            document.removeEventListener('scroll', handleScroll);
+        }
+    }, [handleLoadedHeader])
+
 
     return (
-        <div className="header">
-            <div ref={sliderCategoryRef} className="sliderCategory">
-                {productCategory.map((item, idx) => {
+        <div className='header'>
+            <div ref={sliderCategoryRef} className='sliderCategory'>
+                {productCategories.map((element, index) => {
                     return (
-                        <a 
-                            ref={aRefs.current[idx]}
-                            key={idx}
-                            href={`#categoryCell_${idx}`} 
-                            className={`categoryName${idx === 0 ? ' active' : ''}`}
-                            onClick={handleClick}
-                        >
-                            {item["Лого категории"]} {item["Название категории"]}
+                        <a
+                        key={index}
+                        ref={aRefs.current[index]}
+                        href={`#categoryCell_${index}`}
+                        onClick={handleClick}
+                        > 
+                            {element['Лого категории']} {element['Название категории']} 
                         </a>
                     );
                 })}
             </div>
         </div>
-    )
+    );
 }
 
 export default Header;

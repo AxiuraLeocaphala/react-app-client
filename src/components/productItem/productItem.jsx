@@ -76,7 +76,9 @@ const ProductItem = ({ product }) => {
             <div 
             ref={cardProductRef} 
             className='cardProduct' 
-            id={product['ID товара']} 
+            id={product['ID товара']}
+            onMouseDown={handleTouchStart}
+            onMouseUp={handleTouchEnd}
             onTouchStart={handleTouchStart} 
             onTouchEnd={handleTouchEnd}>
                 <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture>

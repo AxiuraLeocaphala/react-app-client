@@ -1,8 +1,5 @@
-.productlList{
-	padding-top: 40px;
-}
-.categoryCell{
-	margin-left: 10px;
+h2{
+	margin: 55px 0 20px 10px;
 }
 .list{
 	display: grid;

@@ -7,18 +7,17 @@ import './button.css';
 const Button = ({ product}) => { 
     const [quantity] = useState(product["Количество в корзине"] || 0);
     const buttonSpaceRef = useRef(null); 
-    const hookTelegram = HookTelegram();
 
     const handleClickOnButtonReduce = () => {
-        QueryReduce(hookTelegram, product, buttonSpaceRef.current);
+        QueryReduce(HookTelegram(), product, buttonSpaceRef.current);
     }
 
     const handleClickOnButtonIncrease = () => {
-        QueryIncrease(hookTelegram, product, buttonSpaceRef.current)
+        QueryIncrease(HookTelegram(), product, buttonSpaceRef.current)
     }
 
     const handleClickOnButtonMain = () => {
-        QueryAdd(hookTelegram, product, buttonSpaceRef.current);
+        QueryAdd(HookTelegram(), product, buttonSpaceRef.current);
     }
     
     return (
