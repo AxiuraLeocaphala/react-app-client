@@ -41,7 +41,7 @@ function Menu() {
             HookTelegram().tg.MainButton.show();
 
         }
-    }, [])
+    }, [isLoadingHeader, isLoadingMenu]);
 
     if (error){
         return <div>Возникла ошибка: {error.message}</div>
