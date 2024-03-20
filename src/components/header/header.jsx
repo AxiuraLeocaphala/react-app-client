@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, createRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import Flickity from 'flickity';
 import { HookTelegram } from '../hooks/hookTelegram';
 import './header.css';
 
 const Header = ({productCategories, handleLoadedHeader}) => {
     const sliderCategoryRef = useRef(null);
-    const aRefs = useRef(Array(productCategories.length).map(() => createRef()));
+    const aRefs = useRef(Array(productCategories.length).fill(null).map(() => React.createRef()));
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -41,7 +41,6 @@ const Header = ({productCategories, handleLoadedHeader}) => {
             pageDots: false,
         });
         const handleScroll = () => {
-            console.log(aRefs.current);
             aRefs.current.forEach((ref, index) => {
                 if (activeCategory(ref.current.getAttribute('href').substring(1))) {
                     if (flickity.selectedIndex !== index) {
@@ -68,11 +67,12 @@ const Header = ({productCategories, handleLoadedHeader}) => {
                 {productCategories.map((element, index) => {
                     return (
                         <a
+                        
                         key={index}
                         ref={aRefs.current[index]}
                         href={`#categoryCell_${index}`}
                         onClick={handleClick}
-                        > 
+                        >
                             {element['Лого категории']} {element['Название категории']} 
                         </a>
                     );

@@ -26,7 +26,7 @@ const ProductItem = ({ product }) => {
             timer.current = setTimeout(() => {
                 const options = updateOptionsCardProduct();
                 if (options.top >= 55) {
-                    if (options.bottom <= window.innerHeight) {
+                    if (options.bottom <= window.innerHeight-55) {
                         setOptionsCardProduct(options);
                         setIsPopupShow(true);
                     } else {

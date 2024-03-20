@@ -13,3 +13,10 @@ export function HookTelegram () {
         chatId
     }
 }
+
+export function buttonsTelegramMenu () {
+    tg.MainButton.text = 'Корзина';
+    tg.MainButton.onClick(() => {
+        window.location.assign('http://localhost:3000/busket')
+    })
+}

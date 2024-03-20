@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { HookTelegram } from './components/hooks/hookTelegram.jsx';
+import { HookTelegram, buttonsTelegramMenu } from './components/hooks/hookTelegram.jsx';
 import ProductList from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
 import Preloader from './components/preloader/preloader.jsx';
@@ -37,10 +37,11 @@ function Menu() {
     useEffect(() => {
         if (!(isLoadingHeader && isLoadingMenu)) {
             HookTelegram().tg.ready();
-            HookTelegram().tg.MainButton.text = 'Корзина';
+            buttonsTelegramMenu();
             HookTelegram().tg.MainButton.show();
+
         }
-    })
+    }, [])
 
     if (error){
         return <div>Возникла ошибка: {error.message}</div>

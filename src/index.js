@@ -10,7 +10,7 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes> 
-                <Route path="*" element={<Menu/>}/> 
+                <Route path="/" element={<Menu/>}/> 
                 <Route path="/busket" element={<Menu/>}/>
             </Routes>
         </BrowserRouter>
