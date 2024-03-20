@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { HookTelegram, buttonsTelegramMenu } from './components/hooks/hookTelegram.jsx';
+import { HookTelegram, ButtonTelegramMenu } from './components/hooks/hookTelegram.jsx';
 import ProductList from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
 import Preloader from './components/preloader/preloader.jsx';
 import './App.css';
 
 function Menu() {
-    const [error, setError] = useState(null);
     const [isLoadedData, setIsLoadedData] = useState(false);
     const [isLoadingHeader, setIsLoadingHeader] = useState(true);
     const [isLoadingMenu, setIsLoadingMenu] = useState(true);
+    const [error, setError] = useState(null);
     const [data, setData] = useState([]);
 
     const handleLoadedHeader = () => {
@@ -37,7 +37,7 @@ function Menu() {
     useEffect(() => {
         if (!(isLoadingHeader && isLoadingMenu)) {
             HookTelegram().tg.ready();
-            buttonsTelegramMenu();
+            ButtonTelegramMenu();
             HookTelegram().tg.MainButton.show();
 
         }
@@ -46,7 +46,7 @@ function Menu() {
     if (error){
         return <div>Возникла ошибка: {error.message}</div>
     } else if(!isLoadedData){
-        return (<Preloader/>)
+        return <Preloader/>
     } else {
         return (
             <>

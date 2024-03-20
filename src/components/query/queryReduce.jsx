@@ -4,7 +4,7 @@ import axios from 'axios';
 export function  QueryReduce (hookTelegram, product, buttonSpace) {
     axios.post('http://127.0.0.1:3001/data/reduceNumber', {
         chatId: hookTelegram.chatId,
-        productName: product["Название"]
+        productId: product["ID товара"]
     })
     .then(response => {
         if (typeof response.data.quantity !== "undefined"){

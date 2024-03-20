@@ -2,7 +2,6 @@ import React from 'react';
 import './preloader.css';
 
 const Preloader = () => {
-    console.log('call');
     return (
         <div className="preloader">
             <div className="sk-chase">

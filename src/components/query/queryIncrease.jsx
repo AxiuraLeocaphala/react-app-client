@@ -3,7 +3,7 @@ import axios from 'axios';
 export function QueryIncrease (hookTelegram, product, buttonSpace) {
     return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
         chatId: hookTelegram.chatId,
-        productName: product["Название"]
+        productId: product["ID товара"]
     })
     .then(response => {
         product["Количество в корзине"] = response.data.quantity;

@@ -5,9 +5,8 @@ import axios from 'axios';
 export function  QueryAdd (hookTelegram, product, buttonSpace) {
     axios.post('http://127.0.0.1:3001/data/addToBusket', {
         chatId: hookTelegram.chatId,
-        productName: product["Название"],
-        productQuantity: 1,
-        productPrice: product["Стоимость"] 
+        productId: product["ID товара"],
+        productQuantity: 1
     })
     .then(response => {
         buttonSpace.innerHTML = response.data.contentButtonSpace;

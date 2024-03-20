@@ -14,9 +14,23 @@ export function HookTelegram () {
     }
 }
 
-export function buttonsTelegramMenu () {
+export function ButtonTelegramMenu () {
     tg.MainButton.text = 'Корзина';
     tg.MainButton.onClick(() => {
-        window.location.assign('http://localhost:3000/busket')
+        window.location.assign('http://localhost:3000/busket');
+        tg.MainButton.hide();
+    })
+}
+
+export function ButtonsTelegramBusket () {
+    tg.MainButton.text = 'Заказать';
+    /*
+    tg.MainButton.onClick(() => {
+        window.location.assign('http://localhost:3000/куда-то');
+        tg.MainButton.hide();
+    })*/
+    tg.BackButton.onClick(() => {
+        window.location.assign('http://localhost:3000');
+        tg.BackButton.hide();
     })
 }
