@@ -1,18 +1,21 @@
 import React, {useEffect} from "react";
+import ProductItemBusket from "../productItem/productItemBusket";
+import './productListBusket.css';
 
-const ProductListBusket = ({productInBusket, handleLoading }) => {
+const ProductListBusket = ({ productsInBusket, handleLoading }) => {
     useEffect(() => {
         handleLoading();
     }, [handleLoading]);
 
     return (
-        <>
-            {productInBusket.map((element) => {
+        <div className="productListBusket">
+            <div>КОРЗИНА</div>
+            {productsInBusket.map((product, idx) => {
                 return (
-                    <div>{element['ID категории']} {element['ID товара']} {element['Название']} {element['Описание']} {element['Стоимость']}</div>
+                    <ProductItemBusket product={product}/>
                 )
             })}
-        </>
+        </div>
     )
 }
 

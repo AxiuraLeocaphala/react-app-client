@@ -5,7 +5,7 @@ import {QueryIncrease} from '../query/queryIncrease';
 import {QueryReduce} from '../query/queryReduce';
 import './button.css';
 const Button = ({ product}) => { 
-    const [quantity] = useState(product["Количество в корзине"] || 0);
+    const [quantity] = useState(product['Количество'] || 0);
     const buttonSpaceRef = useRef(null); 
 
     const handleClickOnButtonReduce = () => {
@@ -32,7 +32,7 @@ const Button = ({ product}) => {
             ) : (
                 <>
                     <button className='buttonReduce' onClick={handleClickOnButtonReduce}>-</button>
-                    <input className='quantity' type="text" readOnly value={product["Количество в корзине"]} />
+                    <input className='quantity' type="text" readOnly value={product["Количество"]} />
                     <button className='buttonIncrease' onClick={handleClickOnButtonIncrease}>+</button>
                 </>
             )}

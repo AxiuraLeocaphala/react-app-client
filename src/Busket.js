@@ -39,7 +39,7 @@ function Busket() {
         return ( 
             <>
                 {isLoadingProductList && (<Preloader/>)}
-                <ProductListBusket productInBusket={data} handleLoading={handleLoading}/>
+                <ProductListBusket productsInBusket={data} handleLoading={handleLoading}/>
             </>
         )
     }
