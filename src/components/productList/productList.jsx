@@ -10,7 +10,7 @@ const Main = ({ productCategories, productInfo, handleLoadedMenu }) => {
     }, [handleLoadedMenu])
 
     return (
-        <div className='productlList'>
+        <div className='productList'>
             {productCategories.map((category, idx) => (
                 <div key={category['ID категории']} id={`categoryCell_${category['ID категории']}`}>
                     <h2>

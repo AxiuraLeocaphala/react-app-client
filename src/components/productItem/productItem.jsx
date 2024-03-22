@@ -75,7 +75,7 @@ const ProductItem = ({ product }) => {
         <>
             <div 
             ref={cardProductRef} 
-            className='cardProduct' 
+            className='cardProduct Menu' 
             id={product['ID товара']}
             onMouseDown={handleTouchStart}
             onMouseUp={handleTouchEnd}

@@ -4,9 +4,9 @@ import './productItemBusket.css';
 
 const ProductItemBusket = ({ product }) => {
     return (
-        <div className='cardProduct'>
+        <div className='cardProduct Busket'>
             <div className='darken-overlay'><picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture></div>
-            <h2>{product['Название']}</h2>
+            <h3>{product['Название']}</h3>
             <div className='finalCost'>{product['Стоимость']} ₽</div>
             <p>{product['Описание']}</p>
             <div className='sale'>

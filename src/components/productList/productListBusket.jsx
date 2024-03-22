@@ -9,7 +9,7 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
 
     return (
         <div className="productListBusket">
-            <div>КОРЗИНА</div>
+            <h1>КОРЗИНА</h1>
             {productsInBusket.map((product, idx) => {
                 return (
                     <ProductItemBusket product={product}/>

@@ -1,10 +1,14 @@
-h2{
-	margin: 55px 0 20px 10px;
-}
-.list{
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-column-gap: 10px;
-	grid-row-gap: 10px;
-	padding: 0 10px 0 10px;
+.productList {
+	margin: 55px 10px 0 10px;
+	h1 {
+		margin: 55px 0 0 0;
+		text-align: right;
+	}
+	.list{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 10px;
+		grid-row-gap: 10px;
+		
+	}
 }
