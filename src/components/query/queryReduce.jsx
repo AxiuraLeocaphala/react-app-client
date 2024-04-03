@@ -7,17 +7,17 @@ export function  QueryReduce (hookTelegram, product, buttonSpace) {
         productId: product["ID товара"]
     })
     .then(response => {
+        const price = hookTelegram.tg.MainButton.text.replace(/\D/g, '');
         if (typeof response.data.quantity !== "undefined"){
             product["Количество в корзине"] = response.data.quantity;
-            hookTelegram.tg.MainButton.text = 
-            `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) - product["Стоимость"]}`;
+            if (price) {
+                hookTelegram.tg.MainButton.text = `Корзина ${parseInt(price) - product["Стоимость"]}`;
+            }
             buttonSpace.querySelector('.quantity').value = response.data.quantity;
         } else {
             product["Количество в корзине"] = 0;
-            if (hookTelegram.tg.MainButton.text.replace(/\D/g, '') !== '' && 
-            hookTelegram.tg.MainButton.text.replace(/\D/g, '') !== `${product["Стоимость"]}`){
-                hookTelegram.tg.MainButton.text = 
-                `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) - product["Стоимость"]}`;
+            if (price !== '' && price !== `${product["Стоимость"]}`){
+                hookTelegram.tg.MainButton.text = `Корзина ${parseInt(price) - product["Стоимость"]}`;
             } else {
                 hookTelegram.tg.MainButton.text = 'Корзина';
             }

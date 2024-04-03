@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { HookTelegram } from '../hooks/hookTelegram';
 import {QueryAdd} from '../query/queryAdd';
 import {QueryIncrease} from '../query/queryIncrease';
@@ -8,17 +8,15 @@ const Button = ({ product}) => {
     const [quantity] = useState(product['Количество'] || 0);
     const buttonSpaceRef = useRef(null); 
 
-    const handleClickOnButtonReduce = () => {
+    const handleClickOnButtonReduce = useCallback(() => {
         QueryReduce(HookTelegram(), product, buttonSpaceRef.current);
-    }
-
-    const handleClickOnButtonIncrease = () => {
+    }, [product]);
+    const handleClickOnButtonIncrease = useCallback(() => {
         QueryIncrease(HookTelegram(), product, buttonSpaceRef.current)
-    }
-
-    const handleClickOnButtonMain = () => {
+    }, [product]);
+    const handleClickOnButtonMain = useCallback(() => {
         QueryAdd(HookTelegram(), product, buttonSpaceRef.current);
-    }
+    }, [product]);
     
     return (
         <div 

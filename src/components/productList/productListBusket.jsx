@@ -12,7 +12,7 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
             <h1>КОРЗИНА</h1>
             {productsInBusket.map((product, idx) => {
                 return (
-                    <ProductItemBusket product={product}/>
+                    <ProductItemBusket key={idx} product={product}/>
                 )
             })}
         </div>

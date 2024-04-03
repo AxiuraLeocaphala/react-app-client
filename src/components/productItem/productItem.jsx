@@ -22,7 +22,7 @@ const ProductItem = ({ product }) => {
 
     const handleTouchStart = useCallback((e) => {
         if (e.target.closest('.buttonSpace') === null) {
-            cardProductRef.current.classList.add('active');
+            cardProductRef.current.classList.add('entered');
             timer.current = setTimeout(() => {
                 const options = updateOptionsCardProduct();
                 if (options.top >= 55) {
@@ -43,7 +43,7 @@ const ProductItem = ({ product }) => {
                         behavior: 'smooth'
                     });
                 }
-                cardProductRef.current.classList.remove('active');
+                cardProductRef.current.classList.remove('entered');
                 cardProductRef.current.classList.add('hide');
                 document.body.classList.add('popup-open');
                 setIsVisible(false);
@@ -51,9 +51,11 @@ const ProductItem = ({ product }) => {
         }
     }, [handleScrollEnd, updateOptionsCardProduct]);
 
-    const handleTouchEnd = useCallback(() => {
-        cardProductRef.current.classList.remove('active');
-        clearTimeout(timer.current);
+    const handleTouchEnd = useCallback((e) => {
+        if (e.target.closest('.buttonSpace') === null) {
+            cardProductRef.current.classList.remove('entered');
+            clearTimeout(timer.current);
+        }
     }, []);
 
     const popupClose = useCallback((e) => {
@@ -77,10 +79,8 @@ const ProductItem = ({ product }) => {
             ref={cardProductRef} 
             className='cardProduct Menu' 
             id={product['ID товара']}
-            onMouseDown={handleTouchStart}
-            onMouseUp={handleTouchEnd}
-            onTouchStart={handleTouchStart} 
-            onTouchEnd={handleTouchEnd}>
+            onPointerDown={handleTouchStart}
+            onPointerUp={handleTouchEnd}>
                 <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture>
                 <h3 id='nameProduct'>{product["Название"]}</h3>
                 <p id='descriptionProduct'>{product["Описание"]}</p>

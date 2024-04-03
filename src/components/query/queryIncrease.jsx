@@ -7,7 +7,9 @@ export function QueryIncrease (hookTelegram, product, buttonSpace) {
     })
     .then(response => {
         product["Количество в корзине"] = response.data.quantity;
-        hookTelegram.tg.MainButton.text = `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]}`;
+        if (hookTelegram.tg.MainButton.text.replace(/\D/g, '')) {
+            hookTelegram.tg.MainButton.text = `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]}`;
+        }
         buttonSpace.querySelector('.quantity').value = response.data.quantity;
     })
     .catch(error => {
