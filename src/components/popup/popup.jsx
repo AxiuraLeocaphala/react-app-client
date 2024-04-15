@@ -38,7 +38,7 @@ const Popup = ({ product, options, onClose, hideButton, showButton, cardProduct 
         } else {
             showPopup();
         }
-    }, []);
+    });
 
     return (
         <div ref={overlayRef} className="overlay hide">
