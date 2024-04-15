@@ -21,7 +21,7 @@ export function ButtonTelegramMenu (data) {
             totalPrice += elem["Стоимость"]
         }
     })
-    tg.MainButton.text = `Корзина ${totalPrice}`;
+    tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}}`;
     tg.MainButton.onClick(() => {
         window.location.assign('http://localhost:3000/busket');
         tg.MainButton.hide();
