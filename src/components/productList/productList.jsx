@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import TruncateText from './../trancateText/truncateText.jsx';
 import ProductItem from '../productItem/productItem.jsx';
 import './productList.css';
 
