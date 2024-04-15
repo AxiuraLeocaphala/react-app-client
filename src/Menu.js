@@ -37,11 +37,11 @@ function Menu() {
     useEffect(() => {
         if (!(isLoadingHeader && isLoadingMenu)) {
             HookTelegram().tg.ready();
-            ButtonTelegramMenu();
+            ButtonTelegramMenu(data[1]);
             HookTelegram().tg.MainButton.show();
 
         }
-    }, [isLoadingHeader, isLoadingMenu]);
+    }, [isLoadingHeader, isLoadingMenu, data]);
 
     if (error){
         return <div>Возникла ошибка: {error.message}</div>

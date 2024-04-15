@@ -14,8 +14,14 @@ export function HookTelegram () {
     }
 }
 
-export function ButtonTelegramMenu () {
-    tg.MainButton.text = 'Корзина';
+export function ButtonTelegramMenu (data) {
+    let totalPrice = 0;
+    data.forEach((elem) => {
+        if (elem["Количество"] !== undefined) {
+            totalPrice += elem["Стоимость"]
+        }
+    })
+    tg.MainButton.text = `Корзина ${totalPrice}`;
     tg.MainButton.onClick(() => {
         window.location.assign('http://localhost:3000/busket');
         tg.MainButton.hide();
