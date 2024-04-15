@@ -1,80 +1,47 @@
-body.popup-open {
-    overflow: hidden;
-}
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-	animation: overlay-blur 0.2s linear forwards;
-}
-@keyframes overlay-blur{
-	from {
-		background-color: none;
-		-webkit-backdrop-filter: none;
-		backdrop-filter: none;
-	}
-	to {
-    	background-color: rgba(0, 0, 0, 0.3);
-		-webkit-backdrop-filter: saturate(180%) blur(10px);
-		backdrop-filter: saturate(180%) blur(10px);
-	}
-}
-.overlay.hide{
-	animation: hideOverlay 0.1s ease-in forwards;
-}
-@keyframes hideOverlay {
-	from {
-		background-color: rgba(0, 0, 0, 0.3);
-		-webkit-backdrop-filter: saturate(180%) blur(10px);
-		backdrop-filter: saturate(180%) blur(10px);
-	}
-	to {
-		background-color: none;
-		-webkit-backdrop-filter: none;
-		backdrop-filter: none;
-	}
-}
-.popup {
-	position: absolute;
-	animation: zoom-in 0.2s ease-out forwards;
-	z-index: 2;
-}
-@keyframes zoom-in {
-	from {
-		transform: scale(0.9);
-	}
-	to {
-		transform: scale(1);
-	}
-}
-.popup.hide{
-	animation: hidePopup 0.1s ease-in-out forwards;
-}
-@keyframes hidePopup {
-	from {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.3);
+	-webkit-backdrop-filter: saturate(180%) blur(10px);
+	backdrop-filter: saturate(180%) blur(10px);
+	transition: all 150ms 50ms linear;
+	.popup {
+		position: absolute;
+		max-height: 70%;
+		width: 70%;
+		z-index: 2;
+		transition: opacity 150ms linear;
 		opacity: 1;
+		img {
+			height: 170px;
+			width: 100%;
+		}
+		h3 {
+			margin: 3px 5px 3px 5px;
+			font-size: 20px;		
+		}
+		p {
+			margin: 0 5px 10px 5px;
+			font-size: 18px;
+		}
 	}
-	to {
+	@media (min-height: 70%) {
+		.p {
+			overflow: scroll;
+		}
+	}
+}
+.overlay.hide {
+	opacity: 0;
+	background-color: none;
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+	.popup {
 		opacity: 0;
 	}
-}
-.popup .cardProduct img{
-	width: 100%;
-	height: 170px;
-}
-.popup .cardProduct h3{
-	margin-top: 0px;
-	height: auto;
-	font-size: 20px;
-	padding: 0px 5px 0px 5px;
-	color: var(--tg-theme-text-color);
-}
-.popup .cardProduct p{
-	padding: 0 5px 5px 5px;
-	height: auto;
-	font-size: 18px;
-	color: var(--tg-theme-hint-color);
 }

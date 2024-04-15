@@ -19,14 +19,11 @@ const Button = ({ product}) => {
     }, [product]);
     
     return (
-        <div 
-            ref={buttonSpaceRef}
-            className='buttonSpace'
-        >
+        <div ref={buttonSpaceRef} className='buttonSpace'>
             { quantity === 0  ? (
-                    <button className='buttonAddToBusket' onClick={handleClickOnButtonMain}>
-                        {product["Стоимость"]} ₽
-                    </button>
+                <button className='buttonAddToBusket' onClick={handleClickOnButtonMain}>
+                    {product["Стоимость"]} ₽
+                </button>
             ) : (
                 <>
                     <button className='buttonReduce' onClick={handleClickOnButtonReduce}>-</button>

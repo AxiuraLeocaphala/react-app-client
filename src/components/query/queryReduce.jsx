@@ -9,13 +9,13 @@ export function  QueryReduce (hookTelegram, product, buttonSpace) {
     .then(response => {
         const price = hookTelegram.tg.MainButton.text.replace(/\D/g, '');
         if (typeof response.data.quantity !== "undefined"){
-            product["Количество в корзине"] = response.data.quantity;
+            product["Количество"] = response.data.quantity;
             if (price) {
                 hookTelegram.tg.MainButton.text = `Корзина ${parseInt(price) - product["Стоимость"]}`;
             }
             buttonSpace.querySelector('.quantity').value = response.data.quantity;
         } else {
-            product["Количество в корзине"] = 0;
+            product["Количество"] = 0;
             if (price !== '' && price !== `${product["Стоимость"]}`){
                 hookTelegram.tg.MainButton.text = `Корзина ${parseInt(price) - product["Стоимость"]}`;
             } else {

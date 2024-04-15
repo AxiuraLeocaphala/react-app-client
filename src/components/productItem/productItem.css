@@ -7,7 +7,16 @@
 		width: 100%;
 		object-fit: cover;
 	}
-	
+	h3 {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	p {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
 }
 .entering {
 	animation: zoom-out 400ms linear forwards;
@@ -21,7 +30,7 @@
 	}
 }
 .entered {
-	animation: zoom-in 120ms linear;
+	animation: zoom-in 120ms linear forwards;
 }
 @keyframes zoom-in {
 	from {
@@ -31,46 +40,28 @@
 		transform: scale(1);
 	}
 }
-.cardProduct.Menu{
-	display: grid;
-	row-gap: 5px;
-
-	img{
-		height: 130px;
+.cardProduct.Menu {
+	display: flex;    
+	flex-direction: column;
+	justify-content: space-between;
+	height: 280px;
+	transition: opacity 150ms ease-out;
+	img {
+		height: 120px;
 	}
-	h3{
+	h3 {
 		max-height: 50px;
+		margin: 0px 5px 0px 5px;
 		font-size: 18px;
-		margin: 0px 5px 0px 5px;
+		-webkit-line-clamp: 2;
 	}
-	p{
-		height: 64px;
+	p {
+		height: 55px;
+		margin: 0px 5px 0px 5px;
 		font-size: 14px;
-		margin: 0px 5px 0px 5px;
-		color: var(--tg-theme-hint-color);
+		-webkit-line-clamp: 3;
 	}
-	.cardProduct.Menu.hide{
-		animation: hide 0.2s linear forwards;
-	}
-	@keyframes hide {
-		from {
-			opacity: 1;
-		}
-		to {
-			opacity: 0;
-		}
-	}
-	.cardProduct.Menu.show{
-		animation: show 0.3s linear ;
-	}
-	@keyframes show{
-		from {
-			transform: scale(1.05);
-			opacity: 0;
-		}
-		to {
-			transform: scale(1);
-			opacity: 1;
-		}
-	}
+}
+.cardProduct.Menu.hide {
+	opacity: 0;
 }

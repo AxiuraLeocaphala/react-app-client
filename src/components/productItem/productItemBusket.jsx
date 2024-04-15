@@ -48,29 +48,30 @@ const ProductItemBusket = ({ product }) => {
     const handlePointerDown = (e) => {
         if (e.target.closest('.buttonSpaceBusket') === null) {
             const cardProduct = cardProductRef.current;
+            const style = cardProduct.style;
             cardProduct.classList.add('entering');
             timer.current = setTimeout(() => {
                 removeEventExpand();
                 cardProduct.classList.remove('entering');
-                cardProduct.classList.add('entered');
-                let totalHightChange = 0;
+                let totalHeightChange = 0;
                 arrayElems.current.forEach(elem => {
-                    totalHightChange += elem.scrollHeight - elem.clientHeight;
+                    totalHeightChange += elem.scrollHeight - elem.clientHeight;
                     if (elem.tagName === 'H3') {
                         hRef.current.style.height = `${elem.scrollHeight}px`;
                         pRef.current.style.top = `${15+elem.scrollHeight}px`;
                     }
                     elem.style.webkitLineClamp = 999;
                 });
-                cardProduct.style.zIndex = 2;
-                cardProduct.style.height = `${cardProduct.clientHeight +totalHightChange}px`;
-                cardProduct.style.boxShadow = '0 20px 20px rgba(0, 0, 0, 0.7)';
-                imgRef.current.style.height = `${imgRef.current.clientHeight + totalHightChange}px`;
+                cardProduct.classList.add('entered');
+                style.zIndex = 2;
+                style.height = `${cardProduct.clientHeight+totalHeightChange}px`;
+                style.boxShadow = '0 20px 20px rgba(0, 0, 0, 0.7)';
+                imgRef.current.style.height = `${imgRef.current.clientHeight + totalHeightChange}px`;
                 pRef.current.style.height = `${pRef.current.scrollHeight}px`;
                 setTimeout(() => {
                     cardProduct.classList.remove('entered');
                     cardProduct.addEventListener('click', handleClickOnExpandedCard);
-                }, 400);
+                }, 120);
             }, 400);
         }
     };
@@ -83,11 +84,7 @@ const ProductItemBusket = ({ product }) => {
     };
 
     const isMoreThan = (elem) => {
-        if (elem.clientHeight < elem.scrollHeight) {
-            return true;
-        } else {
-            return false; 
-        }
+        return elem.scrollHeight - elem.clientHeight > 1;
     };
 
     useEffect(() => {
@@ -109,7 +106,7 @@ const ProductItemBusket = ({ product }) => {
                 removeEventExpand();
             }
         }
-    }, [removeEventExpand]);
+    });
 
     return (
         <div className="capsule">

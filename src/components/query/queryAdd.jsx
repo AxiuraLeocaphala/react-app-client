@@ -10,7 +10,7 @@ export function  QueryAdd (hookTelegram, product, buttonSpace) {
     })
     .then(response => {
         buttonSpace.innerHTML = response.data.contentButtonSpace;
-        product["Количество в корзине"] = 1;
+        product["Количество"] = 1;
         if (hookTelegram.tg.MainButton.text.replace(/\D/g, '') !== ''){
             hookTelegram.tg.MainButton.text = 
                 `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]}`;

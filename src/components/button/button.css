@@ -1,7 +1,7 @@
 .cardProduct .buttonSpace{
+	width: 100%;
 	height: 40px;
 	text-align: center;
-	align-self: end;
 }
 .overlay .buttonSpace{
 	height: 50px;
@@ -15,7 +15,7 @@
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
+	background:  /*var(--tg-theme-button-color)*/ #1d7deb;
 }
 .overlay .buttonAddToBusket{
 	font-size: 20px;

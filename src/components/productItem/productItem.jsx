@@ -1,96 +1,80 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '../button/button.jsx';
 import Popup from '../popup/popup.jsx';
 import './productItem.css';
 
 const ProductItem = ({ product }) => {
-    const [isVisible, setIsVisible] = useState(true);
     const cardProductRef = useRef(null);
-    const [optionsCardProduct, setOptionsCardProduct] = useState(null);
     const [isPopupShow, setIsPopupShow] = useState(false);
-    let timer = useRef(null);
-    
-    const updateOptionsCardProduct = useCallback(() => {
-        return cardProductRef.current.getBoundingClientRect();
-    }, []);
+    const [isButtonShow, setIsButtonShow] = useState(true);
+    const [optionsCard, setOptionsCard] = useState(null);
+    let timer = 0; 
 
-    const handleScrollEnd = useCallback(() => {
-        const options = updateOptionsCardProduct();
-        setOptionsCardProduct(options);
+    const updateOptions = () => { return cardProductRef.current.getBoundingClientRect() };
+    const popupClose = () => {setIsPopupShow(false)};
+    const hideButton = () => {setIsButtonShow(false)};
+    const showButton = () => {setIsButtonShow(true)};
+
+    const expandCard = () => {
+        cardProductRef.current.classList.remove('entering');
+        setOptionsCard(updateOptions);
         setIsPopupShow(true);
-    }, [updateOptionsCardProduct]);
-
-    const handleTouchStart = useCallback((e) => {
+    };
+    
+    const handleTouchStart = (e) => {
         if (e.target.closest('.buttonSpace') === null) {
-            cardProductRef.current.classList.add('entered');
-            timer.current = setTimeout(() => {
-                const options = updateOptionsCardProduct();
+            const cardProduct = cardProductRef.current;
+            cardProduct.classList.add('entering');
+            const options = updateOptions();
+            timer = setTimeout(() => {
                 if (options.top >= 55) {
-                    if (options.bottom <= window.innerHeight-55) {
-                        setOptionsCardProduct(options);
-                        setIsPopupShow(true);
+                    if (options.bottom <= window.innerHeight) {
+                        expandCard();
                     } else {
-                        window.addEventListener('scrollend', handleScrollEnd, { once: true });
+                        window.addEventListener('scrollend', expandCard, { once: true });
                         window.scroll({
-                            top: cardProductRef.current.offsetTop - window.innerHeight / 4,
+                            top: cardProduct.offsetTop - window.innerHeight / 8,
                             behavior: 'smooth'
                         });
                     }
                 } else {
-                    window.addEventListener('scrollend', handleScrollEnd, { once: true });
+                    window.addEventListener('scrollend', expandCard, {once: true});
                     window.scroll({
-                        top: cardProductRef.current.offsetTop - window.innerHeight / 8,
+                        top: cardProduct.offsetTop - window.innerHeight / 8,
                         behavior: 'smooth'
                     });
                 }
-                cardProductRef.current.classList.remove('entered');
-                cardProductRef.current.classList.add('hide');
-                document.body.classList.add('popup-open');
-                setIsVisible(false);
             }, 400);
         }
-    }, [handleScrollEnd, updateOptionsCardProduct]);
+    };
 
-    const handleTouchEnd = useCallback((e) => {
-        if (e.target.closest('.buttonSpace') === null) {
-            cardProductRef.current.classList.remove('entered');
-            clearTimeout(timer.current);
-        }
-    }, []);
+    const handleTouchEnd = () => {
+        cardProductRef.current.classList.remove('entering');
+        clearTimeout(timer);
+    };
 
-    const popupClose = useCallback((e) => {
-        if (e.target.className === 'overlay') {
-            setIsVisible(true);
-            e.target.classList.add('hide');
-            e.target.querySelector('.popup').classList.add('hide');
-            cardProductRef.current.classList.add('show');
-            cardProductRef.current.classList.remove('hide');
-            setTimeout(() => {
-                cardProductRef.current.classList.remove('show');
-                document.body.classList.remove('popup-open');
-                setIsPopupShow(false);
-            }, 300);
-        }
-    }, []);
-    
     return (
         <>
             <div 
-            ref={cardProductRef} 
-            className='cardProduct Menu' 
-            id={product['ID товара']}
-            onPointerDown={handleTouchStart}
-            onPointerUp={handleTouchEnd}>
+                ref={cardProductRef} 
+                className='cardProduct Menu' 
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+            >
                 <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture>
-                <h3 id='nameProduct'>{product["Название"]}</h3>
-                <p id='descriptionProduct'>{product["Описание"]}</p>
-                {isVisible && (<Button product={product}/>)}
+                <h3 >{product["Название"]}</h3>
+                <p>{product["Описание"]}</p>
+                {isButtonShow && (<Button product={product}/>)}
             </div>
             {isPopupShow && (
                 <Popup 
-                product={product} 
-                onClose={popupClose} 
-                optionsCardProduct={optionsCardProduct}/>
+                    product={product} 
+                    options={optionsCard}
+                    onClose={popupClose}
+                    hideButton={hideButton}
+                    showButton={showButton}
+                    cardProduct={cardProductRef.current}
+                />
             )}
         </>
     );
