@@ -64,7 +64,7 @@ const ProductItem = ({ product }) => {
                 <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture>
                 <h3 >{product["Название"]}</h3>
                 <p>{product["Описание"]}</p>
-                {isButtonShow && (<Button product={product}/>)}
+                {isButtonShow && (<Button product={product} placeCall={'menu'}/>)}
             </div>
             {isPopupShow && (
                 <Popup 

@@ -62,6 +62,6 @@
 		-webkit-line-clamp: 3;
 	}
 }
-.cardProduct.Menu.hide {
+.cardProduct.hide {
 	opacity: 0;
 }

@@ -2,7 +2,7 @@ import {QueryReduce} from './queryReduce';
 import {QueryIncrease} from './queryIncrease';
 import axios from 'axios';
 
-export function  QueryAdd (hookTelegram, product, buttonSpace) {
+export function  QueryAdd (hookTelegram, product, buttonSpace, placeCall, deleteCard) {
     axios.post('http://127.0.0.1:3001/data/addToBusket', {
         chatId: hookTelegram.chatId,
         productId: product["ID товара"],
@@ -13,12 +13,12 @@ export function  QueryAdd (hookTelegram, product, buttonSpace) {
         product["Количество"] = 1;
         if (hookTelegram.tg.MainButton.text.replace(/\D/g, '') !== ''){
             hookTelegram.tg.MainButton.text = 
-                `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]}`;
+                `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]} ₽`;
         } else {
             hookTelegram.tg.MainButton.text = `Корзина ${product["Стоимость"]}`;
         }
         buttonSpace.querySelector('.buttonReduce').addEventListener('click', () =>{
-            QueryReduce(hookTelegram, product, buttonSpace)
+            QueryReduce(hookTelegram, product, buttonSpace, placeCall, deleteCard)
         })
         buttonSpace.querySelector('.buttonIncrease').addEventListener('click', () => {
             QueryIncrease(hookTelegram, product, buttonSpace);

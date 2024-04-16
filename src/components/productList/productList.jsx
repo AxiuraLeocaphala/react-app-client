@@ -4,7 +4,6 @@ import './productList.css';
 
 const Main = ({ productCategories, productInfo, handleLoadedMenu }) => { 
     useEffect(() => {
-        //TruncateText();
         handleLoadedMenu();
     }, [handleLoadedMenu])
 

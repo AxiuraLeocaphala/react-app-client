@@ -1,21 +1,29 @@
-import React, {useEffect} from "react";
+import React, { useEffect} from "react";
+import CountTotalPrice from "../hooks/countTotalPrice";
 import ProductItemBusket from "../productItem/productItemBusket";
 import './productListBusket.css';
 
 const ProductListBusket = ({ productsInBusket, handleLoading }) => {
-    useEffect(() => {
+    useEffect(() => {   
         handleLoading();
     }, [handleLoading]);
 
     return (
-        <div className="productListBusket">
-            <h1>КОРЗИНА</h1>
-            {productsInBusket.map((product, idx) => {
-                return (
+        <>
+            <div className="qb6">
+                <span>
+                    {CountTotalPrice(productsInBusket)} ₽
+                </span>
+                <span>КОРЗИНА</span>
+            </div>
+            <div className="productListBusket">
+                {productsInBusket.map((product, idx) => {
+                    return (
                     <ProductItemBusket key={idx} product={product}/>
-                )
-            })}
-        </div>
+                    )
+                })}
+            </div>
+        </>
     )
 }
 

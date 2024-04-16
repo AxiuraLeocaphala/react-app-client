@@ -1,8 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Button from './../button/button';
 import './productItemBusket.css';
 
 const ProductItemBusket = ({ product }) => {
+    const [isDelete, setIsDelete] = useState(false);
+    const capsuleRef = useRef(null);
     const cardProductRef = useRef(null);
     const timer = useRef(0);
     const imgRef = useRef(null);
@@ -10,6 +12,16 @@ const ProductItemBusket = ({ product }) => {
     const pRef = useRef(null);
     const arrayElems = useRef([]);
     const discount = 0.9;
+    
+    const deleteCard = () => {
+        cardProductRef.current.classList.add('hide');
+        setTimeout(() => {
+            capsuleRef.current.style.height = '0px';
+            setTimeout(() => {
+                setIsDelete(true);
+            }, 120)
+        }, 200)
+    }
 
     const addEventExpand = () => {
         const cardProduct = cardProductRef.current;
@@ -18,9 +30,9 @@ const ProductItemBusket = ({ product }) => {
     };
     
     const removeEventExpand = () => {
-        const cardProduct = cardProductRef.current;
-        cardProduct.removeEventListener('touchstart', handlePointerDown);
-        cardProduct.removeEventListener('touchend', handlePointerUp);
+            const cardProduct = cardProductRef.current;
+            cardProduct.removeEventListener('touchstart', handlePointerDown);
+            cardProduct.removeEventListener('touchend', handlePointerUp);
     };
     
     const handleClickOnExpandedCard = () => {
@@ -96,32 +108,32 @@ const ProductItemBusket = ({ product }) => {
             addEventExpand();
             return () => {
                 arrayElems.current = [];
-                removeEventExpand();
             }
         } else if (isMoreThan(pRef.current)) {
             arrayElems.current.push(pRef.current);
             addEventExpand();
             return () => {
                 arrayElems.current = [];
-                removeEventExpand();
             }
         }
-    });
+    }, []);
 
     return (
-        <div className="capsule">
-            <div ref={cardProductRef} className="cardProduct Busket">
-                <img src={`data:image/jpeg;base64,${product["Превью"]}`} alt='' ref={imgRef}/>
-                <h3 ref={hRef}>{product['Название']}</h3>
-                <div className='finalCost'>{product['Стоимость']} ₽</div>
-                <p ref={pRef}>{product['Описание']}</p>
-                <div className='sale'>
-                    <div className='withDiscount'>{product['Стоимость'] * product['Количество'] * discount} ₽</div>
-                    <div className='withoutDiscount'>{product['Стоимость'] * product['Количество'] } ₽</div>
+        !isDelete && (
+            <div ref={capsuleRef} className="capsule">
+                <div ref={cardProductRef} className="cardProduct Busket">
+                    <img src={`data:image/jpeg;base64,${product["Превью"]}`} alt='' ref={imgRef}/>
+                    <h3 ref={hRef}>{product['Название']}</h3>
+                    <div className='finalCost'>{product['Стоимость']} ₽</div>
+                    <p ref={pRef}>{product['Описание']}</p>
+                    <div className='sale'>
+                        <div className='withDiscount'>{product['Стоимость'] * product['Количество'] * discount} ₽</div>
+                        <div className='withoutDiscount'>{product['Стоимость'] * product['Количество']} ₽</div>
+                    </div>
+                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard}/></div>
                 </div>
-                <div className='buttonSpaceBusket'><Button product={product}/></div>
             </div>
-        </div>
+        )
     )
 }
 

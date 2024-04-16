@@ -1,22 +1,23 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { HookTelegram } from '../hooks/hookTelegram';
 import {QueryAdd} from '../query/queryAdd';
 import {QueryIncrease} from '../query/queryIncrease';
 import {QueryReduce} from '../query/queryReduce';
 import './button.css';
-const Button = ({ product}) => { 
+
+const Button = ({ product, placeCall, deleteCard }) => { 
     const [quantity] = useState(product['Количество'] || 0);
     const buttonSpaceRef = useRef(null); 
-
-    const handleClickOnButtonReduce = useCallback(() => {
-        QueryReduce(HookTelegram(), product, buttonSpaceRef.current);
-    }, [product]);
-    const handleClickOnButtonIncrease = useCallback(() => {
+    
+    const handleClickOnButtonMain = () => {
+        QueryAdd(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard);
+    };
+    const handleClickOnButtonIncrease = () => {
         QueryIncrease(HookTelegram(), product, buttonSpaceRef.current)
-    }, [product]);
-    const handleClickOnButtonMain = useCallback(() => {
-        QueryAdd(HookTelegram(), product, buttonSpaceRef.current);
-    }, [product]);
+    };
+    const handleClickOnButtonReduce = () => {
+        QueryReduce(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard);
+    };
     
     return (
         <div ref={buttonSpaceRef} className='buttonSpace'>
@@ -27,7 +28,7 @@ const Button = ({ product}) => {
             ) : (
                 <>
                     <button className='buttonReduce' onClick={handleClickOnButtonReduce}>-</button>
-                    <input className='quantity' type="text" readOnly value={product["Количество"]} />
+                    <input className='quantity' type="text" readOnly value={product["Количество"]}/>
                     <button className='buttonIncrease' onClick={handleClickOnButtonIncrease}>+</button>
                 </>
             )}

@@ -20,14 +20,12 @@
 	padding: 0 16px;
 	transition: all ease 0.17s;
 	white-space: nowrap;
-	color: var(--tg-theme-text-color);
-	background: var(--tg-theme-bg-color);
 }
 .sliderCategory a:first-child{
-	margin: 0 3px 0 0!important;
+	margin-right: 3px;
 }
 .sliderCategory a:last-child{
-	margin: 0 0 0 3px!important;
+	margin-left: 3px;
 }
 .sliderCategory a.active{
 	color: var(--tg-theme-button-text-color);

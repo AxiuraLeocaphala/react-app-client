@@ -1,3 +1,5 @@
+import CountTotalPrice from "./countTotalPrice";
+
 const tg = window.Telegram.WebApp;
 
 let chatId;
@@ -15,13 +17,8 @@ export function HookTelegram () {
 }
 
 export function ButtonTelegramMenu (data) {
-    let totalPrice = 0;
-    data.forEach((elem) => {
-        if (elem["Количество"] !== undefined) {
-            totalPrice += elem["Стоимость"]
-        }
-    })
-    tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}}`;
+    let totalPrice = CountTotalPrice(data);
+    tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}`;
     tg.MainButton.onClick(() => {
         window.location.assign('http://localhost:3000/busket');
         tg.MainButton.hide();
