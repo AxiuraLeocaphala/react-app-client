@@ -116,7 +116,7 @@ const ProductItemBusket = ({ product }) => {
                 arrayElems.current = [];
             }
         }
-    }, []);
+    });
 
     return (
         !isDelete && (
