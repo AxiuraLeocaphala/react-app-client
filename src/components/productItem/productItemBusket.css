@@ -45,6 +45,7 @@
             margin: 0;
             -webkit-line-clamp: 2;
             font-size: 16px;
+            color: var(--tg-theme-text-color);
             transition: height 120ms linear, top 120ms linear;
         }
         .sale {
