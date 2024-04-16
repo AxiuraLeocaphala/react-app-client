@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px 10px;
+	background-color: var(--tg-theme-bg-color);
     border-bottom: 1px solid var(--tg-theme-hint-color);
     z-index: 999;
 
@@ -22,5 +23,4 @@
 }
 .productListBusket {
     margin: 75px 10px 0 10px;
-    background-color: var(--tg-theme-bg-color);
 }

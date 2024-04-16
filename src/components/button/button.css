@@ -15,7 +15,7 @@
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background:  /*var(--tg-theme-button-color)*/ #1d7deb;
+	background:  var(--tg-theme-button-color);
 }
 .overlay .buttonAddToBusket{
 	font-size: 20px;
@@ -26,7 +26,7 @@
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: /*var(--tg-theme-button-color)*/ #1d7deb;
+	background: var(--tg-theme-button-color);
 	border: none;
 }
 .quantity{
@@ -39,7 +39,7 @@
 	border-radius: 5px;
 	font-size: 14px;
 	color: var(--tg-theme-text-color);
-	background: /*var(--tg-theme-bg-color)*/ #404040;
+	background: var(--tg-theme-bg-color);
 }
 .quantity:focus{
     outline: none;
@@ -51,7 +51,7 @@
 	border-radius: 10px;
 	font-size: 14px;
 	color: var(--tg-theme-button-text-color);
-	background: /*var(--tg-theme-button-color)*/ #1d7deb;
+	background: var(--tg-theme-button-color);
 }
 .overlay .buttonReduce, 
 .overlay .quantity, 
