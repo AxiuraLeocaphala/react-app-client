@@ -44,10 +44,6 @@ const Header = ({productCategories, handleLoadedHeader}) => {
             aRefs.current.forEach((ref, index) => {
                 if (activeCategory(ref.current.getAttribute('href').substring(1))) {
                     if (flickity.selectedIndex !== index) {
-                        aRefs.current.forEach((ref, index) => {
-                            ref.current.classList.remove('active');
-                        });
-                        ref.current.classList.add('active');
                         flickity.select(index);
                     }
                 }
