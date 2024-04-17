@@ -28,7 +28,7 @@
 .sliderCategory a:last-child{
 	margin-left: 3px;
 }
-.sliderCategory a.is-selected{
+.sliderCategory a.active{
 	color: var(--tg-theme-button-text-color);
-	background: var(--tg-theme-button-color);
+	background-color: var(--tg-theme-button-color);
 }
