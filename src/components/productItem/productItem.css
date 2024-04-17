@@ -2,7 +2,7 @@
 	border-radius: 10px;
 	overflow: hidden;
 	background-color: var(--tg-theme-bg-color);
-	box-shadow: 3px 3px 10px var(--tg-theme-hint-color);
+	box-shadow: 3px 2px 3px var(--tg-theme-hint-color) /*#4b4b4b*/;
 	img {
 		width: 100%;
 		object-fit: cover;
