@@ -24,12 +24,11 @@
 }
 .sliderCategory a:first-child{
 	margin-right: 3px;
-	background: var(--tg-theme-button-color);
 }
 .sliderCategory a:last-child{
 	margin-left: 3px;
 }
-.sliderCategory a.active{
+.sliderCategory a.is-selected{
 	color: var(--tg-theme-button-text-color);
 	background: var(--tg-theme-button-color);
 }

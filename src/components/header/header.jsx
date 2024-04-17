@@ -32,7 +32,7 @@ const Header = ({productCategories, handleLoadedHeader}) => {
     }
 
     useEffect(() => {
-        let flickity = new Flickity(sliderCategoryRef.current, {
+        const flickity = new Flickity(sliderCategoryRef.current, {
             freeScroll: true,
             contain: true,
             cellAlign: 'center',
@@ -41,13 +41,12 @@ const Header = ({productCategories, handleLoadedHeader}) => {
             pageDots: false,
         });
         const handleScroll = () => {
-            aRefs.current.forEach((ref, index) => {
-                if (activeCategory(ref.current.getAttribute('href').substring(1))) {
+            aRefs.current.forEach((a, index) => {
+                if (activeCategory(a.current.getAttribute('href').substring(1))) {
                     if (flickity.selectedIndex !== index) {
-                        aRefs.current.forEach((ref, index) => {
-                            ref.current.classList.remove('active');
+                        aRefs.current.forEach((a) => {
+                            a.current.classList.remove('active');
                         });
-                        ref.current.classList.add('active');
                         flickity.select(index);
                     }
                 }
@@ -67,11 +66,10 @@ const Header = ({productCategories, handleLoadedHeader}) => {
                 {productCategories.map((element, index) => {
                     return (
                         <a
-                        
-                        key={index}
-                        ref={aRefs.current[index]}
-                        href={`#categoryCell_${index}`}
-                        onClick={handleClick}
+                            key={index}
+                            ref={aRefs.current[index]}
+                            href={index === 1 ? (`#categoryCell_${index} active`):(`#categoryCell_${index}`)}
+                            onClick={handleClick}
                         >
                             {element['Лого категории']} {element['Название категории']} 
                         </a>
