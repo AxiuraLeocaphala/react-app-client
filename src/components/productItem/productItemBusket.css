@@ -20,9 +20,10 @@
             left: 20px;
             max-width: 65%;
             height: 30px;
-            -webkit-line-clamp: 1;
             margin: 0;
+            color: white;
             font-size: 20px;
+            -webkit-line-clamp: 1;
             transition: height 120ms linear;
         }
         .finalCost {
@@ -31,6 +32,7 @@
             right: 15px;
             width: 90px;
             border-radius: 5px;
+            color: white;
             text-align: center;
             font-size: 20px;
             font-weight: bold;
@@ -43,9 +45,9 @@
             height: 42px;
             width: 90%;
             margin: 0;
+            color: white;
             -webkit-line-clamp: 2;
             font-size: 16px;
-            color: var(--tg-theme-text-color);
             transition: height 120ms linear, top 120ms linear;
         }
         .sale {
