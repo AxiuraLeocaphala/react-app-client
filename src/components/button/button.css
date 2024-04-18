@@ -39,7 +39,7 @@
 	border-radius: 5px;
 	font-size: 14px;
 	color: var(--tg-theme-text-color);
-	background: var(--tg-theme-hint-color);
+	background: var(--tg-theme-secondary-bg-color);
 }
 .quantity:focus{
     outline: none;
