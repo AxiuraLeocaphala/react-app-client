@@ -27,8 +27,8 @@ export function  QueryReduce (hookTelegram, product, buttonSpace, placeCall, del
                     QueryAdd(hookTelegram, product, buttonSpace);
                 })
             } else {
-                console.log('delete');
                 deleteCard();
+                product["Количество"] = 0;
             }
         }
     })

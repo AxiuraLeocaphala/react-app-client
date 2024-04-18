@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Button from './../button/button';
 import './productItemBusket.css';
 
-const ProductItemBusket = ({ product }) => {
+const ProductItemBusket = ({ product, updateTotalPrice }) => {
     const [isDelete, setIsDelete] = useState(false);
     const capsuleRef = useRef(null);
     const cardProductRef = useRef(null);
@@ -18,6 +18,7 @@ const ProductItemBusket = ({ product }) => {
         setTimeout(() => {
             capsuleRef.current.style.height = '0px';
             setTimeout(() => {
+                updateTotalPrice();
                 setIsDelete(true);
             }, 120)
         }, 200)
@@ -47,7 +48,7 @@ const ProductItemBusket = ({ product }) => {
             }
         })
         cardProduct.style.height = '100%';
-        cardProduct.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        cardProduct.style.boxShadow = '0 2px 10px rgba(0, 0, 0, .1)';
         imgRef.current.style.height = '100px';
         pRef.current.style.height = '42px';
         setTimeout(() => {
@@ -96,7 +97,9 @@ const ProductItemBusket = ({ product }) => {
     };
 
     const isMoreThan = (elem) => {
-        return elem.scrollHeight - elem.clientHeight > 1;
+        if (elem) {
+            return elem.scrollHeight - elem.clientHeight > 1;
+        }        
     };
 
     useEffect(() => {
@@ -116,7 +119,7 @@ const ProductItemBusket = ({ product }) => {
                 arrayElems.current = [];
             }
         }
-    });
+    }, [capsuleRef.current]);
 
     return (
         !isDelete && (
