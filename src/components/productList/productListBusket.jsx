@@ -13,7 +13,7 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
     useEffect(() => {   
         handleLoading();
         updateTotalPrice();
-    }, [handleLoading]);
+    });
 
     return (
         <>

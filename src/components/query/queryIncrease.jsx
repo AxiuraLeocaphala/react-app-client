@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function QueryIncrease (hookTelegram, product, buttonSpace, updateTotalPrice) {
+export function QueryIncrease (hookTelegram, product, buttonSpace, placeCall, updateTotalPrice) {
     return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
         chatId: hookTelegram.chatId,
         productId: product["ID товара"]
@@ -11,7 +11,9 @@ export function QueryIncrease (hookTelegram, product, buttonSpace, updateTotalPr
             hookTelegram.tg.MainButton.text = `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["Стоимость"]} ₽`;
         }
         buttonSpace.querySelector('.quantity').value = response.data.quantity;
-        updateTotalPrice();
+        if (placeCall !== 'menu'){
+            updateTotalPrice();
+        }
     })
     .catch(error => {
         console.log('Ошибка при отправке запроса на увеличение количества товара: ', error);

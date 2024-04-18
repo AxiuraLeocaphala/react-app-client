@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { HookTelegram, ButtonTelegramMenu } from './components/hooks/hookTelegram.jsx';
+import { HookTelegram, ButtonsTelegramMenu } from './components/hooks/hookTelegram.jsx';
 import ProductList from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
 import Preloader from './components/preloader/preloader.jsx';
@@ -37,8 +37,7 @@ function Menu() {
     useEffect(() => {
         if (!(isLoadingHeader && isLoadingMenu)) {
             HookTelegram().tg.ready();
-            ButtonTelegramMenu(data[1]);
-            HookTelegram().tg.MainButton.show();
+            ButtonsTelegramMenu(data[1]);
 
         }
     }, [isLoadingHeader, isLoadingMenu, data]);

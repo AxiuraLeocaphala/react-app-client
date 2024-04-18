@@ -118,7 +118,7 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
                 arrayElems.current = [];
             }
         }
-    }, [capsuleRef.current]);
+    });
 
     return (
         !isDelete && (

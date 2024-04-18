@@ -6,16 +6,14 @@ import Preloader from './components/preloader/preloader.jsx';
 import './App.css';
 
 function Busket() {
-    const [isLoadingProductList, setIsProductList] = useState(true);
+    const [isLoadingProductList, setIsLoadingProductList] = useState(true);
     const [isLoadedData, setIsLoadedData] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
 
     const handleLoading = () => {
-        setIsProductList(false);
+        setIsLoadingProductList(false);
         ButtonsTelegramBusket();
-        HookTelegram().tg.BackButton.show();
-        HookTelegram().tg.MainButton.show();
     }
 
     useEffect(() => {

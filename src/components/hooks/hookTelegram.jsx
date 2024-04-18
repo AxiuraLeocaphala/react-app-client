@@ -16,7 +16,8 @@ export function HookTelegram () {
     }
 }
 
-export function ButtonTelegramMenu (data) {
+export function ButtonsTelegramMenu (data) {
+    tg.MainButton.show();
     let totalPrice = CountTotalPrice(data);
     tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}`;
     tg.MainButton.onClick(() => {
@@ -26,12 +27,14 @@ export function ButtonTelegramMenu (data) {
 }
 
 export function ButtonsTelegramBusket () {
+    tg.MainButton.show();
     tg.MainButton.text = 'Заказать';
     /*
     tg.MainButton.onClick(() => {
         window.location.assign('http://localhost:3000/куда-то');
         tg.MainButton.hide();
     })*/
+    tg.BackButton.show();
     tg.BackButton.onClick(() => {
         window.location.assign('http://localhost:3000');
         tg.BackButton.hide();

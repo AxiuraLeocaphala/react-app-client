@@ -13,7 +13,7 @@ const Button = ({ product, placeCall, deleteCard, updateTotalPrice }) => {
         QueryAdd(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard);
     };
     const handleClickOnButtonIncrease = () => {
-        QueryIncrease(HookTelegram(), product, buttonSpaceRef.current, updateTotalPrice)
+        QueryIncrease(HookTelegram(), product, buttonSpaceRef.current, placeCall, updateTotalPrice)
     };
     const handleClickOnButtonReduce = () => {
         QueryReduce(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard, updateTotalPrice);
