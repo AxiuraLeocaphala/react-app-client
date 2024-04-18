@@ -18,7 +18,6 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
         setTimeout(() => {
             capsuleRef.current.style.height = '0px';
             setTimeout(() => {
-                updateTotalPrice();
                 setIsDelete(true);
             }, 120)
         }, 200)
@@ -133,7 +132,7 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
                         <div className='withDiscount'>{product['Стоимость'] * product['Количество'] * discount} ₽</div>
                         <div className='withoutDiscount'>{product['Стоимость'] * product['Количество']} ₽</div>
                     </div>
-                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard}/></div>
+                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
                 </div>
             </div>
         )

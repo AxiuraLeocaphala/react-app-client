@@ -5,7 +5,7 @@ import {QueryIncrease} from '../query/queryIncrease';
 import {QueryReduce} from '../query/queryReduce';
 import './button.css';
 
-const Button = ({ product, placeCall, deleteCard }) => { 
+const Button = ({ product, placeCall, deleteCard, updateTotalPrice }) => { 
     const [quantity] = useState(product['Количество'] || 0);
     const buttonSpaceRef = useRef(null); 
     
@@ -13,10 +13,10 @@ const Button = ({ product, placeCall, deleteCard }) => {
         QueryAdd(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard);
     };
     const handleClickOnButtonIncrease = () => {
-        QueryIncrease(HookTelegram(), product, buttonSpaceRef.current)
+        QueryIncrease(HookTelegram(), product, buttonSpaceRef.current, updateTotalPrice)
     };
     const handleClickOnButtonReduce = () => {
-        QueryReduce(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard);
+        QueryReduce(HookTelegram(), product, buttonSpaceRef.current, placeCall, deleteCard, updateTotalPrice);
     };
     
     return (

@@ -1,7 +1,7 @@
 import {QueryAdd} from './queryAdd.jsx';
 import axios from 'axios';
 
-export function  QueryReduce (hookTelegram, product, buttonSpace, placeCall, deleteCard) {
+export function  QueryReduce (hookTelegram, product, buttonSpace, placeCall, deleteCard, updateTotalPrice) {
     axios.post('http://127.0.0.1:3001/data/reduceNumber', {
         chatId: hookTelegram.chatId,
         productId: product["ID товара"]
@@ -31,6 +31,7 @@ export function  QueryReduce (hookTelegram, product, buttonSpace, placeCall, del
                 product["Количество"] = 0;
             }
         }
+        updateTotalPrice();
     })
     .catch(error => {
         console.log('Ошибка при отправке запроса на уменьшение количества товара: ', error);

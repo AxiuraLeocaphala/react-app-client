@@ -6,7 +6,9 @@ import './productListBusket.css';
 const ProductListBusket = ({ productsInBusket, handleLoading }) => {
     const [totalPrice, setTotalPrice] = useState(0);
 
-    const updateTotalPrice = () => {setTotalPrice(CountTotalPrice(productsInBusket))};
+    const updateTotalPrice = () => {
+        setTotalPrice(CountTotalPrice(productsInBusket));
+    };
 
     useEffect(() => {   
         handleLoading();
