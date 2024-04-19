@@ -26,6 +26,10 @@ export function ButtonsTelegramMenu (data) {
     })
 }
 
+const callBack = (adress) => {
+    window.location.assign(adress);
+}
+
 export function ButtonsTelegramBusket () {
     tg.MainButton.show();
     tg.MainButton.text = 'Заказать';
@@ -34,8 +38,9 @@ export function ButtonsTelegramBusket () {
         window.location.assign('http://localhost:3000/куда-то');
         tg.MainButton.hide();
     })*/
-    tg.BackButton.show();
-    tg.BackButton.onClick(() => {
+    const backButton = window.Telegram.WebApp.BackButton;
+    backButton.show();
+    backButton.onClick(() => {
         window.location.assign('http://localhost:3000');
         tg.BackButton.hide();
     })
