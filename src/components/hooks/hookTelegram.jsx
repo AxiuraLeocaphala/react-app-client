@@ -26,10 +26,6 @@ export function ButtonsTelegramMenu (data) {
     })
 }
 
-const callBack = (adress) => {
-    window.location.assign(adress);
-}
-
 export function ButtonsTelegramBusket () {
     tg.MainButton.show();
     tg.MainButton.text = 'Заказать';
