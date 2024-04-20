@@ -18,7 +18,8 @@ export function HookTelegram () {
 
 export function ButtonsTelegramMenu (data) {
     tg.MainButton.show();
-    tg.MainButton.text = `Корзина ${CountTotalPrice(data) === 0 ? ('') : (`${totalPrice} ₽`)}`;
+    let totalPrice = CountTotalPrice(data);
+    tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}`;
     tg.MainButton.onClick(() => {
         window.location.assign('http://localhost:3000/busket');
     })
