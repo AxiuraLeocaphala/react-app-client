@@ -29,6 +29,12 @@ function Busket() {
         )
     }, []);
 
+    useEffect(() => {
+        if (!isLoadingProductList) {
+            HookTelegram().tg.MainButton.show();
+        }
+    })
+
     if (error) {
         return <div>Возникла ошибка: {error.message}</div>
     } else if (!isLoadedData) {

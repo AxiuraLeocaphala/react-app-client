@@ -18,26 +18,14 @@ export function HookTelegram () {
 
 export function ButtonsTelegramMenu (data) {
     tg.MainButton.show();
-    let totalPrice = CountTotalPrice(data);
-    tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}`;
+    tg.MainButton.text = `Корзина ${CountTotalPrice(data) === 0 ? ('') : (`${totalPrice} ₽`)}`;
     tg.MainButton.onClick(() => {
         window.location.assign('http://localhost:3000/busket');
-        tg.MainButton.hide();
     })
 }
 
 export function ButtonsTelegramBusket () {
     tg.MainButton.show();
     tg.MainButton.text = 'Заказать';
-    /*
-    tg.MainButton.onClick(() => {
-        window.location.assign('http://localhost:3000/куда-то');
-        tg.MainButton.hide();
-    })*/
-    const backButton = window.Telegram.WebApp.BackButton;
-    backButton.show();
-    backButton.onClick(() => {
-        window.location.assign('http://localhost:3000');
-        tg.BackButton.hide();
-    })
+    tg.BackButton.show();
 }
