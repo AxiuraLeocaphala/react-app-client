@@ -50,23 +50,15 @@
             font-size: 16px;
             transition: height 120ms linear, top 120ms linear;
         }
-        .sale {
+        .totalPriceItem {
             display: inline-block;
             position: absolute;
             left: 15px;
             bottom: 15px;
             padding: 3px 5px 3px 5px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             background: var(--tg-theme-secondary-bg-color);
-            .withDiscount {
-                display: inline-block;
-            }
-            .withoutDiscount {
-                display: inline-block;
-                margin-left: 5px;
-                text-decoration: line-through;
-            }
         }
         .buttonSpaceBusket {
             position: absolute;

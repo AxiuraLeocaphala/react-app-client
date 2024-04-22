@@ -6,37 +6,27 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
     const [isDelete, setIsDelete] = useState(false);
     const capsuleRef = useRef(null);
     const cardProductRef = useRef(null);
-    const timer = useRef(0);
     const imgRef = useRef(null);
     const hRef = useRef(null);
     const pRef = useRef(null);
-    const arrayElems = useRef([]);
-    const discount = 0.9;
-    
+    const arrayElems = useRef([null]);
+    let timer = useRef(0);
+
     const deleteCard = () => {
-        cardProductRef.current.classList.add('hide');
-        setTimeout(() => {
-            capsuleRef.current.style.height = '0px';
-            setTimeout(() => {
-                setIsDelete(true);
-            }, 120)
-        }, 200)
-    }
+        console.log('delete');
+    };
 
     const addEventExpand = () => {
-        const cardProduct = cardProductRef.current;
-        cardProduct.addEventListener('touchstart', handlePointerDown);
-        cardProduct.addEventListener('touchend', handlePointerUp);
+        cardProductRef.current.addEventListener('touchstart', handleTouchStart);
+        cardProductRef.current.addEventListener('touchend', handleTouchEnd);
     };
-    
+
     const removeEventExpand = () => {
-            const cardProduct = cardProductRef.current;
-            cardProduct.removeEventListener('touchstart', handlePointerDown);
-            cardProduct.removeEventListener('touchend', handlePointerUp);
+        cardProductRef.current.removeEventListener('touchstart', handleTouchStart);
+        cardProductRef.current.removeEventListener('touchend', handleTouchEnd);
     };
-    
-    const handleClickOnExpandedCard = () => {
-        const cardProduct = cardProductRef.current;
+
+    const contractCard = () => {
         arrayElems.current.forEach((elem) => {
             if (elem.tagName === 'H3') {
                 elem.style.webkitLineClamp = 1;
@@ -46,25 +36,24 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
                 elem.style.webkitLineClamp= 2;
             }
         })
-        cardProduct.style.height = '100%';
-        cardProduct.style.boxShadow = '0 2px 10px rgba(0, 0, 0, .1)';
+        cardProductRef.current.style.height = '100%';
+        cardProductRef.current.style.boxShadow = '0 2px 10px rgba(0, 0, 0, .1)';
         imgRef.current.style.height = '100px';
         pRef.current.style.height = '42px';
         setTimeout(() => {
-            cardProduct.style.zIndex = 0;
-            cardProduct.removeEventListener('click', handleClickOnExpandedCard);
+            cardProductRef.current.style.zIndex = 0;
+            cardProductRef.current.removeEventListener('touchstart', contractCard);
+            addEventExpand();
         }, 120);
-        addEventExpand();
     };
 
-    const handlePointerDown = (e) => {
+    const handleTouchStart = (e) => {
         if (e.target.closest('.buttonSpaceBusket') === null) {
-            const cardProduct = cardProductRef.current;
-            const style = cardProduct.style;
-            cardProduct.classList.add('entering');
+            cardProductRef.current.classList.add('entering');
             timer.current = setTimeout(() => {
+                handleTouchEnd(e);
                 removeEventExpand();
-                cardProduct.classList.remove('entering');
+                cardProductRef.current.classList.remove('entering');
                 let totalHeightChange = 0;
                 arrayElems.current.forEach(elem => {
                     totalHeightChange += elem.scrollHeight - elem.clientHeight;
@@ -74,21 +63,21 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
                     }
                     elem.style.webkitLineClamp = 999;
                 });
-                cardProduct.classList.add('entered');
-                style.zIndex = 2;
-                style.height = `${cardProduct.clientHeight+totalHeightChange}px`;
-                style.boxShadow = '0 20px 20px rgba(0, 0, 0, 0.7)';
+                cardProductRef.current.classList.add('entered');
+                cardProductRef.current.style.zIndex = 2;
+                cardProductRef.current.style.height = `${cardProductRef.current.clientHeight+totalHeightChange}px`;
+                cardProductRef.current.style.boxShadow = '0 20px 20px rgba(0, 0, 0, 0.7)';
                 imgRef.current.style.height = `${imgRef.current.clientHeight + totalHeightChange}px`;
                 pRef.current.style.height = `${pRef.current.scrollHeight}px`;
                 setTimeout(() => {
-                    cardProduct.classList.remove('entered');
-                    cardProduct.addEventListener('click', handleClickOnExpandedCard);
+                    cardProductRef.current.classList.remove('entered');
+                    document.body.addEventListener('touchstart', contractCard);
                 }, 120);
             }, 400);
         }
     };
 
-    const handlePointerUp = (e) => {
+    const handleTouchEnd = (e) => {
         if (e.target.closest('.buttonSpaceBusket') === null) {
             cardProductRef.current.classList.remove('entering');
             clearTimeout(timer.current);
@@ -96,9 +85,7 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
     };
 
     const isMoreThan = (elem) => {
-        if (elem) {
-            return elem.scrollHeight - elem.clientHeight > 1;
-        }        
+        if (elem) {return elem.scrollHeight - elem.clientHeight > 1}
     };
 
     useEffect(() => {
@@ -110,12 +97,14 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
             addEventExpand();
             return () => {
                 arrayElems.current = [];
+                removeEventExpand();
             }
         } else if (isMoreThan(pRef.current)) {
             arrayElems.current.push(pRef.current);
             addEventExpand();
             return () => {
                 arrayElems.current = [];
+                removeEventExpand();
             }
         }
     });
@@ -128,11 +117,10 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
                     <h3 ref={hRef}>{product['Название']}</h3>
                     <div className='finalCost'>{product['Стоимость']} ₽</div>
                     <p ref={pRef}>{product['Описание']}</p>
-                    <div className='sale'>
-                        <div className='withDiscount'>{product['Стоимость'] * product['Количество'] * discount} ₽</div>
-                        <div className='withoutDiscount'>{product['Стоимость'] * product['Количество']} ₽</div>
+                    <div className='totalPriceItem'>
+                        <div>{product['Стоимость'] * product['Количество']} ₽</div>
                     </div>
-                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
+                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={setIsDelete} updateTotalPrice={updateTotalPrice}/></div>
                 </div>
             </div>
         )

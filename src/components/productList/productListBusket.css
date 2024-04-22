@@ -24,3 +24,18 @@
 .productListBusket {
     margin: 60px 10px 0 10px;
 }
+.productListBusket.blur {
+    transition: blur 200ms linear;
+}
+@keyframes blur {
+    from {
+        background-color: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.3);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        backdrop-filter: saturate(180%) blur(10px);
+    }
+}

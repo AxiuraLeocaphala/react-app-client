@@ -1,175 +1,143 @@
-import React, {useRef, useEffect, useState} from 'react';
-import {useSpring, animated} from '@react-spring/web';
-import Button from '../button/button';
-import './productItem.css';
+import React, { useRef, useEffect, useState } from 'react';
+import Button from './../button/button';
+import './productItemBusket.css';
 
-const ProductItem = ({ product }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const {heightCard, widthCard} = useSpring({
-        height: isExpanded ? 'auto' : '280px',
-        width : isExpanded ? '160%' : '100%',
-    });
-    const {heightP} = useSpring({
-        height: isExpanded ? 'auto' : '55px'
-    })
-
-    const cardProductRef = useRef(null);
+const ProductItemBusket = ({ product, updateTotalPrice }) => {
+    const [isDelete, setIsDelete] = useState(false);
     const capsuleRef = useRef(null);
+    const cardProductRef = useRef(null);
+    const timer = useRef(0);
     const imgRef = useRef(null);
     const hRef = useRef(null);
     const pRef = useRef(null);
     const arrayElems = useRef([]);
-    let timer = 0;
-
-    const handleClickExpandedCard = (e) => {
-        if (e.target.closest('.buttonSpace') === null) {
-            const cardProduct = cardProductRef.current;
-            const style = cardProduct.style;
-            const h = hRef.current.style;
-            const p = pRef.current.style;
     
-            imgRef.current.style.height = '130px';
-            h.fontSize = '18px';
-            h.maxHeight = '50px'; 
-            h.webkitLineClamp = 1;
-            p.fontSize = '14px';
-            p.height = '55px';
-            p.webkitLineClamp = 3;
-            style.width = '100%';
-            style.height = '280px';
-            setIsExpanded(false);
-            cardProduct.removeEventListener('click', handleClickExpandedCard);
+    const deleteCard = () => {
+        cardProductRef.current.classList.add('hide');
+        setTimeout(() => {
+            capsuleRef.current.style.height = '0px';
             setTimeout(() => {
-                style.zIndex = 0;
-                cardProduct.addEventListener('touchstart', handleTouchStart);
-                cardProduct.addEventListener('touchend', handleTouchEnd);
-            }, 200);
-        }        
+                setIsDelete(true);
+            }, 120)
+        }, 200)
     }
 
-    const expandCardProduct = () => {
+    const addEventExpand = () => {
         const cardProduct = cardProductRef.current;
-        const style = cardProduct.style;
-        const h = hRef.current.style;
-        const p = pRef.current.style;
-        if (cardProduct.getBoundingClientRect().x > document.body.clientWidth/2) {
-            style.right = '0';
-        }
-        style.zIndex = 2;
-        style.width = '160%';
-        imgRef.current.style.height = '160px';
-        h.fontSize = '20px';
-        p.fontSize = '18px';
-        if (arrayElems.current.length === 0) {
-            h.height = 'auto';
-            p.height = `${pRef.current.clientHeight}px`;
-            style.height = 'auto';
-        } else {
-            arrayElems.current.forEach((elem)=> {
-                if (elem.tagName === 'H3') {
-                    elem.style.maxHeight = '999px';
-                } else {
-                    elem.style.height = `${elem.scrollHeight}px`;
-                }
-                elem.style.webkitLineClamp = 999;
-            })
-            style.height = 'auto';        
-        }
-        
-        cardProduct.removeEventListener('touchstart', handleTouchStart);
-        cardProduct.removeEventListener('touchend', handleTouchEnd);
-        setTimeout(() => {
-            cardProduct.addEventListener('click', handleClickExpandedCard);
-        }, 200);
+        cardProduct.addEventListener('touchstart', handlePointerDown);
+        cardProduct.addEventListener('touchend', handlePointerUp);
     };
-
-    const handleTouchStart = (e) => {
-        if (e.target.closest('.buttonSpace') === null) {
+    
+    const removeEventExpand = () => {
             const cardProduct = cardProductRef.current;
-            const classList = cardProduct.classList;
-            classList.add('entering');
-            timer = setTimeout(() => {
-                classList.remove('entering');
-                classList.add('entered');
-                const options = cardProduct.getBoundingClientRect();
-                if (options.top >= 55) {
-                    if (options.bottom <= window.innerHeight) {
-                        //expandCardProduct();
-                        setIsExpanded(true);
-                        cardProduct.style.zIndex = 2;
+            cardProduct.removeEventListener('touchstart', handlePointerDown);
+            cardProduct.removeEventListener('touchend', handlePointerUp);
+    };
+    
+    const handleClickOnExpandedCard = () => {
+        const cardProduct = cardProductRef.current;
+        arrayElems.current.forEach((elem) => {
+            if (elem.tagName === 'H3') {
+                elem.style.webkitLineClamp = 1;
+                hRef.current.style.height = '30px';
+                pRef.current.style.top = '45px';
+            } else {
+                elem.style.webkitLineClamp= 2;
+            }
+        })
+        cardProduct.style.height = '100%';
+        cardProduct.style.boxShadow = '0 2px 10px rgba(0, 0, 0, .1)';
+        imgRef.current.style.height = '100px';
+        pRef.current.style.height = '42px';
+        setTimeout(() => {
+            cardProduct.style.zIndex = 0;
+            cardProduct.removeEventListener('click', handleClickOnExpandedCard);
+        }, 120);
+        addEventExpand();
+    };
 
-                    } else {
-                        //window.addEventListener('scrollend', expandCardProduct, { once: true });
-                        window.scroll({
-                            top: capsuleRef.current.offsetTop - window.innerHeight / 4,
-                            behavior: 'smooth'
-                        });
+    const handlePointerDown = (e) => {
+        if (e.target.closest('.buttonSpaceBusket') === null) {
+            const cardProduct = cardProductRef.current;
+            const style = cardProduct.style;
+            cardProduct.classList.add('entering');
+            timer.current = setTimeout(() => {
+                removeEventExpand();
+                cardProduct.classList.remove('entering');
+                let totalHeightChange = 0;
+                arrayElems.current.forEach(elem => {
+                    totalHeightChange += elem.scrollHeight - elem.clientHeight;
+                    if (elem.tagName === 'H3') {
+                        hRef.current.style.height = `${elem.scrollHeight}px`;
+                        pRef.current.style.top = `${15+elem.scrollHeight}px`;
                     }
-                } else {
-                    //window.addEventListener('scrollend', expandCardProduct, { once: true });
-                    window.scroll({
-                        top: capsuleRef.current.offsetTop - window.innerHeight / 8,
-                        behavior: 'smooth'
-                    });
-                }
+                    elem.style.webkitLineClamp = 999;
+                });
+                /*
+                const expandElem = document.querySelector('.entered');
+                expandElem !== null && (expandElem.remove('entered'));*/
+                cardProduct.classList.add('entered');
+                style.zIndex = 2;
+                style.height = `${cardProduct.clientHeight+totalHeightChange}px`;
+                style.boxShadow = '0 20px 20px rgba(0, 0, 0, 0.7)';
+                imgRef.current.style.height = `${imgRef.current.clientHeight + totalHeightChange}px`;
+                pRef.current.style.height = `${pRef.current.scrollHeight}px`;
+                setTimeout(() => {
+                    cardProduct.classList.remove('entered');
+                    cardProduct.addEventListener('click', handleClickOnExpandedCard);
+                }, 120);
             }, 400);
-            classList.remove('entered');
         }
     };
 
-    const handleTouchEnd = (e) => {
-        if (e.target.closest('.buttonSpace') === null) {
+    const handlePointerUp = (e) => {
+        if (e.target.closest('.buttonSpaceBusket') === null) {
             cardProductRef.current.classList.remove('entering');
-            clearTimeout(timer);
+            clearTimeout(timer.current);
         }
     };
 
     const isMoreThan = (elem) => {
-        return elem.scrollHeight - elem.clientHeight > 1;
+        if (elem) {
+            return elem.scrollHeight - elem.clientHeight > 1;
+        }        
     };
 
-    const removeEvent = () => {
-        const cardProduct = cardProductRef.current;
-        cardProduct.removeEventListener('touchstart', handleTouchStart);
-        cardProduct.removeEventListener('touchend', handleTouchEnd);
-    }
-
     useEffect(() => {
-        const cardProduct = cardProductRef.current;
-        cardProduct.addEventListener('touchstart', handleTouchStart);
-        cardProduct.addEventListener('touchend', handleTouchEnd);
         if (isMoreThan(hRef.current)) {
             arrayElems.current.push(hRef.current);
             if (isMoreThan(pRef.current)) {
                 arrayElems.current.push(pRef.current);
             }
+            addEventExpand();
             return () => {
-                removeEvent();
                 arrayElems.current = [];
             }
         } else if (isMoreThan(pRef.current)) {
             arrayElems.current.push(pRef.current);
+            addEventExpand();
             return () => {
-                removeEvent();
                 arrayElems.current = [];
             }
         }
-    }, []);
+    });
 
-    return ( 
-        <div ref={capsuleRef} className="capsule">
-            <animated.div style={{heightCard, widthCard}}
-            ref={cardProductRef}
-            className="cardProduct Menu"
-            id={product["ID товара"]}>
-                <picture><img ref={imgRef} src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture>
-                <h3 ref={hRef} id="nameProduct">{product["Название"]}</h3>
-                <animated.p style={heightP} ref={pRef} id="descriptionProduct">{product["Описание"]}</animated.p>
-                <Button product={product}></Button>
-            </animated.div>
-        </div>
+    return (
+        !isDelete && (
+            <div ref={capsuleRef} className="capsule">
+                <div ref={cardProductRef} className="cardProduct Busket">
+                    <img src={`data:image/jpeg;base64,${product["Превью"]}`} alt='' ref={imgRef}/>
+                    <h3 ref={hRef}>{product['Название']}</h3>
+                    <div className='finalCost'>{product['Стоимость']} ₽</div>
+                    <p ref={pRef}>{product['Описание']}</p>
+                    <div className='totalPriceItem'>
+                        <div>{product['Стоимость'] * product['Количество']} ₽</div>
+                    </div>
+                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
+                </div>
+            </div>
+        )
     )
-    
-};
+}
 
-export default ProductItem;
+export default ProductItemBusket;
