@@ -17,7 +17,6 @@ const ProductItem = ({ product }) => {
     };
     const hideButton = () => {setIsButtonShow(false)};
     const showButton = () => {setIsButtonShow(true)};
-
     const expandCard = () => {
         cardProductRef.current.classList.remove('entering');
         cardProductRef.current.classList.add('hide');
