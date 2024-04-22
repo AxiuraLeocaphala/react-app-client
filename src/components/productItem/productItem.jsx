@@ -11,12 +11,16 @@ const ProductItem = ({ product }) => {
     let timer = 0; 
 
     const updateOptions = () => { return cardProductRef.current.getBoundingClientRect() };
-    const popupClose = () => {setIsPopupShow(false)};
+    const popupClose = () => {
+        cardProductRef.current.classList.remove('hide');
+        setIsPopupShow(false);
+    };
     const hideButton = () => {setIsButtonShow(false)};
     const showButton = () => {setIsButtonShow(true)};
 
     const expandCard = () => {
         cardProductRef.current.classList.remove('entering');
+        cardProductRef.current.classList.add('hide');
         setOptionsCard(updateOptions);
         setIsPopupShow(true);
     };

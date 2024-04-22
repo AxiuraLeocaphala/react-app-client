@@ -103,14 +103,12 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
             addEventExpand();
             return () => {
                 arrayElems.current = [];
-                removeEventExpand();
             }
         } else if (isMoreThan(pRef.current)) {
             arrayElems.current.push(pRef.current);
             addEventExpand();
             return () => {
                 arrayElems.current = [];
-                removeEventExpand();
             }
         }
     });

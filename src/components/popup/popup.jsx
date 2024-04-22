@@ -47,7 +47,7 @@ const Popup = ({ product, options, onClose, hideButton, showButton, cardProduct 
                 className="popup"
                 style={{
                     top: `${positionTop}px`,
-                    ...(options.left < document.body.clientWidth / 2) ? 
+                    ...(options.left < document.body.clientWidth / 2 - 10) ? 
                     {left: '10px'} : {right: '10px'},
                 }}
             >
