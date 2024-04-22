@@ -42,7 +42,7 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
         pRef.current.style.height = '42px';
         setTimeout(() => {
             cardProductRef.current.style.zIndex = 0;
-            cardProductRef.current.removeEventListener('touchstart', contractCard);
+            document.body.removeEventListener('touchstart', contractCard);
             addEventExpand();
         }, 120);
     };
