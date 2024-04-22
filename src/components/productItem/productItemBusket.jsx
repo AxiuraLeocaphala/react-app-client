@@ -13,7 +13,13 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
     let timer = useRef(0);
 
     const deleteCard = () => {
-        console.log('delete');
+        cardProductRef.current.classList.add('hide');
+        setTimeout(() => {
+            capsuleRef.current.style.height = '0px';
+            setTimeout(() => {
+                setIsDelete(true);
+            }, 120)
+        }, 200)
     };
 
     const addEventExpand = () => {
@@ -120,7 +126,7 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
                     <div className='totalPriceItem'>
                         <div>{product['Стоимость'] * product['Количество']} ₽</div>
                     </div>
-                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={setIsDelete} updateTotalPrice={updateTotalPrice}/></div>
+                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
                 </div>
             </div>
         )
