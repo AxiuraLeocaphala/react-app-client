@@ -12,24 +12,27 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
 
     useEffect(() => {   
         handleLoading();
-        updateTotalPrice();
     });
-
     return (
         <>
             <div className="qb6">
                 <span>
-                    {totalPrice} ₽
+                    {productsInBusket[0] !== null ? totalPrice() : 0} ₽
                 </span>
                 <span>КОРЗИНА</span>
             </div>
-            <div className="productListBusket">
-                {productsInBusket.map((product, idx) => {
-                    return (
-                        <ProductItemBusket key={idx} product={product} updateTotalPrice={updateTotalPrice}/>
-                    )
-                })}
-            </div>
+            {productsInBusket[0] !== null ? (
+                <div className="productListBusket">
+                    {updateTotalPrice()}
+                    {productsInBusket.map((product, idx) => {
+                        return (
+                            <ProductItemBusket key={idx} product={product} updateTotalPrice={updateTotalPrice}/>
+                        )
+                    })}
+                </div>
+            ) : (
+                <div className="alertItem">ПУСТО</div>
+            )}
         </>
     )
 }

@@ -46,6 +46,7 @@ function Busket() {
                 <ProductListBusket productsInBusket={data} handleLoading={handleLoading}/>
             </>
         )
+        
     }
 }
 
