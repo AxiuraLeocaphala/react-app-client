@@ -9,6 +9,7 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
 
     const updateTotalPrice = () => {
         setTotalPrice(CountTotalPrice(productsInBusket));
+        setIsEmpty(checkArray());
     };
 
     const checkArray = () => {
@@ -23,7 +24,6 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
     useEffect(() => {   
         handleLoading();
         updateTotalPrice();
-        setIsEmpty(checkArray());
     });
 
     return (
