@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Button from './../button/button';
 import './productItemBusket.css';
 
-const ProductItemBusket = ({ product, updateTotalPrice }) => {
+const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => {
     const [isDelete, setIsDelete] = useState(false);
     const capsuleRef = useRef(null);
     const cardProductRef = useRef(null);
@@ -17,6 +17,7 @@ const ProductItemBusket = ({ product, updateTotalPrice }) => {
         setTimeout(() => {
             capsuleRef.current.style.height = '0px';
             setTimeout(() => {
+                deleteItem(index);
                 setIsDelete(true);
             }, 120)
         }, 200)

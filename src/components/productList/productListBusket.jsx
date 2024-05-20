@@ -5,33 +5,45 @@ import './productListBusket.css';
 
 const ProductListBusket = ({ productsInBusket, handleLoading }) => {
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isEmpty, setIsEmpty] = useState();
 
     const updateTotalPrice = () => {
         setTotalPrice(CountTotalPrice(productsInBusket));
     };
 
+    const checkArray = () => {
+        return productsInBusket.every(elem => elem === undefined);
+    };
+
+    const deleteItemBusket = (index) => {
+        delete productsInBusket[index];
+        setIsEmpty(checkArray());
+    };
+
     useEffect(() => {   
         handleLoading();
+        updateTotalPrice();
+        setIsEmpty(checkArray());
     });
+
     return (
         <>
             <div className="qb6">
                 <span>
-                    {productsInBusket[0] !== null ? totalPrice() : 0} ₽
+                    {totalPrice} ₽
                 </span>
                 <span>КОРЗИНА</span>
             </div>
-            {productsInBusket[0] !== null ? (
+            {isEmpty ? (
+                <div className="alertItem">ПУСТО</div>
+            ) : (
                 <div className="productListBusket">
-                    {updateTotalPrice()}
                     {productsInBusket.map((product, idx) => {
                         return (
-                            <ProductItemBusket key={idx} product={product} updateTotalPrice={updateTotalPrice}/>
+                            <ProductItemBusket key={idx} index={idx} product={product} updateTotalPrice={updateTotalPrice} deleteItem={deleteItemBusket}/>
                         )
                     })}
                 </div>
-            ) : (
-                <div className="alertItem">ПУСТО</div>
             )}
         </>
     )
