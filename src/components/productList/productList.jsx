@@ -5,7 +5,7 @@ import './productList.css';
 const Main = ({ productCategories, productInfo, handleLoadedMenu }) => { 
     useEffect(() => {
         handleLoadedMenu();
-    }, [handleLoadedMenu])
+    }, [handleLoadedMenu]);
 
     return (
         <div className='productList'>

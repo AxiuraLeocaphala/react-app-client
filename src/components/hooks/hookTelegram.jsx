@@ -2,6 +2,8 @@ import CountTotalPrice from "./countTotalPrice";
 
 const tg = window.Telegram.WebApp;
 
+console.log(tg.WebAppUser.id);
+
 let chatId;
 if (typeof tg.initDataUnsafe.id != "undefined") {
     chatId = tg.initDataUnsafe.id;
@@ -28,5 +30,5 @@ export function ButtonsTelegramMenu (data) {
 export function ButtonsTelegramBusket () {
     tg.MainButton.show();
     tg.MainButton.text = 'Заказать';
-    tg.BackButton.show();
+    tg.BackButton.web_app_setup_back_button;
 }
