@@ -2,7 +2,7 @@ import CountTotalPrice from "./countTotalPrice";
 
 const tg = window.Telegram.WebApp;
 
-console.log(tg.initDataUnsafe)
+console.log(tg.initDataUnsafe.user.id)
 
 let chatId;
 if (typeof tg.initDataUnsafe.id != "undefined") {
