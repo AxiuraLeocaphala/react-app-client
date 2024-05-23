@@ -125,7 +125,7 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
                     <div className='totalPriceItem'>
                         <div>{product['Стоимость'] * product['Количество']} ₽</div>
                     </div>
-                    <div className='buttonSpaceBusket'><Button product={product} placeCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
+                    <div className='buttonSpaceBusket'><Button product={product} locationCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
                 </div>
             </div>
         )

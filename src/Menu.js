@@ -22,7 +22,7 @@ function Menu() {
     }
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/data/price-list?chatId=${HookTelegram().chatId}`)
+        axios.get(`http://127.0.0.1:3001/data/price-list?userId=${HookTelegram().userId}`)
         .then(
             (response) => {
                 setIsLoadedData(true);

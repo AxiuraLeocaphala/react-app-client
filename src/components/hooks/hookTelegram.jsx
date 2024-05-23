@@ -1,20 +1,18 @@
 import CountTotalPrice from "./countTotalPrice";
 
 const tg = window.Telegram.WebApp;
+let userId;
 
-console.log(tg.initDataUnsafe.user.id)
-
-let chatId;
-if (typeof tg.initDataUnsafe.id != "undefined") {
-    chatId = tg.initDataUnsafe.id;
-} else {
-    chatId = 111111111;
+try {
+    userId = tg.initDataUnsafe.user.id;
+} catch{
+    userId = 111111111;
 }
 
 export function HookTelegram () {
     return {
         tg,
-        chatId
+        userId,
     }
 }
 

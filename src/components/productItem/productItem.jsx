@@ -64,10 +64,10 @@ const ProductItem = ({ product }) => {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
             >
-                <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt=''/></picture>
-                <h3 >{product["Название"]}</h3>
-                <p>{product["Описание"]}</p>
-                {isButtonShow && (<Button product={product} placeCall={'menu'}/>)}
+                <picture><img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt=''/></picture>
+                <h3 >{product["ProductName"]}</h3>
+                <p>{product["ProductDescription"]}</p>
+                {isButtonShow && (<Button product={product} locationCall={'menu'}/>)}
             </div>
             {isPopupShow && (
                 <Popup 

@@ -10,16 +10,16 @@ const Main = ({ productCategories, productInfo, handleLoadedMenu }) => {
     return (
         <div className='productList'>
             {productCategories.map((category, idx) => (
-                <div key={category['ID категории']} id={`categoryCell_${category['ID категории']}`}>
+                <div key={category['CategoryId']} id={`categoryCell_${category['CategoryId']}`}>
                     <h2>
-                        {category['Лого категории']} {category['Название категории']}
+                        {category['CategoryLogo']} {category['CategoryName']}
                     </h2>
                     <div className='list'>
                         {productInfo.map((product) => {
                             return (
-                                category['ID категории'] === product['ID категории'] && (
+                                category['CategoryId'] === product['CategoryId'] && (
                                     <ProductItem
-                                        key={product["ID товара"]}
+                                        key={product["ProductId"]}
                                         product={product}
                                     />
                                 )

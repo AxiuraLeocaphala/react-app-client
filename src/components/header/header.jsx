@@ -68,7 +68,7 @@ const Header = ({productCategories, handleLoadedHeader}) => {
                         href={`#categoryCell_${index}`}
                         onClick={handleClick}
                         >
-                            {element['Лого категории']} {element['Название категории']} 
+                            {element['CategoryLogo']} {element['CategoryName']} 
                         </a>
                     );
                 })}

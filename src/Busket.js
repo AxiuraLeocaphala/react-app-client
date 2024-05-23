@@ -17,7 +17,7 @@ function Busket() {
     }
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/data/productInBusket?chatId=${HookTelegram().chatId}`)
+        axios.get(`http://127.0.0.1:3001/data/productInBusket?userId=${HookTelegram().userId}`)
         .then(
             (response) => {
                 setIsLoadedData(true);
