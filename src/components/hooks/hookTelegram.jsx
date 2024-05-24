@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 import CountTotalPrice from "./countTotalPrice";
 
 const tg = window.Telegram.WebApp;
@@ -21,7 +22,7 @@ export function ButtonsTelegramMenu (data) {
     let totalPrice = CountTotalPrice(data);
     tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}`;
     tg.MainButton.onClick(() => {
-        window.location.assign('http://localhost:3000/busket');
+        redirect("/busket");
     })
 }
 

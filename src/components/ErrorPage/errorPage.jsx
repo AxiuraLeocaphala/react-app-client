@@ -1,3 +1,4 @@
+/*
 const TruncateText = () => {
     const truncateText = (elements) => {
         elements.forEach(element => {
@@ -21,3 +22,23 @@ const TruncateText = () => {
 };
  
 export default TruncateText;
+*/
+
+import { useRouteError } from "react-router-dom";
+import "./errorPage.css";
+import logo from "../duck/fhinking-face.gif";
+
+export default function ErrorPage() {
+    const error = useRouteError();
+    console.log(error);
+
+    return (   
+        <section>
+            <img src={logo} alt=""/>
+            <p className="first">Произошла непредвиденная ошибка</p>
+            <p className="last">
+                <i>{error.statusText || error.message}</i>
+            </p>
+        </section>
+    )
+}

@@ -2,18 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Menu from './Menu';
 import Busket from './Busket';
-import { HookTelegram } from './components/hooks/hookTelegram';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ErrorPage from './components/ErrorPage/errorPage';
 
-HookTelegram().tg.ready();
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Menu/>, // Root router
+        errorElement: <ErrorPage/>,
+    },
+    {
+        path: "/busket",
+        element: <Busket/>,
+    },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes> 
-                <Route path="/" element={<Menu/>}/> 
-                <Route path="/busket" element={<Busket/>}/>
-            </Routes>
-        </BrowserRouter>
+        <RouterProvider router={router}/>
     </React.StrictMode>
 );

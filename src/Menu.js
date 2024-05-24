@@ -22,6 +22,7 @@ function Menu() {
     }
 
     useEffect(() => {
+        console.log(HookTelegram().userId)
         axios.get(`http://127.0.0.1:3001/data/price-list?userId=${HookTelegram().userId}`)
         .then(
             (response) => {
