@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CountTotalPrice from "./countTotalPrice";
 
 const tg = window.Telegram.WebApp;
@@ -21,9 +21,13 @@ export function ButtonsTelegramMenu (data) {
     tg.MainButton.show();
     let totalPrice = CountTotalPrice(data);
     tg.MainButton.text = `Корзина ${totalPrice === 0 ? ('') : (`${totalPrice} ₽`)}`;
-    tg.MainButton.onClick(() => {
-        redirect("/busket");
-    })
+
+    const navigate = useNavigate();
+    const handleMainButtonClick = () => {
+        navigate("/busket");
+    } 
+
+    tg.MainButton.onClick(handleMainButtonClick);
 }
 
 export function ButtonsTelegramBusket () {
