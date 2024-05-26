@@ -118,12 +118,12 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
         !isDelete && (
             <div ref={capsuleRef} className="capsule">
                 <div ref={cardProductRef} className="cardProduct Busket">
-                    <img src={`data:image/jpeg;base64,${product["Превью"]}`} alt='' ref={imgRef}/>
-                    <h3 ref={hRef}>{product['Название']}</h3>
-                    <div className='finalCost'>{product['Стоимость']} ₽</div>
-                    <p ref={pRef}>{product['Описание']}</p>
+                    <img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt='' ref={imgRef}/>
+                    <h3 ref={hRef}>{product['ProductName']}</h3>
+                    <div className='finalCost'>{product['ProductPrice']} ₽</div>
+                    <p ref={pRef}>{product['ProductDescription']}</p>
                     <div className='totalPriceItem'>
-                        <div>{product['Стоимость'] * product['Количество']} ₽</div>
+                        <div>{product['ProductPrice'] * product['Quantity']} ₽</div>
                     </div>
                     <div className='buttonSpaceBusket'><Button product={product} locationCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/></div>
                 </div>
