@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useTelegram } from './components/hooks/useTelegram.jsx';
 import ProductList from './components/productList/productList.jsx';
@@ -12,10 +13,13 @@ function Menu() {
     const [isLoadingMenu, setIsLoadingMenu] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
-    const { tg, UserId, TelegramMenuButton } = useTelegram();
+    const { tg, UserId, MainButton, TelegramMenuButton } = useTelegram();
+
+    MainButton.onClick(useNavigate("/busket"));
 
     const handleLoadedHeader = () => { setIsLoadingHeader(false) }
     const handleLoadedMenu = () => { setIsLoadingMenu(false) }
+
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:3001/data/price-list?userId=${UserId}`)

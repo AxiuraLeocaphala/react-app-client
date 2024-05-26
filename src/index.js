@@ -8,12 +8,12 @@ import ErrorPage from './components/ErrorPage/errorPage';
 const router = createBrowserRouter([
     {   // Root router
         path: "/",
-        element: <Busket/>,
+        element: <Menu/>,
         errorElement: <ErrorPage/>,
     },
     {
         path: "/busket",
-        element: <Menu/>,
+        element: <Busket/>,
     },
 ]);
 

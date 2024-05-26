@@ -35,7 +35,7 @@ export default function ErrorPage() {
     return (   
         <section>
             <img src={logo} alt=""/>
-            <p className="first">Произошла непредвиденная ошибка</p>
+            <p className="first">Что то пошло не так</p>
             <p className="last">
                 <i>{error.statusText || error.message}</i>
             </p>
