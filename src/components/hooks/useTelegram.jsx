@@ -16,6 +16,7 @@ export function useTelegram() {
     const TelegramBusketButtons = () => {
         MainButton.show();
         MainButton.text = "Заказать";
+        MainButton.onClick(redirect("/"));
     }
 
     return {

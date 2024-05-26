@@ -6,14 +6,14 @@ import Busket from './Busket';
 import ErrorPage from './components/ErrorPage/errorPage';
 
 const router = createBrowserRouter([
-    {
+    {   // Root router
         path: "/",
-        element: <Menu/>, // Root router
+        element: <Busket/>,
         errorElement: <ErrorPage/>,
     },
     {
         path: "/busket",
-        element: <Busket/>,
+        element: <Menu/>,
     },
 ]);
 
