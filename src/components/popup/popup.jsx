@@ -52,7 +52,7 @@ const Popup = ({ product, options, onClose, hideButton, showButton, cardProduct 
                 }}
             >
                 <div className="cardProduct">
-                    <picture><img src={`data:image/jpeg;base64,${product["Превью"]}`} alt='' /></picture>
+                    <picture><img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt='' /></picture>
                     <h3>{product["ProductName"]}</h3>
                     <p>{product["ProductDescription"]}</p>
                 </div>
