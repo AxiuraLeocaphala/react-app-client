@@ -15,8 +15,8 @@ function Menu() {
     const [data, setData] = useState([]);
     const { tg, UserId, MainButton, TelegramMenuButton } = useTelegram();
     const navigate = useNavigate();
-    
-    MainButton.onClick(navigate("/busket"));
+
+    MainButton.onClick(() => {navigate("/busket")});
 
     const handleLoadedHeader = () => { setIsLoadingHeader(false) }
     const handleLoadedMenu = () => { setIsLoadingMenu(false) }
