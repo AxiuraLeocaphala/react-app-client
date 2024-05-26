@@ -6,7 +6,7 @@ import './header.css';
 const Header = ({productCategories, handleLoadedHeader}) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategories.length).fill(null).map(() => React.createRef()));
-    const tg = useTelegram();
+    const { tg } = useTelegram();
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -55,7 +55,7 @@ const Header = ({productCategories, handleLoadedHeader}) => {
         return () => {
             document.removeEventListener('scroll', handleScroll);
         }
-    })
+    });
 
     return (
         <div className='header'>
