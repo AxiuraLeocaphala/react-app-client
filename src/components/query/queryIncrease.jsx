@@ -1,15 +1,17 @@
+import { useTelegram } from '../hooks/useTelegram';
 import axios from 'axios';
 
-export function QueryIncrease (hookTelegram, product, buttonSpace, locationCall, updateTotalPrice) {
+export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
+    const { MainButton, UserId } = useTelegram();
     return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
-        userId: hookTelegram.userId,
+        userId: UserId,
         productId: product["ProductId"]
     })
     .then(response => {
         product["Quantity"] = response.data.quantity;
         if (locationCall === 'menu') {
-            if (hookTelegram.tg.MainButton.text.replace(/\D/g, '')) {
-                hookTelegram.tg.MainButton.text = `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;
+            if (MainButton.text.replace(/\D/g, '')) {
+                MainButton.text = `Корзина ${parseInt(MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;
             }
         } else if (locationCall === 'busket'){
             updateTotalPrice();

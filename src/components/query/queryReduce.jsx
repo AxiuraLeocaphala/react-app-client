@@ -1,18 +1,20 @@
+import { useTelegram } from '../hooks/useTelegram.jsx';
 import {QueryAdd} from './queryAdd.jsx';
 import axios from 'axios';
 
-export function  QueryReduce (hookTelegram, product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
+export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
+    const { MainButton, UserId } = useTelegram();
     axios.post('http://127.0.0.1:3001/data/reduceNumber', {
-        userId: hookTelegram.userId,
+        userId: UserId,
         productId: product["ProductId"]
     })
     .then(response => {
-        const price = hookTelegram.tg.MainButton.text.replace(/\D/g, '');
+        const price = MainButton.text.replace(/\D/g, '');
         if (typeof response.data.quantity !== "undefined"){
             product["Quantity"] = response.data.quantity;
             if (locationCall === 'menu'){       
                 if (price) {
-                    hookTelegram.tg.MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
+                    MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
                 }
             } else if (locationCall === 'busket') {
                 updateTotalPrice();
@@ -24,13 +26,13 @@ export function  QueryReduce (hookTelegram, product, buttonSpace, locationCall, 
             if (locationCall === 'menu') {
                 product["Quantity"] = 0;
                 if (price !== '' && price !== `${product["ProductPrice"]}`){
-                    hookTelegram.tg.MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
+                    MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
                 } else {
-                    hookTelegram.tg.MainButton.text = 'Корзина';
+                    MainButton.text = 'Корзина';
                 }
                 buttonSpace.innerHTML = response.data.contentButtonSpace;
                 buttonSpace.querySelector('.buttonAddToBusket').addEventListener('click', () => {
-                    QueryAdd(hookTelegram, product, buttonSpace, locationCall);
+                    QueryAdd(product, buttonSpace, locationCall);
                 })
             } else if (locationCall === 'busket') {
                 deleteCard();

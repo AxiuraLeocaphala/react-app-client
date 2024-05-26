@@ -1,12 +1,7 @@
-import React, {useEffect} from 'react';
-import { HookTelegram } from '../hooks/hookTelegram';
+import React from 'react';
 import './preloader.css';
 
 const Preloader = () => {
-    useEffect(() => {
-        HookTelegram().tg.MainButton.hide();
-    })
-
     return (
         <div className="preloader">
             <div className="sk-chase">

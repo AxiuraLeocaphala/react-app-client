@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { HookTelegram } from '../hooks/hookTelegram';
 import {QueryAdd} from '../query/queryAdd';
 import {QueryIncrease} from '../query/queryIncrease';
 import {QueryReduce} from '../query/queryReduce';
@@ -10,13 +9,13 @@ const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => {
     const buttonSpaceRef = useRef(null); 
     
     const handleClickOnButtonMain = () => {
-        QueryAdd(HookTelegram(), product, buttonSpaceRef.current, locationCall, deleteCard);
+        QueryAdd(product, buttonSpaceRef.current, locationCall, deleteCard);
     };
     const handleClickOnButtonIncrease = () => {
-        QueryIncrease(HookTelegram(), product, buttonSpaceRef.current, locationCall, updateTotalPrice)
+        QueryIncrease(product, buttonSpaceRef.current, locationCall, updateTotalPrice)
     };
     const handleClickOnButtonReduce = () => {
-        QueryReduce(HookTelegram(), product, buttonSpaceRef.current, locationCall, deleteCard, updateTotalPrice);
+        QueryReduce(product, buttonSpaceRef.current, locationCall, deleteCard, updateTotalPrice);
     };
     
     return (

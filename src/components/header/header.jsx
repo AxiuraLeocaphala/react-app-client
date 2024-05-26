@@ -1,11 +1,12 @@
 import React, {useEffect, useRef} from 'react';
 import Flickity from 'flickity';
-import { HookTelegram } from '../hooks/hookTelegram';
+import { useTelegram } from '../hooks/useTelegram';
 import './header.css';
 
 const Header = ({productCategories, handleLoadedHeader}) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategories.length).fill(null).map(() => React.createRef()));
+    const tg = useTelegram();
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -21,7 +22,7 @@ const Header = ({productCategories, handleLoadedHeader}) => {
         let w = window;
         let t = document.getElementById(target);
         let wt = w.scrollY;
-        let wh = w.innerHeight - HookTelegram().tg.viewportHeight / 2;
+        let wh = w.innerHeight - tg.viewportHeight / 2;
         let eh = t.offsetHeight;
         let et = t.offsetTop;
         if (wt + wh >= et && wt + wh - eh * 2 <= et + (wh - eh)) {
@@ -54,8 +55,7 @@ const Header = ({productCategories, handleLoadedHeader}) => {
         return () => {
             document.removeEventListener('scroll', handleScroll);
         }
-    }, [handleLoadedHeader])
-
+    })
 
     return (
         <div className='header'>

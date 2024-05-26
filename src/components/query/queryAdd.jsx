@@ -1,27 +1,29 @@
+import { useTelegram } from '../hooks/useTelegram';
 import {QueryReduce} from './queryReduce';
 import {QueryIncrease} from './queryIncrease';
 import axios from 'axios';
 
-export function  QueryAdd (hookTelegram, product, buttonSpace, locationCall, deleteCard) {
+export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 
+    const { MainButton, UserId} = useTelegram();
     axios.post('http://127.0.0.1:3001/data/addToBusket', {
-        userId: hookTelegram.userId,
+        userId: UserId,
         productId: product["ProductId"],
         productQuantity: 1
     })
     .then(response => {
         buttonSpace.innerHTML = response.data.contentButtonSpace;
         product["Quantity"] = 1;
-        if (hookTelegram.tg.MainButton.text.replace(/\D/g, '') !== ''){
-            hookTelegram.tg.MainButton.text = 
-                `Корзина ${parseInt(hookTelegram.tg.MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;
+        if (MainButton.text.replace(/\D/g, '') !== ''){
+            MainButton.text = 
+                `Корзина ${parseInt(MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;
         } else {
-            hookTelegram.tg.MainButton.text = `Корзина ${product["ProductPrice"]}`;
+            MainButton.text = `Корзина ${product["ProductPrice"]}`;
         }
         buttonSpace.querySelector('.buttonReduce').addEventListener('click', () =>{
-            QueryReduce(hookTelegram, product, buttonSpace, locationCall, deleteCard)
+            QueryReduce(product, buttonSpace, locationCall, deleteCard)
         })
         buttonSpace.querySelector('.buttonIncrease').addEventListener('click', () => {
-            QueryIncrease(hookTelegram, product, buttonSpace, locationCall);
+            QueryIncrease(product, buttonSpace, locationCall);
         })
     })
     .catch(error => {

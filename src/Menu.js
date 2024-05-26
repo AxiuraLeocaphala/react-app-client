@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { HookTelegram, ButtonsTelegramMenu } from './components/hooks/hookTelegram.jsx';
+import { useTelegram } from './components/hooks/useTelegram.jsx';
 import ProductList from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
 import Preloader from './components/preloader/preloader.jsx';
@@ -12,18 +12,13 @@ function Menu() {
     const [isLoadingMenu, setIsLoadingMenu] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
+    const { tg, UserId, TelegramMenuButton } = useTelegram();
 
-    const handleLoadedHeader = () => {
-        setIsLoadingHeader(false);
-    }
-
-    const handleLoadedMenu = () => {
-        setIsLoadingMenu(false);
-    }
+    const handleLoadedHeader = () => { setIsLoadingHeader(false) }
+    const handleLoadedMenu = () => { setIsLoadingMenu(false) }
 
     useEffect(() => {
-        console.log(HookTelegram().userId)
-        axios.get(`http://127.0.0.1:3001/data/price-list?userId=${HookTelegram().userId}`)
+        axios.get(`http://127.0.0.1:3001/data/price-list?userId=${UserId}`)
         .then(
             (response) => {
                 setIsLoadedData(true);
@@ -33,15 +28,14 @@ function Menu() {
                 setError(error);
             }
         )
-    }, []);
+    }, [UserId]);
 
     useEffect(() => {
         if (!(isLoadingHeader && isLoadingMenu)) {
-            HookTelegram().tg.ready();
-            ButtonsTelegramMenu(data[1]);
-
+            tg.ready();
+            TelegramMenuButton(data[1]);
         }
-    }, [isLoadingHeader, isLoadingMenu, data]);
+    }, [isLoadingHeader, isLoadingMenu, data, tg, TelegramMenuButton]);
 
     if (error){
         return <div>Возникла ошибка: {error.message}</div>
