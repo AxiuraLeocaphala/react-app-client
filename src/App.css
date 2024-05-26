@@ -10,6 +10,6 @@ body{
 	color: var(--tg-theme-text-color);
 	background-color: var(--tg-theme-bg-color);
 }
-* {
-	scrollbar-width: 0;
+body::-webkit-scrollbar{
+	width: 0;
 }
