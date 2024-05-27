@@ -7,7 +7,7 @@ import ErrorPage from './components/ErrorPage/errorPage';
 
 const router = createBrowserRouter([
     {   // Root router
-        path: "/",
+        path: "/*",
         element: <Menu/>,
         errorElement: <ErrorPage/>,
     },
