@@ -9,6 +9,7 @@ export function useTelegram() {
         MainButton.show();
         const totalPrice = CountTotalPrice(data);
         MainButton.text = `Корзина ${totalPrice === 0 ? ("") : (`${totalPrice} ₽`)}`;
+        tg.BackButton.show();
     } 
     const TelegramBusketButtons = () => {
         MainButton.show();

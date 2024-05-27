@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { usePlatform } from '../hooks/useCrossplatform.jsx';
 import Button from '../button/button.jsx';
 import Popup from '../popup/popup.jsx';
 import './productItem.css';
 
 const ProductItem = ({ product }) => {
+    const [startPress, endPress] = usePlatform.getTypePress();
     const cardProductRef = useRef(null);
     const [isPopupShow, setIsPopupShow] = useState(false);
     const [isButtonShow, setIsButtonShow] = useState(true);
@@ -15,8 +17,8 @@ const ProductItem = ({ product }) => {
         cardProductRef.current.classList.remove('hide');
         setIsPopupShow(false);
     };
-    const hideButton = () => {setIsButtonShow(false)};
-    const showButton = () => {setIsButtonShow(true)};
+    const hideButton = () => { setIsButtonShow(false) };
+    const showButton = () => { setIsButtonShow(true) };
     const expandCard = () => {
         cardProductRef.current.classList.remove('entering');
         cardProductRef.current.classList.add('hide');
@@ -24,7 +26,7 @@ const ProductItem = ({ product }) => {
         setIsPopupShow(true);
     };
     
-    const handleTouchStart = (e) => {
+    const handleStartPress = (e) => {
         if (e.target.closest('.buttonSpace') === null) {
             const cardProduct = cardProductRef.current;
             cardProduct.classList.add('entering');
@@ -51,18 +53,26 @@ const ProductItem = ({ product }) => {
         }
     };
 
-    const handleTouchEnd = () => {
+    const handleEndPress = () => {
         cardProductRef.current.classList.remove('entering');
         clearTimeout(timer);
     };
+
+    useEffect(() => {
+        cardProductRef.current.addEventListener(`${startPress}`, handleStartPress);
+        cardProductRef.current.addEventListener(`${endPress}`, handleEndPress);
+        
+        return () => {
+            cardProductRef.current.removeEventListener(`${startPress}`, handleStartPress);
+            cardProductRef.current.removeEventListener(`${endPress}`, handleEndPress);
+        }
+    }, []);
 
     return (
         <>
             <div 
                 ref={cardProductRef} 
-                className='cardProduct Menu' 
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
+                className='cardProduct Menu'
             >
                 <picture><img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt=''/></picture>
                 <h3 >{product["ProductName"]}</h3>

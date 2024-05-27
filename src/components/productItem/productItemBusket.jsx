@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { usePlatform } from "./../hooks/useCrossplatform.jsx";
 import Button from './../button/button';
 import './productItemBusket.css';
 
 const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => {
+    const [startPress, endPress] = usePlatform.getTypePress();
     const [isDelete, setIsDelete] = useState(false);
     const capsuleRef = useRef(null);
     const cardProductRef = useRef(null);
@@ -24,13 +26,13 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
     };
 
     const addEventExpand = () => {
-        cardProductRef.current.addEventListener('touchstart', handleTouchStart);
-        cardProductRef.current.addEventListener('touchend', handleTouchEnd);
+        cardProductRef.current.addEventListener(`${startPress}`, handleStartPress);
+        cardProductRef.current.addEventListener(`${endPress}`, handleEndPress);
     };
 
     const removeEventExpand = () => {
-        cardProductRef.current.removeEventListener('touchstart', handleTouchStart);
-        cardProductRef.current.removeEventListener('touchend', handleTouchEnd);
+        cardProductRef.current.removeEventListener(`${startPress}`, handleStartPress);
+        cardProductRef.current.removeEventListener(`${endPress}`, handleEndPress);
     };
 
     const contractCard = () => {
@@ -49,16 +51,16 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
         pRef.current.style.height = '42px';
         setTimeout(() => {
             cardProductRef.current.style.zIndex = 0;
-            document.body.removeEventListener('touchstart', contractCard);
+            document.body.removeEventListener(`${startPress}`, contractCard);
             addEventExpand();
         }, 120);
     };
 
-    const handleTouchStart = (e) => {
+    const handleStartPress = (e) => {
         if (e.target.closest('.buttonSpaceBusket') === null) {
             cardProductRef.current.classList.add('entering');
             timer.current = setTimeout(() => {
-                handleTouchEnd(e);
+                handleEndPress(e);
                 removeEventExpand();
                 cardProductRef.current.classList.remove('entering');
                 let totalHeightChange = 0;
@@ -78,13 +80,13 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
                 pRef.current.style.height = `${pRef.current.scrollHeight}px`;
                 setTimeout(() => {
                     cardProductRef.current.classList.remove('entered');
-                    document.body.addEventListener('touchstart', contractCard);
+                    document.body.addEventListener(`${startPress}`, contractCard);
                 }, 120);
             }, 400);
         }
     };
 
-    const handleTouchEnd = (e) => {
+    const handleEndPress = (e) => {
         if (e.target.closest('.buttonSpaceBusket') === null) {
             cardProductRef.current.classList.remove('entering');
             clearTimeout(timer.current);
