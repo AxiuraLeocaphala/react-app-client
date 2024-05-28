@@ -6,7 +6,7 @@ import './header.css';
 const Header = ({productCategories, handleLoadedHeader}) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategories.length).fill(null).map(() => React.createRef()));
-    const { tg } = useTelegram();
+    const { tg } = useTelegram.getTelegramData();
 
     const handleClick = (e) => {
         e.preventDefault();

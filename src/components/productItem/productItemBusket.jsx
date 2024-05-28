@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { usePlatform } from "./../hooks/useCrossplatform.jsx";
+import { usePlatform } from "./../hooks/usePlatform.jsx";
 import Button from './../button/button';
 import './productItemBusket.css';
 

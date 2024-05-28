@@ -10,7 +10,7 @@ function Busket() {
     const [isLoadedData, setIsLoadedData] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
-    const { tg, UserId, TelegramBusketButtons} = useTelegram();
+    const { tg, UserId } = useTelegram.getTelegramData();
 
     const handleLoading = () => {
         setIsLoadingProductList(false);
@@ -32,7 +32,7 @@ function Busket() {
     useEffect(() => {
         if (!isLoadingProductList) {
             tg.ready();
-            TelegramBusketButtons();
+            useTelegram.telegramBusketButtons();
         }
     })
 

@@ -1,26 +1,28 @@
-import CountTotalPrice from "./countTotalPrice.jsx";
+import { countTotalPrice } from "./countTotalPrice.jsx";
 
 const tg = window.Telegram.WebApp;
 const UserId = tg.initDataUnsafe?.user?.id || 111111111;
+console.log(tg.initData);
+console.log(tg.initDataUnsafe);
 const MainButton = tg.MainButton;
 
-export function useTelegram() {
-    const TelegramMenuButton = (data) => {
+export const useTelegram = {
+    getTelegramData() {
+        return {
+            tg, 
+            UserId, 
+            MainButton,
+        };
+    },
+
+    telegramMenuButton(data) {
         MainButton.show();
-        const totalPrice = CountTotalPrice(data);
+        const totalPrice = countTotalPrice(data);
         MainButton.text = `Корзина ${totalPrice === 0 ? ("") : (`${totalPrice} ₽`)}`;
-        tg.BackButton.show();
-    } 
-    const TelegramBusketButtons = () => {
+    },
+
+    telegramBusketButtons() {
         MainButton.show();
         MainButton.text = "Заказать";
-    }
-
-    return {
-        tg,
-        UserId,
-        MainButton,
-        TelegramMenuButton,
-        TelegramBusketButtons,
-    }
+    },
 }

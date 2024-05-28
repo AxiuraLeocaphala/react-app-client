@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { usePlatform } from '../hooks/useCrossplatform.jsx';
+import { usePlatform } from '../hooks/usePlatform.jsx';
 import Button from '../button/button.jsx';
 import Popup from '../popup/popup.jsx';
 import './productItem.css';
@@ -12,20 +12,25 @@ const ProductItem = ({ product }) => {
     const [optionsCard, setOptionsCard] = useState(null);
     let timer = 0; 
 
-    const updateOptions = () => { return cardProductRef.current.getBoundingClientRect() };
+    const updateOptions = () => { 
+        return cardProductRef.current.getBoundingClientRect() 
+    };
     const popupClose = () => {
         cardProductRef.current.classList.remove('hide');
         setIsPopupShow(false);
     };
-    const hideButton = () => { setIsButtonShow(false) };
-    const showButton = () => { setIsButtonShow(true) };
+    const hideButton = () => { 
+        setIsButtonShow(false) 
+    };
+    const showButton = () => { 
+        setIsButtonShow(true) 
+    };
     const expandCard = () => {
         cardProductRef.current.classList.remove('entering');
         cardProductRef.current.classList.add('hide');
         setOptionsCard(updateOptions);
         setIsPopupShow(true);
     };
-    
     const handleStartPress = (e) => {
         if (e.target.closest('.buttonSpace') === null) {
             const cardProduct = cardProductRef.current;
@@ -52,12 +57,11 @@ const ProductItem = ({ product }) => {
             }, 400);
         }
     };
-
     const handleEndPress = () => {
         cardProductRef.current.classList.remove('entering');
         clearTimeout(timer);
     };
-
+    
     useEffect(() => {
         cardProductRef.current.addEventListener(`${startPress}`, handleStartPress);
         cardProductRef.current.addEventListener(`${endPress}`, handleEndPress);

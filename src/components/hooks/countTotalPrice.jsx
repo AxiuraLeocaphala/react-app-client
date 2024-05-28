@@ -1,4 +1,4 @@
-const CountTotalPrice = (data) => {
+export function countTotalPrice(data) {
     let totalPrice = 0;
     data.forEach((elem) => {
         if (elem["Quantity"] !== undefined && elem["Quantity"] !== 0) {
@@ -7,5 +7,3 @@ const CountTotalPrice = (data) => {
     });
     return totalPrice;
 }
-
-export default CountTotalPrice;

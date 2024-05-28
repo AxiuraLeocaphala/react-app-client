@@ -13,7 +13,7 @@ function Menu() {
     const [isLoadingMenu, setIsLoadingMenu] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
-    const { tg, UserId, MainButton, TelegramMenuButton } = useTelegram();
+    const { tg, UserId, MainButton } = useTelegram.getTelegramData();
     const navigate = useNavigate();
 
     MainButton.onClick(() => {navigate("/busket")});
@@ -38,9 +38,9 @@ function Menu() {
     useEffect(() => {
         if (!(isLoadingHeader && isLoadingMenu)) {
             tg.ready();
-            TelegramMenuButton(data[1]);
+            useTelegram.telegramMenuButton(data[1]);
         }
-    }, [isLoadingHeader, isLoadingMenu, data, tg, TelegramMenuButton]);
+    }, [isLoadingHeader, isLoadingMenu, data, tg]);
 
     if (error){
         return <div>Возникла ошибка: {error.message}</div>

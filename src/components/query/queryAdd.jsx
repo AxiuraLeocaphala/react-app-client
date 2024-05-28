@@ -4,7 +4,7 @@ import {QueryIncrease} from './queryIncrease';
 import axios from 'axios';
 
 export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 
-    const { MainButton, UserId} = useTelegram();
+    const { UserId, MainButton } = useTelegram.getTelegramData();
     axios.post('http://127.0.0.1:3001/data/addToBusket', {
         userId: UserId,
         productId: product["ProductId"],

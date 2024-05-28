@@ -2,7 +2,7 @@ import { useTelegram } from '../hooks/useTelegram';
 import axios from 'axios';
 
 export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
-    const { MainButton, UserId } = useTelegram();
+    const { UserId, MainButton } = useTelegram.getTelegramData();
     return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
         userId: UserId,
         productId: product["ProductId"]
