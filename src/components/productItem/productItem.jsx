@@ -63,14 +63,15 @@ const ProductItem = ({ product }) => {
     };
     
     useEffect(() => {
-        cardProductRef.current.addEventListener(`${startPress}`, handleStartPress);
-        cardProductRef.current.addEventListener(`${endPress}`, handleEndPress);
+        const cardProduct = cardProductRef.current;
+        cardProduct.addEventListener(`${startPress}`, handleStartPress);
+        cardProduct.addEventListener(`${endPress}`, handleEndPress);
         
         return () => {
-            cardProductRef.current.removeEventListener(`${startPress}`, handleStartPress);
-            cardProductRef.current.removeEventListener(`${endPress}`, handleEndPress);
+            cardProduct.removeEventListener(`${startPress}`, handleStartPress);
+            cardProduct.removeEventListener(`${endPress}`, handleEndPress);
         }
-    }, []);
+    });
 
     return (
         <>
