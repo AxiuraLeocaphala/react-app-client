@@ -7,6 +7,8 @@ import Header from './components/header/header.jsx';
 import Preloader from './components/preloader/preloader.jsx';
 import './App.css';
 
+import AuthWrapper from './components/query/authWrapper.jsx';
+
 function Menu() {
     const [isLoadedData, setIsLoadedData] = useState(false);
     const [isLoadingHeader, setIsLoadingHeader] = useState(true);
@@ -14,13 +16,19 @@ function Menu() {
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
     const { tg, UserId, MainButton } = useTelegram.getTelegramData();
+    // Протестировать плагин ESlint для использования хука внутри условия
     const navigate = useNavigate();
 
     MainButton.onClick(() => {navigate("/busket")});
 
-    const handleLoadedHeader = () => { setIsLoadingHeader(false) }
-    const handleLoadedMenu = () => { setIsLoadingMenu(false) }
+    const handleLoadedHeader = () => { 
+        setIsLoadingHeader(false);
+    }
+    const handleLoadedMenu = () => { 
+        setIsLoadingMenu(false);
+    }
 
+    AuthWrapper();
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:3001/data/price-list?userId=${UserId}`)

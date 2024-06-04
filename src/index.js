@@ -14,6 +14,7 @@ const router = createBrowserRouter([
     {
         path: "/busket",
         element: <Busket/>,
+        errorElement: <ErrorPage/>,
     },
 ]);
 
