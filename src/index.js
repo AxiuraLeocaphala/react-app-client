@@ -26,9 +26,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             const data = await Auth();
-            return null;
+            return data;
         }
-
     },
     {
         path: "/busket",
