@@ -45,7 +45,7 @@ export default function ErrorPage() {
             <img src={logo} alt=""/>
             <p className="first">Что то пошло не так</p>
             <p className="last">
-                <i>{error.statusText || error.message}</i>
+                <i>{error.statusText || error.message || error.data}</i>
             </p>
         </section>
     )

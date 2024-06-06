@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import axios from 'axios'
-import { createBrowserRouter, RouterProvider, useRouteError } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Menu from './Menu';
 import Busket from './Busket';
 import ErrorPage from './components/ErrorPage/errorPage';
@@ -15,12 +15,8 @@ async function Auth() {
     })
     .then(response => response)
     .catch(error => {
-        throw {
-            message: error.response.data.err,
-            status: 401,
-        };
+        throw new Response(error.response.data.err, {status: 401});
     })
-
 } 
 
 const router = createBrowserRouter([
@@ -30,7 +26,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             const data = await Auth();
-            return data;
+            useTelegram.setTelegramData.setUserId(data);
+            return null;
         }
 
     },
