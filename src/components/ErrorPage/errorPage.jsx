@@ -45,10 +45,11 @@ export default function ErrorPage() {
             <img src={logo} alt=""/>
             <p className="first">Что то пошло не так</p>
             <p className="last">
+                <i>{error.status}</i>
+                <i>{error.statusText}</i>
+                <i>{error.internal}</i>
+                <i>{error.data}</i>
                 <i>{error.statusText || error.message || error.data}</i>
-            </p>
-            <p>
-                {error}
             </p>
         </section>
     )
