@@ -26,7 +26,6 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             const data = await Auth();
-            useTelegram.setTelegramData.setUserId(data);
             return null;
         }
 

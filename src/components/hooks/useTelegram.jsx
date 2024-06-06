@@ -1,16 +1,10 @@
 import { countTotalPrice } from "./countTotalPrice.jsx";
 
 const tg = window.Telegram.WebApp;
-//const UserId = tg.initDataUnsafe?.user?.id || 111111111;
+const UserId = tg.initDataUnsafe?.user?.id || 111111111;
 const MainButton = tg.MainButton;
 
 export const useTelegram = {
-    setTelegramData() {
-        this.setUserId = (data) => {
-            console.log(data)
-        }
-        setUserId: null;
-    },
 
     getTelegramData() {
         return {
