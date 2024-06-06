@@ -7,8 +7,6 @@ import Header from './components/header/header.jsx';
 import Preloader from './components/preloader/preloader.jsx';
 import './App.css';
 
-import AuthWrapper from './components/query/authWrapper.jsx';
-
 function Menu() {
     const [isLoadedData, setIsLoadedData] = useState(false);
     const [isLoadingHeader, setIsLoadingHeader] = useState(true);
@@ -28,7 +26,6 @@ function Menu() {
         setIsLoadingMenu(false);
     }
 
-    AuthWrapper();
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:3001/data/price-list?userId=${UserId}`)

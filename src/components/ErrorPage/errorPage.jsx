@@ -26,11 +26,19 @@ export default TruncateText;
 
 import { useRouteError } from "react-router-dom";
 import "./errorPage.css";
-import logo from "../duck/fhinking-face.gif";
+import niceWorkBro from "../utya/niceWorkBro.gif";
+import thinkingFace from "../utya/thinkingFace.gif";
 
 export default function ErrorPage() {
     const error = useRouteError();
     console.log(error);
+
+    let logo;
+    if (error.status === 401) {
+        logo = niceWorkBro;
+    } else {
+        logo = thinkingFace
+    }
 
     return (   
         <section>
