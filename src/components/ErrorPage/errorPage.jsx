@@ -47,6 +47,9 @@ export default function ErrorPage() {
             <p className="last">
                 <i>{error.statusText || error.message || error.data}</i>
             </p>
+            <p>
+                {error}
+            </p>
         </section>
     )
 }
