@@ -3,12 +3,10 @@ section{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
     text-align: center;
     img {
-        position: relative;
-        width: 50px;
-        height: 50px;
+        width: 150px;
+        height: 150px;
     }
     h1 {
         font-size: 35px;

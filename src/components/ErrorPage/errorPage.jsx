@@ -28,27 +28,29 @@ import { useRouteError } from "react-router-dom";
 import "./errorPage.css";
 import niceWorkBro from "../utya/niceWorkBro.gif";
 import thinkingFace from "../utya/thinkingFace.gif";
+import slepping from '../utya/slepping.gif';
 
 export default function ErrorPage() {
     const error = useRouteError();
-    console.log(error);
+    console.log(error)
 
     let logo;
     if (error.status === 401) {
         logo = niceWorkBro;
+    } else if (error.status === undefined) {
+        // Временное решение обработки сценария "спящий сервер" (ошибка: net::ERR_CONNECTION_REFUSED)
+        logo = slepping;
+        error.message = "Сервер спит. Всеми силами пытаемся его разбулить"; 
     } else {
-        logo = thinkingFace
+        logo =  thinkingFace;
     }
+
 
     return (   
         <section>
             <img src={logo} alt=""/>
             <p className="first">Что то пошло не так</p>
             <p className="last">
-                <i>{error.status}</i>
-                <i>{error.statusText}</i>
-                <i>{error.internal}</i>
-                <i>{error.data}</i>
                 <i>{error.statusText || error.message || error.data}</i>
             </p>
         </section>

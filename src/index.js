@@ -15,10 +15,9 @@ async function Auth() {
     })
     .then(response => response)
     .catch(error => {
-        console.log(error)
-        throw new Response(error.response, {status: 401});
+        throw new Error(error, {status: error.reponse.status});
     })
-} 
+}
 
 const router = createBrowserRouter([
     {   
