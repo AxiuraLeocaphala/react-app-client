@@ -26,7 +26,6 @@ function Menu() {
         setIsLoadingMenu(false);
     }
 
-
     useEffect(() => {
         axios.get(`http://127.0.0.1:3001/data/price-list?userId=${UserId}`)
         .then(
@@ -48,7 +47,7 @@ function Menu() {
     }, [isLoadingHeader, isLoadingMenu, data, tg]);
 
     if (error){
-        return <div>Возникла ошибка: {error.message}</div>
+        return <div>Возникла ошибка: {error.message} {error}</div>
     } else if(!isLoadedData){
         return <Preloader/>
     } else {
