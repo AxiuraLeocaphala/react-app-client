@@ -19,7 +19,7 @@ async function Auth() {
         throw new Error(error, {status: error.reponse.status});
     })
 }
- */
+*/
 const router = createBrowserRouter([
     {   
         path: "/",
