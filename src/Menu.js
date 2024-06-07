@@ -47,7 +47,7 @@ function Menu() {
     }, [isLoadingHeader, isLoadingMenu, data, tg]);
 
     if (error){
-        return <div>Возникла ошибка: {error}</div>
+        return <div>Возникла ошибка: {error.message}</div>
     } else if(!isLoadedData){
         return <Preloader/>
     } else {
