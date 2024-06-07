@@ -40,7 +40,7 @@ export default function ErrorPage() {
     } else if (error.status === undefined) {
         // Временное решение обработки сценария "спящий сервер" (ошибка: net::ERR_CONNECTION_REFUSED)
         logo = slepping;
-        error.message = "Сервер спит. Всеми силами пытаемся его разбулить"; 
+        error.message = "Сервер спит. Всеми силами пытаемся его разбудить"; 
     } else {
         logo =  thinkingFace;
     }
