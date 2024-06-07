@@ -15,6 +15,7 @@ async function Auth() {
     })
     .then(response => response)
     .catch(error => {
+        console.log(error)
         throw new Response(error.response.data.err, {status: 401});
     })
 } 
