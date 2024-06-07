@@ -46,13 +46,16 @@ export default function ErrorPage() {
     }
 
 
-    return (   
-        <section>
+    return (  
+        <div>
+            <section>
             <img src={logo} alt=""/>
             <p className="first">Что то пошло не так</p>
             <p className="last">
                 <i>{error.statusText || error.message || error.data}</i>
             </p>
         </section>
+        </div> 
+        
     )
 }
