@@ -24,10 +24,12 @@ const router = createBrowserRouter([
         path: "/",
         element: <Menu/>,
         errorElement: <ErrorPage/>,
+        /*
         loader: async () => {
             const data = await Auth();
             return data;
         }
+        */
     },
     {
         path: "/busket",
