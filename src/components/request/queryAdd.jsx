@@ -2,13 +2,13 @@ import { useTelegram } from '../hooks/useTelegram';
 import {QueryReduce} from './queryReduce';
 import {QueryIncrease} from './queryIncrease';
 import axios from 'axios';
+import QualifierErrors from './_qualifierErrors';
 
 export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 
     const { UserId, MainButton } = useTelegram.getTelegramData();
-    axios.post('http://127.0.0.1:3001/data/addToBusket', {
+    axios.post('/product-api/data/addToBusket', {
         userId: UserId,
-        productId: product["ProductId"],
-        productQuantity: 1
+        productId: product["ProductId"]
     })
     .then(response => {
         buttonSpace.innerHTML = response.data.contentButtonSpace;
@@ -26,7 +26,5 @@ export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) {
             QueryIncrease(product, buttonSpace, locationCall);
         })
     })
-    .catch(error => {
-        console.log('Ошибка при отправке запроса на добавление товара: ', error);
-    })
+    .catch(error => QualifierErrors(error));
 }

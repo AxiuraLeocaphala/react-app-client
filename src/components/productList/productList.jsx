@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ProductItem from '../productItem/productItem.jsx';
 import './productList.css';
 
-const Main = ({ productCategories, productInfo, handleLoadedMenu }) => { 
-    useEffect(() => {
-        handleLoadedMenu();
-    }, [handleLoadedMenu]);
-
+const Main = ({ productCategories, productInfo }) => {
     return (
         <div className='productList'>
             {productCategories.map((category, idx) => (

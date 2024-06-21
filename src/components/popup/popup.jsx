@@ -56,7 +56,7 @@ const Popup = ({ product, options, onClose, hideButton, showButton, cardProduct 
                     <h3>{product["ProductName"]}</h3>
                     <p>{product["ProductDescription"]}</p>
                 </div>
-                <Button product={product}/>
+                <Button product={product} locationCall={'menu'}/>
             </div>
         </div>
     );

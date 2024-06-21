@@ -3,7 +3,7 @@ import { countTotalPrice } from "../hooks/countTotalPrice.jsx";
 import ProductItemBusket from "../productItem/productItemBusket";
 import './productListBusket.css';
 
-const ProductListBusket = ({ productsInBusket, handleLoading }) => {
+const ProductListBusket = ({ productsInBusket }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isEmpty, setIsEmpty] = useState();
 
@@ -19,7 +19,6 @@ const ProductListBusket = ({ productsInBusket, handleLoading }) => {
         setIsEmpty(checkArray());
     };
     useEffect(() => {   
-        handleLoading();
         updateTotalPrice();
     });
 

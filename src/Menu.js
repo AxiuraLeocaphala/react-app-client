@@ -1,64 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { useEffect} from 'react';
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useTelegram } from './components/hooks/useTelegram.jsx';
-import ProductList from './components/productList/productList.jsx';
 import Header from './components/header/header.jsx';
-import Preloader from './components/preloader/preloader.jsx';
+import ProductList from './components/productList/productList.jsx';
 import './App.css';
 
 function Menu() {
-    const [isLoadedData, setIsLoadedData] = useState(false);
-    const [isLoadingHeader, setIsLoadingHeader] = useState(true);
-    const [isLoadingMenu, setIsLoadingMenu] = useState(true);
-    const [error, setError] = useState(null);
-    const [data, setData] = useState([]);
-    const { tg, UserId, MainButton } = useTelegram.getTelegramData();
+    const { tg, MainButton } = useTelegram.getTelegramData();
+    const data = useLoaderData();
+    const productCategories = data.culinaryDetails.data[0];
+    const productInfo = data.culinaryDetails.data[1];
+
     // Протестировать плагин ESlint для использования хука внутри условия
     const navigate = useNavigate();
-
     MainButton.onClick(() => {navigate("/busket")});
-
-    const handleLoadedHeader = () => { 
-        setIsLoadingHeader(false);
-    }
-    const handleLoadedMenu = () => { 
-        setIsLoadingMenu(false);
-    }
-
+    
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/data/price-list?userId=${UserId}`)
-        .then(
-            (response) => {
-                setIsLoadedData(true);
-                setData(response.data);
-            },
-            (error) => {
-                setError(error);
-            }
-        )
-    }, [UserId]);
-
-    useEffect(() => {
-        if (!(isLoadingHeader && isLoadingMenu)) {
-            tg.ready();
-            useTelegram.telegramMenuButton(data[1]);
-        }
-    }, [isLoadingHeader, isLoadingMenu, data, tg]);
-
-    if (error){
-        return <div>Возникла ошибка: {error.message}</div>
-    } else if(!isLoadedData){
-        return <Preloader/>
-    } else {
-        return (
-            <>
-                {(isLoadingHeader || isLoadingMenu) && (<Preloader/> )}
-                <Header productCategories={data[0]} handleLoadedHeader={handleLoadedHeader}/>
-                <ProductList  productCategories={data[0]} productInfo={data[1]} handleLoadedMenu={handleLoadedMenu}/>
-            </>
-        )
-    }
+        tg.ready();
+        useTelegram.telegramMenuButton(productInfo);
+    }, [productInfo, tg]);
+    
+    return (
+        <>
+            <Header productCategories={productCategories}/>
+            <ProductList  productCategories={productCategories} productInfo={productInfo}/>
+        </>
+    )
 }
 
 export default Menu;

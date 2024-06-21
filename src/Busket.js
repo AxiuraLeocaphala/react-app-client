@@ -1,54 +1,22 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
+import React, {useEffect} from "react";
 import ProductListBusket from './components/productList/productListBusket.jsx';
 import { useTelegram } from "./components/hooks/useTelegram.jsx";
-import Preloader from './components/preloader/preloader.jsx';
+import { useLoaderData } from "react-router-dom";
 import './App.css';
 
 function Busket() {
-    const [isLoadingProductList, setIsLoadingProductList] = useState(true);
-    const [isLoadedData, setIsLoadedData] = useState(false);
-    const [error, setError] = useState(null);
-    const [data, setData] = useState([]);
-    const { tg, UserId } = useTelegram.getTelegramData();
-
-    const handleLoading = () => {
-        setIsLoadingProductList(false);
-    }
+    const { tg } = useTelegram.getTelegramData();
+    const data = useLoaderData();
+    const productListBusket = data.tastyCart.data;
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/data/productInBusket?userId=${UserId}`)
-        .then(
-            (response) => {
-                setIsLoadedData(true);
-                setData(response.data);
-            },
-            (error) => {
-                setError(error);
-            }
-        )
-    }, [UserId]);
-
-    useEffect(() => {
-        if (!isLoadingProductList) {
-            tg.ready();
-            useTelegram.telegramBusketButtons();
-        }
-    })
-
-    if (error) {
-        return <div>Возникла ошибка: {error.message}</div>
-    } else if (!isLoadedData) {
-        return <Preloader/>
-    } else {
-        return ( 
-            <>
-                {isLoadingProductList && (<Preloader/>)}
-                <ProductListBusket productsInBusket={data} handleLoading={handleLoading}/>
-            </>
-        )
-        
-    }
+        tg.ready();
+        useTelegram.telegramBusketButtons();
+    }, [tg]);
+    
+    return ( 
+        <ProductListBusket productsInBusket={productListBusket}/>
+    )
 }
 
 export default Busket;

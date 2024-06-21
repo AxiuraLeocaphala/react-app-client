@@ -32,17 +32,19 @@ import slepping from '../utya/slepping.gif';
 
 export default function ErrorPage() {
     const error = useRouteError();
-    console.log(error)
+    console.log(error.response);
 
     let logo;
-    if (error.status === 401) {
-        logo = niceWorkBro;
-    } else if (error.status === undefined) {
-        // Временное решение обработки сценария "спящий сервер" (ошибка: net::ERR_CONNECTION_REFUSED)
-        logo = slepping;
-        error.message = "Сервер спит. Всеми силами пытаемся его разбудить"; 
-    } else {
-        logo =  thinkingFace;
+    switch (error.status) {
+        case 401:
+            logo = niceWorkBro;
+            break;
+        case 503:
+            logo = slepping;
+            break;
+        default:
+            logo = thinkingFace;
+            break;
     }
 
 

@@ -1,9 +1,10 @@
 import { useTelegram } from '../hooks/useTelegram';
 import axios from 'axios';
+import QualifierErrors from './_qualifierErrors';
 
 export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
     const { UserId, MainButton } = useTelegram.getTelegramData();
-    return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
+    return axios.post('/product-api/data/increaseQuantity', {
         userId: UserId,
         productId: product["ProductId"]
     })
@@ -20,7 +21,5 @@ export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPr
         }
         buttonSpace.querySelector('.quantity').value = response.data.quantity;
     })
-    .catch(error => {
-        console.log('Ошибка при отправке запроса на увеличение количества товара: ', error);
-    })
+    .catch(error => QualifierErrors(error));
 }

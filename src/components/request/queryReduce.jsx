@@ -1,10 +1,11 @@
 import { useTelegram } from '../hooks/useTelegram.jsx';
 import {QueryAdd} from './queryAdd.jsx';
 import axios from 'axios';
+import QualifierErrors from './_qualifierErrors';
 
 export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
     const { UserId, MainButton } = useTelegram.getTelegramData();
-    axios.post('http://127.0.0.1:3001/data/reduceNumber', {
+    axios.post('/product-api/data/reduceNumber', {
         userId: UserId,
         productId: product["ProductId"]
     })
@@ -43,7 +44,5 @@ export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, up
             }
         }
     })
-    .catch(error => {
-        console.log('Ошибка при отправке запроса на уменьшение количества товара: ', error);
-    })
+    .catch(error => QualifierErrors(error));
 }

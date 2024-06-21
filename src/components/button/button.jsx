@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import {QueryAdd} from '../query/queryAdd';
-import {QueryIncrease} from '../query/queryIncrease';
-import {QueryReduce} from '../query/queryReduce';
+import {QueryAdd} from '../request/queryAdd';
+import {QueryIncrease} from '../request/queryIncrease';
+import {QueryReduce} from '../request/queryReduce';
 import './button.css';
 
 const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => { 
