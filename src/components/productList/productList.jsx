@@ -2,7 +2,7 @@ import React from 'react';
 import ProductItem from '../productItem/productItem.jsx';
 import './productList.css';
 
-const Main = ({ productCategories, productInfo }) => {
+const Menu = ({ productCategories, productInfo }) => {
     return (
         <div className='productList'>
             {productCategories.map((category, idx) => (
@@ -28,4 +28,4 @@ const Main = ({ productCategories, productInfo }) => {
     );
 };
 
-export default Main;
+export default Menu;

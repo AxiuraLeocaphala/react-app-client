@@ -6,7 +6,7 @@ import QualifierErrors from './_qualifierErrors';
 
 export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 
     const { UserId, MainButton } = useTelegram.getTelegramData();
-    axios.post('/product-api/data/addToBusket', {
+    axios.post('http://127.0.0.1:3001/data/addToBusket', {
         userId: UserId,
         productId: product["ProductId"]
     })

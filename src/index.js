@@ -13,7 +13,6 @@ const router = createBrowserRouter([
     {   
         path: "/",
         element: <Menu/>,
-        id: "root",
         errorElement: <ErrorPage/>,
         loader: async () => {
             const [initDataSafe, culinaryDetails] = await Promise.all([AuthWrapper(), LoaderMenu()]);
