@@ -5,7 +5,7 @@ import Menu from './Menu';
 import Busket from './Busket';
 import ErrorPage from './components/ErrorPage/errorPage';
 import Preloader from './components/preloader/preloader';
-//import AuthWrapper from './components/request/authWrapper.jsx';
+import AuthWrapper from './components/request/authWrapper.jsx';
 import LoaderMenu from './components/request/loaderMenu.jsx';
 import LoaderBusket from './components/request/loaderBusket.jsx';
 
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <Menu/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
-            const [initDataSafe, culinaryDetails] = await Promise.all([LoaderMenu()]);
+            const [initDataSafe, culinaryDetails] = await Promise.all([AuthWrapper(), LoaderMenu()]);
             return { initDataSafe, culinaryDetails };
         }
     },
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <Busket/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
-            const [initDataSafe, tastyCart] = await Promise.all([LoaderBusket()]);
+            const [initDataSafe, tastyCart] = await Promise.all([AuthWrapper(), LoaderBusket()]);
             return { initDataSafe, tastyCart };
         }
     },
