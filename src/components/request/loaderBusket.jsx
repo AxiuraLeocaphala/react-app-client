@@ -4,7 +4,7 @@ import QualifierErrors from "./_qualifierErrors";
 
 async function LoaderBusket() {
     const { UserId } = useTelegram.getTelegramData();
-    return axios.get(`/product-api/data/productInBusket?userId=${UserId}`)
+    return axios.get(`http://127.0.0.1:3001/data/productInBusket?userId=${UserId}`)
     .then(response => response)
     .catch(error => QualifierErrors(error));
 }

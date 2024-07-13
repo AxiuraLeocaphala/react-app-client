@@ -5,7 +5,7 @@ import QualifierErrors from './_qualifierErrors';
 
 export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
     const { UserId, MainButton } = useTelegram.getTelegramData();
-    axios.post('/product-api/data/reduceNumber', {
+    axios.post('http://127.0.0.1:3001/data/reduceNumber', {
         userId: UserId,
         productId: product["ProductId"]
     })
