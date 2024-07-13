@@ -32,7 +32,7 @@ import slepping from '../utya/slepping.gif';
 
 export default function ErrorPage() {
     const error = useRouteError();
-    console.log(error.response);
+    console.log(error);
 
     let logo;
     switch (error.status) {
