@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         element: <Menu/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
-            const [initDataSafe, culinaryDetails] = await Promise.all([AuthWrapper(), LoaderMenu()]);
+            const [initDataSafe, culinaryDetails] = await Promise.all([LoaderMenu()]);
             return { initDataSafe, culinaryDetails };
         }
     },
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <Busket/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
-            const [initDataSafe, tastyCart] = await Promise.all([AuthWrapper(), LoaderBusket()]);
+            const [initDataSafe, tastyCart] = await Promise.all([LoaderBusket()]);
             return { initDataSafe, tastyCart };
         }
     },
