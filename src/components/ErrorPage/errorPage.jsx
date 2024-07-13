@@ -47,7 +47,6 @@ export default function ErrorPage() {
             break;
     }
 
-
     return (  
         <div>
             <section>

@@ -5,7 +5,7 @@ import QualifierErrors from './_qualifierErrors.jsx';
 async function AuthWrapper() {
     const { tg } = useTelegram.getTelegramData();
     const initData = tg.initData;
-    return axios.post('http://127.0.0.1:3002/auth/check_init_data', {
+    return axios.post('/user-api/auth/check_init_data', {
         initData: initData
     })
     .then(response => response)
