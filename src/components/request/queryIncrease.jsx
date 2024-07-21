@@ -4,7 +4,7 @@ import QualifierErrors from './_qualifierErrors';
 
 export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
     const { UserId, MainButton } = useTelegram.getTelegramData();
-    return axios.post('/product-api/data/increaseQuantity', {
+    return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
         userId: UserId,
         productId: product["ProductId"]
     })

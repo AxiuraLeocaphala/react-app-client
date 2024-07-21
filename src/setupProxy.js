@@ -1,3 +1,7 @@
+/*
+    1. Настроить proxy на работу по https
+    2. 
+*/
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
