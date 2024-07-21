@@ -8,7 +8,10 @@ async function AuthWrapper() {
     return axios.post('http://127.0.0.1:3002/auth/check_init_data', {
         initData: initData
     })
-    .then(response => response)
+    .then(response => {
+        console.log(response.data.token)
+        return response
+    })
     .catch(error => QualifierErrors(error))
 }
 
