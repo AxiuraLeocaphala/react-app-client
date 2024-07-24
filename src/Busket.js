@@ -6,8 +6,8 @@ import './App.css';
 
 function Busket() {
     const { tg } = useTelegram.getTelegramData();
-    const data = useLoaderData();
-    const productListBusket = data.tastyCart.data;
+    const tastyCart = useLoaderData();
+    const productListBusket = tastyCart.data;
 
     useEffect(() => {
         tg.ready();

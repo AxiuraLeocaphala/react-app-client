@@ -1,11 +1,10 @@
 import { useTelegram } from '../hooks/useTelegram';
-import axios from 'axios';
+import instance from './axiosCreator';
 import QualifierErrors from './_qualifierErrors';
 
 export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
-    const { UserId, MainButton } = useTelegram.getTelegramData();
-    return axios.post('http://127.0.0.1:3001/data/increaseQuantity', {
-        userId: UserId,
+    const { MainButton } = useTelegram.getTelegramData();
+    return instance.post('data/increaseQuantity', {
         productId: product["ProductId"]
     })
     .then(response => {

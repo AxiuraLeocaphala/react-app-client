@@ -1,10 +1,8 @@
-import axios from "axios";
-import { useTelegram } from "../hooks/useTelegram";
 import QualifierErrors from "./_qualifierErrors";
+import instance from "./axiosCreator";
 
 async function LoaderBusket() {
-    const { UserId } = useTelegram.getTelegramData();
-    return axios.get(`http://127.0.0.1:3001/data/productInBusket?userId=${UserId}`)
+    return instance.get(`data/productInBusket`)
     .then(response => response)
     .catch(error => QualifierErrors(error));
 }

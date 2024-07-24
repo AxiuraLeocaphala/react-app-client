@@ -1,12 +1,11 @@
 import { useTelegram } from '../hooks/useTelegram.jsx';
 import {QueryAdd} from './queryAdd.jsx';
-import axios from 'axios';
+import instance from './axiosCreator.jsx';
 import QualifierErrors from './_qualifierErrors';
 
 export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
-    const { UserId, MainButton } = useTelegram.getTelegramData();
-    axios.post('http://127.0.0.1:3001/data/reduceNumber', {
-        userId: UserId,
+    const { MainButton } = useTelegram.getTelegramData();
+    instance.post('http://127.0.0.1:3001/data/reduceNumber', {
         productId: product["ProductId"]
     })
     .then(response => {

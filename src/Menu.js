@@ -7,9 +7,9 @@ import './App.css';
 
 function Menu() {
     const { tg, MainButton } = useTelegram.getTelegramData();
-    const data = useLoaderData();
-    const productCategories = data.culinaryDetails.data[0];
-    const productInfo = data.culinaryDetails.data[1];
+    const culinaryDetails = useLoaderData();
+    const productCategories = culinaryDetails.data[0];
+    const productInfo = culinaryDetails.data[1];
 
     // Протестировать плагин ESlint для использования хука внутри условия
     const navigate = useNavigate();

@@ -1,13 +1,12 @@
 import { useTelegram } from '../hooks/useTelegram';
 import {QueryReduce} from './queryReduce';
 import {QueryIncrease} from './queryIncrease';
-import axios from 'axios';
+import instance from './axiosCreator';
 import QualifierErrors from './_qualifierErrors';
 
 export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 
-    const { UserId, MainButton } = useTelegram.getTelegramData();
-    axios.post('http://127.0.0.1:3001/data/addToBusket', {
-        userId: UserId,
+    const { MainButton } = useTelegram.getTelegramData();
+    instance.post('data/addToBusket', {
         productId: product["ProductId"]
     })
     .then(response => {

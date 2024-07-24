@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Menu from './Menu';
+import Menu from './Menu.js';
 import Busket from './Busket';
 import ErrorPage from './components/ErrorPage/errorPage';
 import Preloader from './components/preloader/preloader';
@@ -15,8 +15,9 @@ const router = createBrowserRouter([
         element: <Menu/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
-            const [initDataSafe, culinaryDetails] = await Promise.all([AuthWrapper(), LoaderMenu()]);
-            return { initDataSafe, culinaryDetails };
+            await AuthWrapper();
+            const culinaryDetails = await LoaderMenu();
+            return culinaryDetails ;
         }
     },
     {
@@ -24,8 +25,9 @@ const router = createBrowserRouter([
         element: <Busket/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
-            const [initDataSafe, tastyCart] = await Promise.all([AuthWrapper(), LoaderBusket()]);
-            return { initDataSafe, tastyCart };
+            await AuthWrapper();
+            const tastyCart = await LoaderBusket();
+            return tastyCart;
         }
     },
 ]);
