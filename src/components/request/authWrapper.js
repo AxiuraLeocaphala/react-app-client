@@ -8,7 +8,7 @@ export async function AuthWrapper() {
     const {tg} = useTelegram.getTelegramData();
     const initData = tg.initData;
     
-    await axios.post('/user-api/auth/checkInitData', {
+    await axios.post('http://127.0.0.1:3003/auth/checkInitData', {
         initData: initData
     })
     .then(res => {
@@ -34,7 +34,7 @@ export async function RefreshTokens() {
     console.log('refresh');
     const refreshToken = getCookie('refreshToken');
 
-    axios.post('/user-api/auth/refreshTokens', {
+    axios.post('http://127.0.0.1:3003/auth/refreshTokens', {
         refreshToken: refreshToken
     })
     .then(res => {
