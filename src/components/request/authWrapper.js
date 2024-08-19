@@ -4,7 +4,7 @@ import QualifierErrors from './_qualifierErrors.js';
 import { getCookie, setCookie } from "./cookie.js";
 
 export async function AuthWrapper() {
-    console.log('auth'); 
+    console.log('auth');
     const {tg} = useTelegram.getTelegramData();
     const initData = tg.initData;
     
