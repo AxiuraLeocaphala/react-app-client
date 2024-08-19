@@ -1,5 +1,5 @@
 import QualifierErrors from "./_qualifierErrors";
-import instance from "./axiosCreator";
+import instance from "./setupAxios.jsx";
 
 async function LoaderMenu() {
     return instance.get(`/data/price-list`)

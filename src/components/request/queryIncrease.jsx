@@ -1,5 +1,5 @@
 import { useTelegram } from '../hooks/useTelegram';
-import instance from './axiosCreator';
+import instance from './setupAxios.jsx';
 import QualifierErrors from './_qualifierErrors';
 
 export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {

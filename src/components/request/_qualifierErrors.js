@@ -1,5 +1,3 @@
-// 1. Убедиться, что не раскрывается чувствительная информация 
-
 const QualifierErrors = (error) => {
     if (error.response){
         throw new Response(error.response.data.err, {status: error.response.status});

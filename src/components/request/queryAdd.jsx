@@ -1,7 +1,7 @@
 import { useTelegram } from '../hooks/useTelegram';
 import {QueryReduce} from './queryReduce';
 import {QueryIncrease} from './queryIncrease';
-import instance from './axiosCreator';
+import instance from './setupAxios.jsx';
 import QualifierErrors from './_qualifierErrors';
 
 export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 

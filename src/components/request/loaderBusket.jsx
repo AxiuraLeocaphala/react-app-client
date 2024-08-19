@@ -1,5 +1,5 @@
 import QualifierErrors from "./_qualifierErrors";
-import instance from "./axiosCreator";
+import instance from "./setupAxios.jsx";
 
 async function LoaderBusket() {
     return instance.get(`data/productInBusket`)
