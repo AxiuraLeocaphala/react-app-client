@@ -1,13 +1,9 @@
-/*
-    Убрать комментарий в парамерах куки
-*/
-
 export function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([.$*|{}()\\[\]+^])/g, '\\$1') + "=([^;]*)"
     ))
 
-    console.log(matches)
+    console.log(name, matches)
 
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
@@ -37,8 +33,10 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    console.log(updateCookie)
+    
     document.cookie = updateCookie;
+
+    getCookie(name)
 }
 
 export function deleteCookie(name) {
