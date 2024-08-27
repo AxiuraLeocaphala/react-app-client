@@ -4,7 +4,7 @@ import QualifierErrors from './_qualifierErrors';
 
 export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
     const { MainButton } = useTelegram.getTelegramData();
-    return instance.post('data/increaseQuantity', {
+    return instance.post('/data/increaseQuantity', {
         productId: product["ProductId"]
     })
     .then(response => {

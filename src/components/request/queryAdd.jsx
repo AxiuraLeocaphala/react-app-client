@@ -6,7 +6,7 @@ import QualifierErrors from './_qualifierErrors';
 
 export function  QueryAdd (product, buttonSpace, locationCall, deleteCard) { 
     const { MainButton } = useTelegram.getTelegramData();
-    instance.post('data/addToBusket', {
+    instance.post('/data/addToBusket', {
         productId: product["ProductId"]
     })
     .then(response => {

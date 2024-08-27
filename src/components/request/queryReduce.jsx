@@ -5,7 +5,7 @@ import QualifierErrors from './_qualifierErrors';
 
 export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
     const { MainButton } = useTelegram.getTelegramData();
-    instance.post('data/reduceNumber', {
+    instance.post('/data/reduceNumber', {
         productId: product["ProductId"]
     })
     .then(response => {
