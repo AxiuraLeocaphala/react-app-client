@@ -7,6 +7,8 @@ export function getCookie(name) {
         "(?:^|; )" + name.replace(/([.$*|{}()\\[\]+^])/g, '\\$1') + "=([^;]*)"
     ))
 
+    console.log(matches)
+
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
