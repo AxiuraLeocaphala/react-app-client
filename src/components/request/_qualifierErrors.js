@@ -1,4 +1,5 @@
 const QualifierErrors = (error) => {
+    print(error)
     if (error.response){
         throw new Response(error.response.data.err, {status: error.response.status});
     } else if (error.message === "Network Error") {
