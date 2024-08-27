@@ -6,7 +6,7 @@ import { getCookie, setCookie } from "./cookie.js";
 export async function AuthWrapper() {
     const {tg} = useTelegram.getTelegramData();
     const initData = tg.initData;
-    console.log(initData)
+    
     await axios.post('http://127.0.0.1:3003/auth/checkInitData', {
         initData: initData
     })
@@ -15,7 +15,10 @@ export async function AuthWrapper() {
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
         ScheduleRefreshTokens();
     })
-    .catch(err => QualifierErrors(err));
+    .catch(err => {
+        console.log(err);
+        QualifierErrors(err);
+    });
 }
 
 export function ScheduleRefreshTokens() {
