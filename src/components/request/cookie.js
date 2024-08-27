@@ -3,8 +3,6 @@ export function getCookie(name) {
         "(?:^|; )" + name.replace(/([.$*|{}()\\[\]+^])/g, '\\$1') + "=([^;]*)"
     ))
 
-    console.log(name, matches)
-
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
@@ -34,9 +32,9 @@ export function setCookie(name, value, options = {}) {
         }
     }
     
+    console.log(updateCookie);
     document.cookie = updateCookie;
-
-    console.log(getCookie(name))
+    console.log(document.cookie);
 }
 
 export function deleteCookie(name) {
