@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getCookie } from './cookie';
 
 const instance = axios.create({
-    baseURL: 'product-api',
+    baseURL: 'http://127.0.0.1:3002',
 });
 
 instance.interceptors.request.use(config => {
