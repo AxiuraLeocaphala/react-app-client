@@ -36,7 +36,7 @@ export function setCookie(name, value, options = {}) {
     
     document.cookie = updateCookie;
 
-    getCookie(name)
+    console.log(getCookie(name))
 }
 
 export function deleteCookie(name) {
