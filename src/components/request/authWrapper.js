@@ -12,10 +12,10 @@ export async function AuthWrapper() {
     })
     .then(res => {
         console.log(document.cookie);
-        setCookie('accessToken', res.data.accessToken);
+        setCookie('accessToken', res.data.accessToken, {'max-age': 60, 'SameSite': 'None'});
         document.cookie = "test = test";
         console.log(document.cookie);
-        setCookie('refreshToken', res.data.refreshToken);
+        setCookie('refreshToken', res.data.refreshToken, {'max-age': 120, 'SameSite': 'None'});
         ScheduleRefreshTokens();
     })
     .catch(err => QualifierErrors(err));
