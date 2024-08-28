@@ -2,6 +2,7 @@ import { countTotalPrice } from "./countTotalPrice.jsx";
 
 const tg = window.Telegram.WebApp;
 const MainButton = tg.MainButton;
+const BackButton = tg.BackButton;
 
 export const useTelegram = {
 
@@ -21,5 +22,6 @@ export const useTelegram = {
     telegramBusketButtons() {
         MainButton.show();
         MainButton.text = "Заказать";
+        BackButton.show();
     },
 }
