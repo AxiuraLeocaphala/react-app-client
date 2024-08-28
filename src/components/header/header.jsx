@@ -1,12 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import Flickity from 'flickity';
-import { useTelegram } from '../hooks/useTelegram';
+import { tg } from '../hooks/useTelegram';
 import './header.css';
 
 const Header = ({productCategories}) => {
     const sliderCategoryRef = useRef(null);
     const aRefs = useRef(Array(productCategories.length).fill(null).map(() => React.createRef()));
-    const { tg } = useTelegram.getTelegramData();
 
     const handleClick = (e) => {
         e.preventDefault();

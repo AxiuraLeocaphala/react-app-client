@@ -1,23 +1,19 @@
 import { useEffect} from 'react';
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { useTelegram } from './components/hooks/useTelegram.jsx';
+import { useLoaderData } from "react-router-dom";
+import { tg, useTelegramOnMenu } from './components/hooks/useTelegram.js';
 import Header from './components/header/header.jsx';
 import ProductList from './components/productList/productList.jsx';
 import './App.css';
 
 function Menu() {
-    const { tg, MainButton } = useTelegram.getTelegramData();
     const culinaryDetails = useLoaderData();
     const productCategories = culinaryDetails.data[0];
     const productInfo = culinaryDetails.data[1];
 
-    // Протестировать плагин ESlint для использования хука внутри условия
-    const navigate = useNavigate();
-    MainButton.onClick(() => {navigate("/busket")});
-    
+    useTelegramOnMenu(productInfo);
+
     useEffect(() => {
         tg.ready();
-        useTelegram.telegramMenuButton(productInfo);
     }, [productInfo, tg]);
     
     return (

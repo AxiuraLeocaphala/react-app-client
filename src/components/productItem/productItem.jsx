@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { usePlatform } from '../hooks/usePlatform.jsx';
+import { usePlatform } from '../hooks/usePlatform.js';
 import Button from '../button/button.jsx';
 import Popup from '../popup/popup.jsx';
 import './productItem.css';

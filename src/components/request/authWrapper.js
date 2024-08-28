@@ -1,10 +1,9 @@
 import axios from "axios";
-import { useTelegram } from "../hooks/useTelegram.jsx";
+import { tg } from "../hooks/useTelegram.js";
 import QualifierErrors from './_qualifierErrors.js';
 import { getCookie, setCookie } from "./cookie.js";
 
 export async function AuthWrapper() {
-    const {tg} = useTelegram.getTelegramData();
     const initData = tg.initData;
     
     await axios.post('http://127.0.0.1:3003/auth/checkInitData', {

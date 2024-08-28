@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { countTotalPrice } from "../hooks/countTotalPrice.jsx";
+import { countTotalPrice } from "../hooks/countTotalPrice.js";
 import ProductItemBusket from "../productItem/productItemBusket";
 import './productListBusket.css';
 

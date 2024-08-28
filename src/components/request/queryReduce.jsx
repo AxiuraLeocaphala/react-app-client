@@ -1,20 +1,19 @@
-import { useTelegram } from '../hooks/useTelegram.jsx';
+import { tg } from '../hooks/useTelegram.js';
 import {QueryAdd} from './queryAdd.jsx';
 import instance from './setupAxios.jsx';
 import QualifierErrors from './_qualifierErrors';
 
 export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
-    const { MainButton } = useTelegram.getTelegramData();
     instance.post('/data/reduceNumber', {
         productId: product["ProductId"]
     })
     .then(response => {
-        const price = MainButton.text.replace(/\D/g, '');
+        const price = tg.MainButton.text.replace(/\D/g, '');
         if (typeof response.data.quantity !== "undefined"){
             product["Quantity"] = response.data.quantity;
             if (locationCall === 'menu'){       
                 if (price) {
-                    MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
+                    tg.MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
                 }
             } else if (locationCall === 'busket') {
                 updateTotalPrice();
@@ -26,9 +25,9 @@ export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, up
             if (locationCall === 'menu') {
                 product["Quantity"] = 0;
                 if (price !== '' && price !== `${product["ProductPrice"]}`){
-                    MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
+                    tg.MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
                 } else {
-                    MainButton.text = 'Корзина';
+                    tg.MainButton.text = 'Корзина';
                 }
                 buttonSpace.innerHTML = response.data.contentButtonSpace;
                 buttonSpace.querySelector('.buttonAddToBusket').addEventListener('click', () => {
