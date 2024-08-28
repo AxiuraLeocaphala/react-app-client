@@ -32,7 +32,7 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    console.log(updateCookie)
+    console.log(updateCookie);
     document.cookie = updateCookie;
     console.log(document.cookie);
 }
