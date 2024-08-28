@@ -13,6 +13,7 @@ export async function AuthWrapper() {
     .then(res => {
         console.log(document.cookie);
         setCookie('accessToken', res.data.accessToken, {'max-age': 60});
+        document.cookie = "test = test";
         console.log(document.cookie);
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
         ScheduleRefreshTokens();
