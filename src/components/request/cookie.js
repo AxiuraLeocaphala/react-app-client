@@ -2,7 +2,7 @@ export function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([$?*|{}\]\\^])/g, '\\$1') + "=([^;]*)"
     ))
-    console.log(matches);
+    
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
@@ -10,7 +10,7 @@ export function setCookie(name, value, options = {}) {
     options = {
         path: '/',
         /*
-        domain: 'axiuralecephala.ru',
+        domain: 'axiuraleocephala.ru',
         secure: true,
         samesite: strict,
         httpOnly: true,
@@ -22,7 +22,7 @@ export function setCookie(name, value, options = {}) {
         options.expires = options.expires.toUTCString();
     }
 
-    let updateCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    let updateCookie = name + "=" + value;
 
     for (let optionKey in options) {
         updateCookie += "; " + optionKey;
@@ -31,7 +31,7 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    
+    console.log(updateCookie);
     document.cookie = updateCookie;
 }
 
