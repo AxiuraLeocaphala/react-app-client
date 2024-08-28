@@ -31,7 +31,9 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
+
     document.cookie = updateCookie;
+    
 }
 
 export function deleteCookie(name) {
