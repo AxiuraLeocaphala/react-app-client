@@ -14,7 +14,7 @@ function Menu() {
 
     useEffect(() => {
         tg.ready();
-    }, [productInfo, tg]);
+    });
     
     return (
         <>

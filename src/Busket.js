@@ -12,7 +12,7 @@ function Busket() {
 
     useEffect(() => {
         tg.ready();
-    }, [tg]);
+    });
     
     return ( 
         <ProductListBusket productsInBusket={productListBusket}/>
