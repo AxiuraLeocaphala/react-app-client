@@ -18,5 +18,8 @@ export function useTelegramOnBusket() {
     
     tg.BackButton.show();
     const navigate = useNavigate();
-    tg.BackButton.onClick(() => {navigate("/")});
+    tg.BackButton.onClick(() => {
+        navigate("/");
+        tg.BackButton.hide();
+    });
 }
