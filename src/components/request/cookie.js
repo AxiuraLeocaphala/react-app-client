@@ -37,6 +37,7 @@ export function setCookie(name, value, options = {}) {
     console.log(document.cookie);
 }
 
+/*
 function deleteCookie(name) {
     setCookie(name, "", {'max-age': -1})
-}
+}*/
