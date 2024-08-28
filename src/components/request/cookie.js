@@ -12,7 +12,7 @@ export function setCookie(name, value, options = {}) {
         /*
         domain: 'axiuraleocephala.ru',
         secure: true,
-        samesite: strict,
+        SameSite: strict,
         httpOnly: true,
         */
         ...options,
@@ -22,7 +22,7 @@ export function setCookie(name, value, options = {}) {
         options.expires = options.expires.toUTCString();
     }
 
-    let updateCookie = name + "=" + value;
+    let updateCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
 
     for (let optionKey in options) {
         updateCookie += "; " + optionKey;
@@ -31,7 +31,6 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    console.log(updateCookie);
     document.cookie = updateCookie;
 }
 
