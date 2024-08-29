@@ -11,7 +11,7 @@ export async function AuthWrapper() {
     })
     .then(res => {
         console.log(res)
-        setCookie('accessToken', res.data.accessToken, {"max-age": 60});
+        setCookie('accessToken', res.data.accessToken, {'max-age': 60});
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
         ScheduleRefreshTokens();
     })

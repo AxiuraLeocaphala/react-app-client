@@ -7,15 +7,15 @@ export function getCookie(name) {
 }
 
 export function setCookie(name, value, options = {}) {
-    
+    console.log(name,value, options)
     options = {
         path: '/',
         /*
         domain: 'axiuraleocephala.ru', // Доступ к куки только с указанного домена
         secure: true, // Передавать только по HTTPS
         httpOnly: true, // Запрещает доступ к куки через JS
-        */
         SameSite: "strict", // Отправлять куки только с указанного домена
+        */
         ...options
     };
 
@@ -32,13 +32,11 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    console.log(document)
-    console.log(document.cookie);
-    console.log(document.cookie = "test=test");
-    console.log(document.cookie = updateCookie);
-    console.log(document)
+    console.log(updateCookie);
+    console.log(document);
     console.log(document.cookie);
     document.cookie = updateCookie;
+    console.log(document.cookie);
     
 }
 
