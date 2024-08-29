@@ -2,7 +2,7 @@ export function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([$?*|{}\]\\^])/g, '\\$1') + "=([^;]*)"
     ))
-    console.log(matches);
+    
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
@@ -32,7 +32,8 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    console.log(document);
+    console.log(document)
+    console.log(document.cookie);
     document.cookie = updateCookie;
     
 }
