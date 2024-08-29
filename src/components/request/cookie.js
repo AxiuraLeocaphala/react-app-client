@@ -36,6 +36,8 @@ export function setCookie(name, value, options = {}) {
     console.log(document.cookie);
     console.log(document.cookie = "test=test");
     console.log(document.cookie = updateCookie);
+    console.log(document)
+    console.log(document.cookie);
     document.cookie = updateCookie;
     
 }
