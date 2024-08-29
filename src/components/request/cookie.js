@@ -13,10 +13,10 @@ export function setCookie(name, value, options = {}) {
         /*
         domain: 'axiuraleocephala.ru', // Доступ к куки только с указанного домена
         secure: true, // Передавать только по HTTPS
-        */
-        SameSite: strict, // Отправлять куки только с указанного домена
         httpOnly: true, // Запрещает доступ к куки через JS
-        ...options,
+        */
+        SameSite: "strict", // Отправлять куки только с указанного домена
+        ...options
     };
 
     if (options.expires instanceof Date) {
