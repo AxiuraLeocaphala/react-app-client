@@ -7,7 +7,6 @@ export function getCookie(name) {
 }
 
 export function setCookie(name, value, options = {}) {
-    console.log(name,value, options)
     options = {
         path: '/',
         /*
@@ -34,12 +33,7 @@ export function setCookie(name, value, options = {}) {
             updateCookie += "=" + optionValue;
         }
     }
-    console.log(updateCookie);
-    console.log(document);
-    console.log(document.cookie);
     document.cookie = updateCookie;
-    console.log(document.cookie);
-    
 }
 
 export function deleteCookie(name) {
