@@ -17,7 +17,7 @@ export function setCookie(name, value, options = {}) {
         SameSite: "strict", // Отправлять куки только с указанного домена
         */
        samesite: "None",
-       secure,
+       secure: true,
         ...options
     };
 
