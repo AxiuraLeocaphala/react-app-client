@@ -16,6 +16,8 @@ export function setCookie(name, value, options = {}) {
         httpOnly: true, // Запрещает доступ к куки через JS
         SameSite: "strict", // Отправлять куки только с указанного домена
         */
+       samesite: "None",
+       secure,
         ...options
     };
 
