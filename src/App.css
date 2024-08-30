@@ -9,8 +9,8 @@ body{
 	"Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 	color: var(--tg-theme-text-color);
 	background-color: var(--tg-theme-bg-color);
+	scroll-behavior: smooth;
 }
 body::-webkit-scrollbar{
 	width: 0;
-	scroll-behavior: smooth;
 }

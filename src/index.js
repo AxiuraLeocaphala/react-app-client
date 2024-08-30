@@ -20,12 +20,9 @@ const router = createBrowserRouter([
                 if (!getCookie('refreshToken')) {
                     await AuthWrapper();
                 }
-                else {
-                    await RefreshTokens();
-                }
-            } else {
-                ScheduleRefreshTokens();
-            }
+                else await RefreshTokens();
+            } else ScheduleRefreshTokens();
+
             return LoaderMenu();
         }
     },
@@ -34,6 +31,13 @@ const router = createBrowserRouter([
         element: <Busket/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
+            if (!getCookie('accessToken')) {
+                if (!getCookie('refreshToken')) {
+                    await AuthWrapper();
+                }
+                else await RefreshTokens();
+            } else ScheduleRefreshTokens();
+            
             return LoaderBusket();
         }
     },
