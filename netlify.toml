@@ -4,4 +4,4 @@
         X-Frame-Options = "SAMEORIGIN"
         X-XSS-Protection = "0"
         X-Content-Type-Options = "nosniff"
-        Content-Security-Policy = "default-src 'self' app.netlify.com; script-src https://telegram.org/js/telegram-web-app.js; connect-src http://127.0.0.1:3002 http://127.0.0.1:3003;"
+        Content-Security-Policy = "default-src 'self' app.netlify.com; script-src 'self' https://telegram.org/js/telegram-web-app.js; connect-src http://127.0.0.1:3002 http://127.0.0.1:3003;"
