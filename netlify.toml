@@ -4,4 +4,4 @@
         X-Frame-Options = "SAMEORIGIN"
         X-XSS-Protection = "0"
         X-Content-Type-Options = "nosniff"
-        Content-Security-Policy = "default-src 'self' app.netlify.com; style-src 'self'; form-action 'self' app.netlify.com; script-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'self';"
+        Content-Security-Policy = "default-src 'self' app.netlify.com; style-src 'self'; script-src 'self' https://telegram.org/js/telegram-web-app.js; connect-src 'self'; img-src 'self'; base-uri 'self';"
