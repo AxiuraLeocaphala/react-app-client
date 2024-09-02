@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             
             return LoaderBusket();
         }
-    },
+    }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
