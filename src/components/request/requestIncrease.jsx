@@ -2,7 +2,7 @@ import { tg } from '../hooks/useTelegram.js';
 import instance from './setupAxios.jsx';
 import QualifierErrors from './_qualifierErrors';
 
-export function QueryIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
+export function RequestIncrease (product, buttonSpace, locationCall, updateTotalPrice) {
     return instance.post('/data/increaseQuantity', {
         productId: product["ProductId"]
     })
