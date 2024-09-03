@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import {QueryAdd} from '../request/queryAdd';
-import {QueryIncrease} from '../request/queryIncrease';
-import {QueryReduce} from '../request/queryReduce';
+import {RequestAdd} from '../request/requestAdd';
+import {RequestIncrease} from '../request/requestIncrease';
+import {RequestReduce} from '../request/requestReduce';
 import './button.css';
 
 const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => { 
@@ -9,13 +9,13 @@ const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => {
     const buttonSpaceRef = useRef(null); 
     
     const handleClickOnButtonMain = () => {
-        QueryAdd(product, buttonSpaceRef.current, locationCall, deleteCard);
+        RequestAdd(product, buttonSpaceRef.current, locationCall, deleteCard);
     };
     const handleClickOnButtonIncrease = () => {
-        QueryIncrease(product, buttonSpaceRef.current, locationCall, updateTotalPrice)
+        RequestIncrease(product, buttonSpaceRef.current, locationCall, updateTotalPrice)
     };
     const handleClickOnButtonReduce = () => {
-        QueryReduce(product, buttonSpaceRef.current, locationCall, deleteCard, updateTotalPrice);
+        RequestReduce(product, buttonSpaceRef.current, locationCall, deleteCard, updateTotalPrice);
     };
     
     return (

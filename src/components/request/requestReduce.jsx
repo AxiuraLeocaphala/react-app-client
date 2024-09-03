@@ -1,9 +1,9 @@
 import { tg } from '../hooks/useTelegram.js';
-import {QueryAdd} from './queryAdd.jsx';
+import {RequestAdd} from './requestAdd.jsx';
 import instance from './setupAxios.jsx';
 import QualifierErrors from './_qualifierErrors';
 
-export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
+export function  RequestReduce (product, buttonSpace, locationCall, deleteCard, updateTotalPrice) {
     instance.post('/data/reduceNumber', {
         productId: product["ProductId"]
     })
@@ -20,7 +20,7 @@ export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, up
             } else {
                 console.log("Error: undefined call location")
             }
-            buttonSpace.querySelector('.quantity').value = response.data.quantity;
+            buttonSpace.RequestSelector('.quantity').value = response.data.quantity;
         } else {
             if (locationCall === 'menu') {
                 product["Quantity"] = 0;
@@ -30,8 +30,8 @@ export function  QueryReduce (product, buttonSpace, locationCall, deleteCard, up
                     tg.MainButton.text = 'Корзина';
                 }
                 buttonSpace.innerHTML = response.data.contentButtonSpace;
-                buttonSpace.querySelector('.buttonAddToBusket').addEventListener('click', () => {
-                    QueryAdd(product, buttonSpace, locationCall);
+                buttonSpace.RequestSelector('.buttonAddToBusket').addEventListener('click', () => {
+                    RequestAdd(product, buttonSpace, locationCall);
                 })
             } else if (locationCall === 'busket') {
                 deleteCard();
