@@ -23,7 +23,7 @@ export default function ErrorPage() {
 
     return (  
         <div>
-            <section>
+            <section className="errorPage">
                 <img src={logo} alt=""/>
                 <p className="first">Что то пошло не так</p>
                 <p className="last">

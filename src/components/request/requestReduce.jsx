@@ -20,7 +20,7 @@ export function  RequestReduce (product, buttonSpace, locationCall, deleteCard, 
             } else {
                 console.log("Error: undefined call location")
             }
-            buttonSpace.RequestSelector('.quantity').value = response.data.quantity;
+            buttonSpace.querySelector('.quantity').value = response.data.quantity;
         } else {
             if (locationCall === 'menu') {
                 product["Quantity"] = 0;
@@ -29,8 +29,8 @@ export function  RequestReduce (product, buttonSpace, locationCall, deleteCard, 
                 } else {
                     tg.MainButton.text = 'Корзина';
                 }
-                buttonSpace.innerHTML = response.data.contentButtonSpace;
-                buttonSpace.RequestSelector('.buttonAddToBusket').addEventListener('click', () => {
+                buttonSpace.innerHTML = `<button class="buttonAddToBusket">${response.data.price} ₽</button>`;
+                buttonSpace.querySelector('.buttonAddToBusket').addEventListener('click', () => {
                     RequestAdd(product, buttonSpace, locationCall);
                 })
             } else if (locationCall === 'busket') {

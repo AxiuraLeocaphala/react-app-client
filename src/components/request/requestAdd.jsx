@@ -9,7 +9,7 @@ export function  RequestAdd (product, buttonSpace, locationCall, deleteCard) {
         productId: product["ProductId"]
     })
     .then(response => {
-        buttonSpace.innerHTML = response.data.contentButtonSpace;
+        buttonSpace.innerHTML = '<button class="buttonReduce">-</button> <input class="quantity" readonly value = 1> <button class="buttonIncrease">+</button>';
         product["Quantity"] = 1;
         if (tg.MainButton.text.replace(/\D/g, '') !== ''){
             tg.MainButton.text = 
@@ -17,10 +17,10 @@ export function  RequestAdd (product, buttonSpace, locationCall, deleteCard) {
         } else {
             tg.MainButton.text = `Корзина ${product["ProductPrice"]}`;
         }
-        buttonSpace.RequestSelector('.buttonReduce').addEventListener('click', () =>{
+        buttonSpace.querySelector('.buttonReduce').addEventListener('click', () =>{
             RequestReduce(product, buttonSpace, locationCall, deleteCard)
         })
-        buttonSpace.RequestSelector('.buttonIncrease').addEventListener('click', () => {
+        buttonSpace.querySelector('.buttonIncrease').addEventListener('click', () => {
             RequestIncrease(product, buttonSpace, locationCall);
         })
     })
