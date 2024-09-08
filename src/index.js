@@ -20,9 +20,9 @@ const router = createBrowserRouter([
         loader: async () => {
             if (!getCookie('accessToken')) {
                 if (!getCookie('refreshToken')) {
-                    await AuthWrapper();
+                    await AuthWrapper('Menu');
                 }
-                else await RefreshTokens();
+                else await RefreshTokens('Menu');
             } else ScheduleRefreshTokens('Menu');
 
             return LoaderMenu();
@@ -34,9 +34,9 @@ const router = createBrowserRouter([
         loader: async () => {
             if (!getCookie('accessToken')) {
                 if (!getCookie('refreshToken')) {
-                    await AuthWrapper();
+                    await AuthWrapper('Menu');
                 }
-                else await RefreshTokens();
+                else await RefreshTokens('Menu');
             } else ScheduleRefreshTokens('Busket');
             
             return LoaderBusket();
@@ -48,9 +48,9 @@ const router = createBrowserRouter([
         loader: async () => {
             if (!getCookie('accessToken')) {
                 if (!getCookie('refreshToken')) {
-                    await AuthWrapper();
+                    await AuthWrapper('Menu');
                 }
-                else await RefreshTokens();
+                else await RefreshTokens('Menu');
             } else ScheduleRefreshTokens('Order');
 
             return LoaderOrder();
