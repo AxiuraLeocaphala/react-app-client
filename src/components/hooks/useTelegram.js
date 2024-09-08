@@ -16,9 +16,10 @@ export function useTelegramOnMenu(data) {
 export function useTelegramOnBusket() {
     tg.MainButton.show();
     tg.MainButton.text = "Продолжить";
-    
-    tg.BackButton.show();
     const navigate = useNavigate();
+    tg.MainButton.onClick(() => navigate("/order"))
+
+    tg.BackButton.show();
     tg.BackButton.onClick(() => {
         navigate("/");
         tg.BackButton.hide();
