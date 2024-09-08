@@ -23,7 +23,7 @@ const router = createBrowserRouter([
                     await AuthWrapper();
                 }
                 else await RefreshTokens();
-            } else ScheduleRefreshTokens();
+            } else ScheduleRefreshTokens('Menu');
 
             return LoaderMenu();
         }
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
                     await AuthWrapper();
                 }
                 else await RefreshTokens();
-            } else ScheduleRefreshTokens();
+            } else ScheduleRefreshTokens('Busket');
             
             return LoaderBusket();
         }
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
                     await AuthWrapper();
                 }
                 else await RefreshTokens();
-            } else ScheduleRefreshTokens();
+            } else ScheduleRefreshTokens('Order');
 
             return LoaderOrder();
         }
