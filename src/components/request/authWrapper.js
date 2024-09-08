@@ -4,6 +4,7 @@ import QualifierErrors from './_qualifierErrors.js';
 import { getCookie, setCookie } from "./cookie.js";
 
 export async function AuthWrapper(who) {
+    console.log('authentificate', who)
     let initData = tg.initData;
 
     if (initData !== null) {
@@ -33,7 +34,7 @@ export function ScheduleRefreshTokens(who) {
 }
 
 export async function RefreshTokens(who) {
-    console.log('refresh');
+    console.log('refresh', who);
     const refreshToken = getCookie('refreshToken');
 
     axios.post('http://127.0.0.1:3003/auth/refreshTokens', {
