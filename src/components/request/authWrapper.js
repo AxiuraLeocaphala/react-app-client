@@ -3,7 +3,7 @@ import { tg } from "../hooks/useTelegram.js";
 import QualifierErrors from './_qualifierErrors.js';
 import { getCookie, setCookie } from "./cookie.js";
 
-export async function AuthWrapper() {
+export async function AuthWrapper(who) {
     let initData = tg.initData;
 
     if (initData !== null) {
@@ -16,23 +16,23 @@ export async function AuthWrapper() {
     .then(res => {
         setCookie('accessToken', res.data.accessToken, {'max-age': 60});
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
-        ScheduleRefreshTokens();
+        ScheduleRefreshTokens(who);
     })
     .catch(err => QualifierErrors(err));
 }
 
-export function ScheduleRefreshTokens() {
-    console.log('schedule ');
+export function ScheduleRefreshTokens(who) {
+    console.log('schedule ', who);
     const accessToken = getCookie('accessToken');
     const exp = JSON.parse(atob(accessToken.split('.')[1])).exp;
     const timeout = (exp - Math.round(Date.now() / 1000)) * 1000 - 30000;
 
     setTimeout(() => {
-        RefreshTokens();
+        RefreshTokens(who);
     }, timeout);
 }
 
-export async function RefreshTokens() {
+export async function RefreshTokens(who) {
     console.log('refresh');
     const refreshToken = getCookie('refreshToken');
 
@@ -42,7 +42,7 @@ export async function RefreshTokens() {
     .then(res => {
         setCookie('accessToken', res.data.accessToken, {'max-age': 60});
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
-        ScheduleRefreshTokens();
+        ScheduleRefreshTokens(who);
     })
     .catch(err => QualifierErrors(err));
 }
