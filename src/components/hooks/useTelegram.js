@@ -34,5 +34,5 @@ export function useTelegramOnOrder(paymentDispute) {
     })
 
     const navigate = useNavigate();
-    tg.BackButton.onClick(() => navigate('./busket'))
+    tg.BackButton.onClick(() => navigate('/busket'))
 }

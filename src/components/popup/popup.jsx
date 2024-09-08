@@ -36,6 +36,7 @@ const Popup = ({ product, options, onClose, hideButton, showButton, cardProduct 
                 behavior: 'smooth'
             });
         } else {
+            // Привет, исследователь!
             showPopup();
         }
     });

@@ -22,8 +22,8 @@ export async function AuthWrapper() {
     .catch(err => QualifierErrors(err));
 }
 
-export function ScheduleRefreshTokens(who) {
-    console.log('schedule ', who);
+export function ScheduleRefreshTokens(whoCalled) {
+    console.log('schedule ', whoCalled);
     const accessToken = getCookie('accessToken');
     const exp = JSON.parse(atob(accessToken.split('.')[1])).exp;
     const timeout = (exp - Math.round(Date.now() / 1000)) * 1000 - 30000;
