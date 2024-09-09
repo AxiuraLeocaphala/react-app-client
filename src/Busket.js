@@ -15,7 +15,7 @@ function Busket() {
         tg.ready();
         return () => {
             console.log('CANCEL BUSKET');
-            CancelRefreshTokens('Busket')
+            CancelRefreshTokens()
         };
     }, []);
     

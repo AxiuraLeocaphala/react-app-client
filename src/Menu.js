@@ -17,7 +17,7 @@ function Menu() {
         tg.ready();
         return () => {
             console.log('CANCEL MENU');
-            CancelRefreshTokens('menu')
+            CancelRefreshTokens()
         };
     }, []);
     

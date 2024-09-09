@@ -13,7 +13,7 @@ function Order() {
         tg.ready();
         return () => {
             console.log('CANCEL ORDER');
-            CancelRefreshTokens('order')
+            CancelRefreshTokens()
         };
     }, [])
 
