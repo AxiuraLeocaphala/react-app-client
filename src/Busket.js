@@ -14,12 +14,10 @@ function Busket() {
 
     useEffect(() => {
         tg.ready();
-        ScheduleRefreshTokens('Busket', timerRef.current)        
+        ScheduleRefreshTokens('Busket', timerRef)        
         return () => {
-            if (timerRef.current) {
-                console.log('CANCEL BUSKET');
-                CancelRefreshTokens(timerRef.current)
-            }
+            console.log('CANCEL BUSKET');
+            CancelRefreshTokens(timerRef);
         };
     }, []);
     

@@ -22,7 +22,6 @@ export async function AuthWrapper(who) {
     .catch(err => QualifierErrors(err));
 }
 
-let timer;
 
 export function ScheduleRefreshTokens(who, timerRef) {
     console.log(who)
