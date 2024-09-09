@@ -19,9 +19,9 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             if (!getCookie('accessToken')) {
-                if (!getCookie('refreshToken')) await AuthWrapper()
-                else await RefreshTokens()
-            } else ScheduleRefreshTokens()
+                if (!getCookie('refreshToken')) await AuthWrapper('Menu')
+                else await RefreshTokens('Menu')
+            } else ScheduleRefreshTokens('Menu')
 
             return LoaderMenu();
         }
@@ -31,9 +31,9 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             if (!getCookie('accessToken')) {
-                if (!getCookie('refreshToken')) await AuthWrapper()
-                else await RefreshTokens()
-            } else ScheduleRefreshTokens()
+                if (!getCookie('refreshToken')) await AuthWrapper('Busket')
+                else await RefreshTokens('Busket')
+            } else ScheduleRefreshTokens('Busket')
             
             return LoaderBusket();
         }
@@ -43,9 +43,9 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             if (!getCookie('accessToken')) {
-                if (!getCookie('refreshToken')) await AuthWrapper()
-                else await RefreshTokens()
-            } else ScheduleRefreshTokens()
+                if (!getCookie('refreshToken')) await AuthWrapper('Order')
+                else await RefreshTokens('Order')
+            } else ScheduleRefreshTokens('Order')
 
             return LoaderOrder();
         }
