@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { tg, useTelegramOnMenu } from './components/hooks/useTelegram.js';
 import Header from './components/header/header.jsx';
 import ProductList from './components/productList/productList.jsx';
+import { CancelRefreshTokens } from "./components/request/authWrapper.js";
 import './App.css';
 
 function Menu() {
@@ -14,6 +15,7 @@ function Menu() {
 
     useEffect(() => {
         tg.ready();
+        return () => CancelRefreshTokens();
     }, []);
     
     return (

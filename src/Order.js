@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import OrderList from "./components/orderList/orderList";
 import { tg, useTelegramOnOrder } from './components/hooks/useTelegram';
+import { CancelRefreshTokens } from "./components/request/authWrapper.js";
 import './App.css';
 
 function Order() {
@@ -10,6 +11,7 @@ function Order() {
 
     useEffect(() => {
         tg.ready();
+        return () => CancelRefreshTokens();
     }, [])
 
     return (
