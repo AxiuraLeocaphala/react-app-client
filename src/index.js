@@ -6,7 +6,7 @@ import Busket from './Busket';
 import Order from './Order.js'
 import ErrorPage from './components/ErrorPage/errorPage';
 import Preloader from './components/preloader/preloader';
-import { AuthWrapper, RefreshTokens, ScheduleRefreshTokens} from './components/request/authWrapper.js';
+import { AuthWrapper, RefreshTokens} from './components/request/authWrapper.js';
 import { getCookie } from './components/request/cookie.js';
 import { LoaderMenu } from './components/request/loaderMenu.jsx';
 import { LoaderBusket } from './components/request/loaderBusket.jsx';
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
             if (!getCookie('accessToken')) {
                 if (!getCookie('refreshToken')) await AuthWrapper('Menu')
                 else await RefreshTokens('Menu')
-            } else ScheduleRefreshTokens('Menu')
+            }
 
             return LoaderMenu();
         }
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             if (!getCookie('accessToken')) {
                 if (!getCookie('refreshToken')) await AuthWrapper('Busket')
                 else await RefreshTokens('Busket')
-            } else ScheduleRefreshTokens('Busket')
+            }
             
             return LoaderBusket();
         }
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             if (!getCookie('accessToken')) {
                 if (!getCookie('refreshToken')) await AuthWrapper('Order')
                 else await RefreshTokens('Order')
-            } else ScheduleRefreshTokens('Order')
+            } 
 
             return LoaderOrder();
         }

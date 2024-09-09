@@ -1,12 +1,13 @@
-import { useEffect} from 'react';
+import { useEffect, useRef } from 'react';
 import { useLoaderData } from "react-router-dom";
 import { tg, useTelegramOnMenu } from './components/hooks/useTelegram.js';
 import Header from './components/header/header.jsx';
 import ProductList from './components/productList/productList.jsx';
-import { CancelRefreshTokens } from "./components/request/authWrapper.js";
+import { ScheduleRefreshTokens, CancelRefreshTokens } from "./components/request/authWrapper.js";
 import './App.css';
 
 function Menu() {
+    const timerRef = useRef(null)
     const culinaryDetails = useLoaderData();
     const productCategories = culinaryDetails.data[0];
     const productInfo = culinaryDetails.data[1];
@@ -15,9 +16,10 @@ function Menu() {
 
     useEffect(() => {
         tg.ready();
+        ScheduleRefreshTokens('Menu', timerRef.current)
         return () => {
             console.log('CANCEL MENU');
-            CancelRefreshTokens()
+            CancelRefreshTokens('Menu', timerRef.current);
         };
     }, []);
     

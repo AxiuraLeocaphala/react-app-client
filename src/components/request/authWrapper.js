@@ -24,22 +24,22 @@ export async function AuthWrapper(who) {
 
 let timer;
 
-export function ScheduleRefreshTokens(who) {
-    console.trace()
+export function ScheduleRefreshTokens(who, timerRef) {
+    console.log(who)
     const accessToken = getCookie('accessToken');
     const exp = JSON.parse(atob(accessToken.split('.')[1])).exp;
     const timeout = (exp - Math.round(Date.now() / 1000)) * 1000 - 30000;
 
-    timer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
         RefreshTokens(who);
     }, timeout);
 }
 
-export function CancelRefreshTokens(who) {
+export function CancelRefreshTokens(who, timerRef) {
     console.log(who);
-    if (timer) {
-        clearTimeout(timer);
-        timer = null;
+    if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
     }
 }
 

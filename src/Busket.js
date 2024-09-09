@@ -1,11 +1,12 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useRef} from "react";
 import ProductListBusket from './components/productList/productListBusket.jsx';
 import { tg, useTelegramOnBusket } from "./components/hooks/useTelegram.js";
-import { CancelRefreshTokens } from "./components/request/authWrapper.js";
 import { useLoaderData } from "react-router-dom";
+import { ScheduleRefreshTokens, CancelRefreshTokens } from "./components/request/authWrapper.js";
 import './App.css';
 
 function Busket() {
+    const timerRef = useRef(null);
     const tastyCart = useLoaderData();
     const productListBusket = tastyCart.data;
 
@@ -13,9 +14,12 @@ function Busket() {
 
     useEffect(() => {
         tg.ready();
+        ScheduleRefreshTokens('Busket', timerRef.current)        
         return () => {
-            console.log('CANCEL BUSKET');
-            CancelRefreshTokens()
+            if (timerRef.current) {
+                console.log('CANCEL BUSKET');
+                CancelRefreshTokens(timerRef.current)
+            }
         };
     }, []);
     
