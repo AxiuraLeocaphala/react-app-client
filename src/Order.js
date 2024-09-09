@@ -11,7 +11,7 @@ function Order() {
 
     useEffect(() => {
         tg.ready();
-        return () => CancelRefreshTokens();
+        return () => CancelRefreshTokens('order');
     }, [])
 
     return (

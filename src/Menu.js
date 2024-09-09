@@ -15,7 +15,7 @@ function Menu() {
 
     useEffect(() => {
         tg.ready();
-        return () => CancelRefreshTokens();
+        return () => CancelRefreshTokens('menu');
     }, []);
     
     return (
