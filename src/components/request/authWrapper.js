@@ -36,13 +36,10 @@ export function ScheduleRefreshTokens(who) {
 }
 
 export function CancelRefreshTokens(who) {
-    console.log('cancel ', who);
+    console.log(who);
     if (timer) {
-        console.log('timer: ', timer);
         clearTimeout(timer);
-        console.log('timer: ', timer);
         timer = null;
-        console.log('timer: ', timer);
     }
 }
 
