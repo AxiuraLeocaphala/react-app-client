@@ -17,7 +17,6 @@ export async function AuthWrapper(who) {
     .then(res => {
         setCookie('accessToken', res.data.accessToken, {'max-age': 60});
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
-        ScheduleRefreshTokens(who);
     })
     .catch(err => QualifierErrors(err));
 }
