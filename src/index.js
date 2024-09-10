@@ -6,7 +6,7 @@ import Busket from './Busket';
 import Order from './Order.js'
 import ErrorPage from './components/ErrorPage/errorPage';
 import Preloader from './components/preloader/preloader';
-import { AuthWrapper, RefreshTokens} from './components/request/authWrapper.js';
+import { AuthWrapper } from './components/request/authWrapper.js';
 import { getCookie } from './components/request/cookie.js';
 import { LoaderMenu } from './components/request/loaderMenu.jsx';
 import { LoaderBusket } from './components/request/loaderBusket.jsx';
