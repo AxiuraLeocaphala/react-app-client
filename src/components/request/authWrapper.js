@@ -30,7 +30,7 @@ export function ScheduleRefreshTokens(who, timerRef) {
     const timeout = (exp - Math.round(Date.now() / 1000)) * 1000 - 30000;
 
     timerRef.current = setTimeout(() => {
-        RefreshTokens(who);
+        RefreshTokens(who, timerRef);
     }, timeout);
 }
 
@@ -42,7 +42,7 @@ export function CancelRefreshTokens(who, timerRef) {
     }
 }
 
-export async function RefreshTokens(who) {
+export async function RefreshTokens(who, timerRef) {
     console.log('refresh', who);
     const refreshToken = getCookie('refreshToken');
 
@@ -52,7 +52,7 @@ export async function RefreshTokens(who) {
     .then(res => {
         setCookie('accessToken', res.data.accessToken, {'max-age': 60});
         setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
-        ScheduleRefreshTokens(who);
+        ScheduleRefreshTokens(who, timerRef);
     })
     .catch(err => QualifierErrors(err));
 }
