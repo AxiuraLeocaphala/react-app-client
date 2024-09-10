@@ -12,10 +12,10 @@ function Order() {
 
     useEffect(() => {
         tg.ready();
-        ScheduleRefreshTokens("Order", timerRef)
+        ScheduleRefreshTokens(timerRef)
         return () => {
             console.log('CANCEL ORDER');
-            CancelRefreshTokens("Order", timerRef)
+            CancelRefreshTokens(timerRef)
         };
     }, [])
 

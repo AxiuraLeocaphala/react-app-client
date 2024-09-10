@@ -14,7 +14,7 @@ function Busket() {
 
     useEffect(() => {
         tg.ready();
-        ScheduleRefreshTokens('Busket', timerRef)        
+        ScheduleRefreshTokens(timerRef)        
         return () => {
             console.log('CANCEL BUSKET');
             CancelRefreshTokens(timerRef);

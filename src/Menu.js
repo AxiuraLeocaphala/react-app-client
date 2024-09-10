@@ -16,10 +16,10 @@ function Menu() {
 
     useEffect(() => {
         tg.ready();
-        ScheduleRefreshTokens('Menu', timerRef)
+        ScheduleRefreshTokens(timerRef)
         return () => {
             console.log('CANCEL MENU');
-            CancelRefreshTokens('Menu', timerRef);
+            CancelRefreshTokens(timerRef);
         };
     }, []);
     
