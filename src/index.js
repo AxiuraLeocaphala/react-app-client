@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Menu from './Menu.js';
 import Busket from './Busket';
 import Order from './Order.js'
-import ErrorPage from './components/ErrorPage/errorPage';
+import ErrorPage from './components/Error/errorPage.jsx';
 import Preloader from './components/preloader/preloader';
 import { AuthWrapper } from './components/request/authWrapper.js';
 import { getCookie } from './components/request/cookie.js';

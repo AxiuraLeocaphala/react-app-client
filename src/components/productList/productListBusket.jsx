@@ -36,7 +36,13 @@ const ProductListBusket = ({ productsInBusket }) => {
                 <div className="productListBusket">
                     {productsInBusket.map((product, idx) => {
                         return (
-                            <ProductItemBusket key={idx} index={idx} product={product} updateTotalPrice={updateTotalPrice} deleteItem={deleteItemBusket}/>
+                            <ProductItemBusket 
+                            key={idx} 
+                            index={idx} 
+                            product={product} 
+                            updateTotalPrice={updateTotalPrice} 
+                            deleteItem={deleteItemBusket}
+                            />
                         )
                     })}
                 </div>

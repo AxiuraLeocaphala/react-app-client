@@ -9,13 +9,13 @@ const OrderList = ({setPaymentDispute}) => {
     const cardRef = useRef();
 
     const handleClickCash = () => {
-        setPaymentDispute('cash');
+        setPaymentDispute('CASH');
         cardRef.current.classList.remove('active');
         cashRef.current.classList.add('active');
     }
 
     const handleClickCard = () => {
-        setPaymentDispute('card');
+        setPaymentDispute('CARD');
         cashRef.current.classList.remove('active');
         cardRef.current.classList.add('active');
     }
