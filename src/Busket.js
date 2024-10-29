@@ -1,7 +1,7 @@
-import React, { useEffect, useRef} from "react";
+import React, { useEffect, useRef, memo} from "react";
+import { useLoaderData } from "react-router-dom";
 import ProductListBusket from './components/productList/productListBusket.jsx';
 import { tg, useTelegramOnBusket } from "./components/hooks/useTelegram.js";
-import { useLoaderData } from "react-router-dom";
 import { ScheduleRefreshTokens, CancelRefreshTokens } from "./components/request/authWrapper.js";
 import './App.css';
 
@@ -9,6 +9,7 @@ function Busket() {
     const timerRef = useRef(null);
     const tastyCart = useLoaderData();
     const productListBusket = tastyCart.data;
+    const ProductListBusketMemo = memo(ProductListBusket);
 
     useTelegramOnBusket();
 
@@ -21,7 +22,7 @@ function Busket() {
     }, []);
     
     return ( 
-        <ProductListBusket productsInBusket={productListBusket}/>
+        <ProductListBusketMemo productsInBusket={productListBusket}/>
     )
 }
 

@@ -1,10 +1,9 @@
 import {useRef} from 'react';
-import { useLoaderData } from 'react-router-dom';
 import './orderList.css';
 
-const OrderList = ({setPaymentDispute}) => {
-    const totalPrice = useLoaderData().data['totalPrice'];
-    const phoneNumber = useLoaderData().data['phoneNumber'];
+const OrderList = ({ setPaymentDispute, detailOrder }) => {
+    const totalPrice = detailOrder.data['totalPrice'];
+    const phoneNumber = detailOrder.data['phoneNumber'];
     const cashRef = useRef();
     const cardRef = useRef();
 

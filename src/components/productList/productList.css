@@ -1,5 +1,6 @@
 .productList {
 	margin: 55px 10px 0 10px;
+	scroll-behavior: smooth;
 	h1 {
 		margin: 55px 0 0 0;
 		text-align: right;

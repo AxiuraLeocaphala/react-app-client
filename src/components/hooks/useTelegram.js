@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { MakeOrder } from "../request/makeOrder.js";
 
 export const tg = window.Telegram.WebApp;
+tg.expand()
 
 export function useTelegramOnMenu(data) {
     tg.MainButton.show();

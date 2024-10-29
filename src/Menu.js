@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useRef, memo } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { tg, useTelegramOnMenu } from './components/hooks/useTelegram.js';
 import Header from './components/header/header.jsx';
 import ProductList from './components/productList/productList.jsx';
@@ -11,6 +11,8 @@ function Menu() {
     const culinaryDetails = useLoaderData();
     const productCategories = culinaryDetails.data[0];
     const productInfo = culinaryDetails.data[1];
+    const HeaderMemo = memo(Header);
+    const ProductListMemo = memo(ProductList);
 
     useTelegramOnMenu(productInfo);
 
@@ -18,15 +20,14 @@ function Menu() {
         tg.ready();
         ScheduleRefreshTokens(timerRef)
         return () => {
-            console.log('CANCEL MENU');
             CancelRefreshTokens(timerRef);
         };
     }, []);
     
     return (
         <>
-            <Header productCategories={productCategories}/>
-            <ProductList  productCategories={productCategories} productInfo={productInfo}/>
+            <HeaderMemo productCategories={productCategories}/>
+            <ProductListMemo  productCategories={productCategories} productInfo={productInfo}/>
         </>
     )
 }

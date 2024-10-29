@@ -4,22 +4,21 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Menu from './Menu.js';
 import Busket from './Busket';
 import Order from './Order.js'
-import ErrorPage from './components/Error/errorPage.jsx';
+import ErrorPage from './components/ErrorElement/errorPage.jsx';
 import Preloader from './components/preloader/preloader';
-import { AuthWrapper } from './components/request/authWrapper.js';
-import { getCookie } from './components/request/cookie.js';
 import { LoaderMenu } from './components/request/loaderMenu.jsx';
 import { LoaderBusket } from './components/request/loaderBusket.jsx';
 import { LoaderOrder } from './components/request/loaderOrder.js';
+import { AuthWrapper } from './components/request/authWrapper.js';
+import { getCookie } from './components/request/cookie.js';
 
 const router = createBrowserRouter([
     {   
-        path: "/",
+        path: "",
         element: <Menu/>,
         errorElement: <ErrorPage/>,
         loader: async () => {
             if (!getCookie('accessToken') && !getCookie('refreshToken')) await AuthWrapper()
-
             return LoaderMenu();
         }
     }, {
@@ -28,7 +27,6 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             if (!getCookie('accessToken') && !getCookie('refreshToken')) await AuthWrapper()
-            
             return LoaderBusket();
         }
     }, {
@@ -37,11 +35,14 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         loader: async () => {
             if (!getCookie('accessToken') && !getCookie('refreshToken')) await AuthWrapper()
-
             return LoaderOrder();
         }
     }
-]);
+    ],{
+        basename: "/meridian",
+    }
+
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

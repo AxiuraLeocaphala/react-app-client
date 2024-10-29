@@ -25,7 +25,7 @@ export default function ErrorPage() {
         <div>
             <section className="errorPage">
                 <img src={logo} alt=""/>
-                <p className="first">Что то пошло не так</p>
+                <p className="first">Что-то пошло не так</p>
                 <p className="last">
                     <i>{error.statusText || error.message || error.data}</i>
                 </p>
