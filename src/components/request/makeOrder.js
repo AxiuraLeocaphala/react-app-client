@@ -7,7 +7,7 @@ export async function MakeOrder(paymentDispute) {
         paymentDispute: paymentDispute
     })
     .then(response => {
-        console.log(response);
+        console.log(tg);
         tg.answerWebAppQuery(response.data.qi, {"orderId": response.data.orderId, "codeReceive": response.data.codeReceive})
         tg.close()
     })
