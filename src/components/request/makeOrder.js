@@ -8,6 +8,7 @@ export async function MakeOrder(paymentDispute) {
     })
     .then(response => {
         console.log(response);
+        tg.answerWebAppQuery(response.data.qi, {"orderId": response.data.orderId, "codeReceive": response.data.codeReceive})
         tg.close()
     })
     .catch(error => QualifierErrors(error))

@@ -15,8 +15,8 @@ export async function AuthWrapper() {
         initData: initData
     })
     .then(res => {
-        setCookie('accessToken', res.data.accessToken, {'max-age': 60});
-        setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
+        setCookie('accessToken', res.data.accessToken, {'max-age': 14400});
+        setCookie('refreshToken', res.data.refreshToken, {'max-age': 14400});
     })
     .catch(err => QualifierErrors(err));
 }
@@ -47,8 +47,8 @@ export async function RefreshTokens(timerRef) {
         refreshToken: refreshToken
     })
     .then(res => {
-        setCookie('accessToken', res.data.accessToken, {'max-age': 60});
-        setCookie('refreshToken', res.data.refreshToken, {'max-age': 120});
+        setCookie('accessToken', res.data.accessToken, {'max-age': 14400});
+        setCookie('refreshToken', res.data.refreshToken, {'max-age': 14400});
         ScheduleRefreshTokens(timerRef);
     })
     .catch(err => QualifierErrors(err));
