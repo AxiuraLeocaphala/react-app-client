@@ -33,8 +33,7 @@ const ProductItem = ({ product }) => {
     };
     const handleStartPress = (e) => {
         if (e.target.closest('.buttonSpace') === null) {
-            const cardProduct = cardProductRef.current;
-            cardProduct.classList.add('entering');
+            cardProductRef.current.classList.add('entering');
             const options = updateOptions();
             timer = setTimeout(() => {
                 if (options.top >= 55) {
@@ -43,14 +42,14 @@ const ProductItem = ({ product }) => {
                     } else {
                         window.addEventListener('scrollend', expandCard, { once: true });
                         window.scroll({
-                            top: cardProduct.offsetTop - window.innerHeight / 8,
+                            top: cardProductRef.current.offsetTop - window.innerHeight / 8,
                             behavior: 'smooth'
                         });
                     }
                 } else {
                     window.addEventListener('scrollend', expandCard, {once: true});
                     window.scroll({
-                        top: cardProduct.offsetTop - window.innerHeight / 8,
+                        top: cardProductRef.current.offsetTop - window.innerHeight / 8,
                         behavior: 'smooth'
                     });
                 }
@@ -80,7 +79,7 @@ const ProductItem = ({ product }) => {
                 className='cardProduct Menu'
             >
                 <picture><img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt=''/></picture>
-                <h3 >{product["ProductName"]}</h3>
+                <h3>{product["ProductName"]}</h3>
                 <p>{product["ProductDescription"]}</p>
                 {isButtonShow && (<Button product={product} locationCall={'menu'}/>)}
             </div>

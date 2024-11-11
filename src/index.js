@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Menu from './Menu.js';
+import Menu from './Menu';
 import Busket from './Busket';
-import Order from './Order.js'
+import Order from './Order'
 import ErrorPage from './components/ErrorElement/errorPage.jsx';
 import Preloader from './components/preloader/preloader';
-import { LoaderMenu } from './components/request/loaderMenu.jsx';
-import { LoaderBusket } from './components/request/loaderBusket.jsx';
-import { LoaderOrder } from './components/request/loaderOrder.js';
-import { AuthWrapper } from './components/request/authWrapper.js';
-import { getCookie } from './components/request/cookie.js';
+import { LoaderMenu } from './components/request/loaderMenu';
+import { LoaderBusket } from './components/request/loaderBusket';
+import { LoaderOrder } from './components/request/loaderOrder';
+import { AuthWrapper } from './components/request/authWrapper';
+import { getCookie } from './other/cookie.js';
 
 const router = createBrowserRouter([
     {   

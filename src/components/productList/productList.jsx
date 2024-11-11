@@ -11,16 +11,16 @@ const Menu = ({ productCategories, productInfo }) => {
                         {category['CategoryLogo']} {category['CategoryName']}
                     </h2>
                     <div className='list'>
-                        {productInfo.map((product) => {
-                            return (
-                                category['CategoryId'] === product['CategoryId'] && (
+                        {productInfo
+                            .filter(product => category['CategoryId'] === product['CategoryId'])
+                            .map((product) => {
+                                return (
                                     <ProductItem
                                         key={product["ProductId"]}
                                         product={product}
                                     />
-                                )
-                            );
-                        })}
+                                );
+                            })}
                     </div>
                 </div>
             ))}

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, memo} from "react";
 import { useLoaderData } from "react-router-dom";
 import ProductListBusket from './components/productList/productListBusket.jsx';
+import PopupMsg from './components/popup/popupMsg/popupMsg.jsx';
+import { VisibilityProvider } from './other/contextMsg.js';
 import { tg, useTelegramOnBusket } from "./components/hooks/useTelegram.js";
 import { ScheduleRefreshTokens, CancelRefreshTokens } from "./components/request/authWrapper.js";
 import './App.css';
@@ -22,7 +24,10 @@ function Busket() {
     }, []);
     
     return ( 
-        <ProductListBusketMemo productsInBusket={productListBusket}/>
+        <VisibilityProvider>
+            <PopupMsg/>
+            <ProductListBusketMemo productsInBusket={productListBusket}/>
+        </VisibilityProvider>
     )
 }
 

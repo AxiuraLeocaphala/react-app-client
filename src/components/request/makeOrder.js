@@ -1,6 +1,6 @@
-import instance from './setupAxios.jsx'
-import {tg} from "./../hooks/useTelegram.js"
-import QualifierErrors from './_qualifierErrors.js';
+import instance from './setupAxios'
+import {tg} from "./../hooks/useTelegram"
+import QualifierErrors from './_qualifierErrors';
 
 export async function MakeOrder(paymentDispute) {
     instance.post("/data/makeOrder", {
@@ -12,7 +12,6 @@ export async function MakeOrder(paymentDispute) {
             "orderId": response.data.orderId, 
             "codeReceive": response.data.codeReceive
         }))
-        tg.close()
     })
     .catch(error => QualifierErrors(error))
 }

@@ -1,0 +1,24 @@
+.popup-msg {
+    background-color: blueviolet;
+    color: #fff;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    max-width: 70%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    transition: transform 250ms linear;
+    z-index: 2;
+    p {
+        text-align: right;
+        display: inline-block;
+        margin: 5px 10px 5px 5px;
+    }
+}
+.popup-msg.hidden {
+    transform: translateX(100%);
+}
+.popup-msg.visible {
+    transform: translateX(0%);
+}

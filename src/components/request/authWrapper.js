@@ -1,7 +1,7 @@
 import axios from "axios";
-import { tg } from "../hooks/useTelegram.js";
-import QualifierErrors from './_qualifierErrors.js';
-import { getCookie, setCookie } from "./cookie.js";
+import { tg } from "../hooks/useTelegram";
+import QualifierErrors from './_qualifierErrors';
+import { getCookie, setCookie } from "../../other/cookie";
 
 export async function AuthWrapper() {
     console.log('authentificate')

@@ -3,7 +3,9 @@ import { useLoaderData } from 'react-router-dom';
 import { tg, useTelegramOnMenu } from './components/hooks/useTelegram.js';
 import Header from './components/header/header.jsx';
 import ProductList from './components/productList/productList.jsx';
+import PopupMsg from './components/popup/popupMsg/popupMsg.jsx';
 import { ScheduleRefreshTokens, CancelRefreshTokens } from "./components/request/authWrapper.js";
+import { VisibilityProvider } from './other/contextMsg.js';
 import './App.css';
 
 function Menu() {
@@ -27,7 +29,10 @@ function Menu() {
     return (
         <>
             <HeaderMemo productCategories={productCategories}/>
-            <ProductListMemo  productCategories={productCategories} productInfo={productInfo}/>
+            <VisibilityProvider>
+                <PopupMsg/>
+                <ProductListMemo  productCategories={productCategories} productInfo={productInfo}/>
+            </VisibilityProvider>
         </>
     )
 }
