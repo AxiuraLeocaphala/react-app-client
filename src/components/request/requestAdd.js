@@ -2,12 +2,12 @@ import instance from './setupAxios';
 import {tg} from '../hooks/useTelegram'
 import QualifierErrors from './_qualifierErrors';
 
-export function RequestAdd(product, setButtonAddVisible) {
+export function RequestAdd(product, setQuantity, setButtonAddVisible) {
     instance.post('/data/addToBusket', {
         productId: product["ProductId"]
     })
     .then(response => {
-        product["Quantity"] = 1;
+        setQuantity(1);
         if (tg.MainButton.text.replace(/\D/g, '') !== '') {
             tg.MainButton.text =
             `Корзина ${parseInt(tg.MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;

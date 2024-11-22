@@ -2,12 +2,12 @@ import instance from "./setupAxios";
 import { tg } from "../hooks/useTelegram";
 import QualifierErrors from "./_qualifierErrors";
 
-export function RequestIncrease(product, setComponentQuantity, locationCall, updateTotalPrice, setComponentVisibility) {
+export function RequestIncrease(product, quantity, setQuantity, setComponentQuantity, locationCall, updateTotalPrice, setComponentVisibility) {
     instance.post('/data/increaseQuantity', {
         productId: product["ProductId"]
     })
     .then(response => {
-        product["Quantity"] += 1;
+        setQuantity(prevState => prevState + 1);
         if (locationCall === "menu") {
             if (tg.MainButton.text.replace(/\D/g, '')) {
                 tg.MainButton.text = `Корзина ${parseInt(tg.MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;
@@ -18,7 +18,7 @@ export function RequestIncrease(product, setComponentQuantity, locationCall, upd
     })
     .catch(error => {
         if (error.response.status === 422) {
-            setComponentQuantity(error.response.data.quantity);
+            setComponentQuantity(quantity);
             setComponentVisibility();
         } else {
             QualifierErrors(error);

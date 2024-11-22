@@ -7,11 +7,9 @@ export async function MakeOrder(paymentDispute) {
         paymentDispute: paymentDispute
     })
     .then(response => {
-        console.log(tg);
-        tg.sendData(JSON.stringify({
-            "orderId": response.data.orderId, 
-            "codeReceive": response.data.codeReceive
-        }))
+        tg.close();
     })
-    .catch(error => QualifierErrors(error))
+    .catch(error => {
+        QualifierErrors(error)
+    })
 }

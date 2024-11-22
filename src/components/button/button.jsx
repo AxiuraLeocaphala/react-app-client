@@ -8,17 +8,18 @@ import "./button.css";
 const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => {
     const [isButtonAddVisible, setButtonAddVisible] = useState(product["Quantity"] === null);
     const {setComponentVisibility, setComponentQuantity} = useVisibility();
+    const [quantity, setQuantity] = useState(product["Quantity"]);
 
     const handleClickMain = () => {
-        RequestAdd(product, setButtonAddVisible);
+        RequestAdd(product, setQuantity, setButtonAddVisible);
     }
 
     const handleClickReduce = () => {
-        RequestReduce(product, setComponentQuantity, locationCall, deleteCard, updateTotalPrice, setButtonAddVisible);
+        RequestReduce(product, setQuantity, locationCall, deleteCard, updateTotalPrice, setButtonAddVisible);
     }
 
     const handleClickIncrease = () => {
-        RequestIncrease(product, setComponentQuantity, locationCall, updateTotalPrice, setComponentVisibility);
+        RequestIncrease(product, quantity, setQuantity, setComponentQuantity, locationCall, updateTotalPrice, setComponentVisibility);
     }
 
     return (
@@ -32,7 +33,7 @@ const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => {
             ) : (
                 <>
                     <button className="buttonReduce" onClick={handleClickReduce}>-</button>
-                    <input className="quantity" type="text" readOnly value={product["Quantity"]}/>
+                    <input className="quantity" type="text" readOnly value={quantity}/>
                     <button className="buttonIncrease" onClick={handleClickIncrease}>+</button>
                 </>
             )}

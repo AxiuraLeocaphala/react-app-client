@@ -2,12 +2,12 @@ import instance from "./setupAxios";
 import { tg } from "../hooks/useTelegram";
 import QualifierErrors from './_qualifierErrors';
 
-export function RequestReduce(product, setComponentQuantity, locationCall, deleteCard, updateTotalPrice, setButtonAddVisible) {
+export function RequestReduce(product, setQuantity, locationCall, deleteCard, updateTotalPrice, setButtonAddVisible) {
     instance.post('/data/reduceNumber', {
         productId: product["ProductId"]
     })
     .then(response => {
-        product["Quantity"] -= 1;
+        setQuantity(prevState => prevState - 1);
         const price = tg.MainButton.text.replace(/\D/g, '');
         if (typeof response.data.quantity !== "undefined") {
             if (locationCall === "menu") {
