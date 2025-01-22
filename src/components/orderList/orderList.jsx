@@ -1,20 +1,20 @@
 import {useRef} from 'react';
 import './orderList.css';
 
-const OrderList = ({ setPaymentDispute, detailOrder }) => {
+const OrderList = ({ setPaymentMethod, detailOrder }) => {
     const totalPrice = detailOrder.data['totalPrice'];
     const phoneNumber = detailOrder.data['phoneNumber'];
     const cashRef = useRef();
     const cardRef = useRef();
 
     const handleClickCash = () => {
-        setPaymentDispute('CASH');
+        setPaymentMethod('CASH');
         cardRef.current.classList.remove('active');
         cashRef.current.classList.add('active');
     }
 
     const handleClickCard = () => {
-        setPaymentDispute('CARD');
+        setPaymentMethod('CARD');
         cashRef.current.classList.remove('active');
         cardRef.current.classList.add('active');
     }
@@ -25,7 +25,7 @@ const OrderList = ({ setPaymentDispute, detailOrder }) => {
             <div className='orderList'>
                 <section>
                     <div className='title'>Способ оплаты</div>
-                    <div className='paymentDispute'>
+                    <div className='paymentMethod'>
                         <div className='option'onClick={handleClickCash} ref={cashRef}>Наличные</div>
                         <div className='option active' onClick={handleClickCard} ref={cardRef}>Карта</div>
                     </div>

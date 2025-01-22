@@ -8,11 +8,11 @@ import './App.css';
 
 function Order() {
     const timerRef = useRef(null);
-    const [paymentDispute, setPaymentDispute] = useState('card');
+    const [paymentMethod, setPaymentMethod] = useState('CARD');
     const detailOrder = useLoaderData();
     const OrderListMemo = memo(OrderList);
 
-    useTelegramOnOrder(paymentDispute);
+    useTelegramOnOrder(paymentMethod);
 
     useEffect(() => {
         tg.ready();
@@ -23,12 +23,12 @@ function Order() {
     }, [])
 
     const handleClickBtn = () => {
-        MakeOrder(paymentDispute);
+        MakeOrder(paymentMethod);
     }
 
     return (
         <> 
-            <OrderListMemo setPaymentDispute={setPaymentDispute} detailOrder={detailOrder}/>
+            <OrderListMemo setPaymentMethod={setPaymentMethod} detailOrder={detailOrder}/>
             <button onClick={handleClickBtn}>Сделать заказ</button>
         </>
     )
