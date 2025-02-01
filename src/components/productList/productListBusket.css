@@ -21,8 +21,13 @@
         font-weight: 700;
     }         
 }
+.warning {
+    margin: 60px 10px 10px;
+    font-size: 14px;
+    color: grey;
+}
 .productListBusket {
-    margin: 60px 10px 0 10px;
+    margin: 60px 10px 10px;
 }
 .productListBusket.blur {
     transition: blur 200ms linear;

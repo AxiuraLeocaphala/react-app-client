@@ -24,19 +24,22 @@ const Button = ({ product, locationCall, deleteCard, updateTotalPrice }) => {
 
     return (
         <div className="buttonSpace">
-            { isButtonAddVisible ? (
-                <>
-                    <button className="buttonAddToBusket" onClick={handleClickMain}>
-                        {product["ProductPrice"]} ₽
-                    </button>
-                </>
-            ) : (
-                <>
-                    <button className="buttonReduce" onClick={handleClickReduce}>-</button>
-                    <input className="quantity" type="text" readOnly value={quantity}/>
-                    <button className="buttonIncrease" onClick={handleClickIncrease}>+</button>
-                </>
+            {product["Stop"] === 0 && (
+                isButtonAddVisible ? (
+                    <>
+                        <button className="buttonAddToBusket" onClick={handleClickMain}>
+                            {product["ProductPrice"]} ₽
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button className="buttonReduce" onClick={handleClickReduce}>-</button>
+                        <input className="quantity" type="text" readOnly value={quantity}/>
+                        <button className="buttonIncrease" onClick={handleClickIncrease}>+</button>
+                    </>
+                )
             )}
+            
         </div>
     )
 }

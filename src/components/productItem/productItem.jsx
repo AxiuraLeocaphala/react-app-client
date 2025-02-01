@@ -78,7 +78,12 @@ const ProductItem = ({ product }) => {
                 ref={cardProductRef} 
                 className='cardProduct Menu'
             >
-                <picture><img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt=''/></picture>
+                <picture>
+                    {product["Stop"] === 1 && (
+                        <div className='surface-stop'>СТОП</div>
+                    )}
+                    <img src={`data:image/jpeg;base64,${product["ProductPhoto"]}`} alt=''/>
+                </picture>
                 <h3>{product["ProductName"]}</h3>
                 <p>{product["ProductDescription"]}</p>
                 {isButtonShow && (<Button product={product} locationCall={'menu'}/>)}

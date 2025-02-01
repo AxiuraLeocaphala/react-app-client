@@ -9,12 +9,14 @@ export function RequestReduce(product, setQuantity, locationCall, deleteCard, up
     .then(response => {
         setQuantity(prevState => prevState - 1);
         const price = tg.MainButton.text.replace(/\D/g, '');
+        
         if (typeof response.data.quantity !== "undefined") {
             if (locationCall === "menu") {
                 if (price) {
                     tg.MainButton.text = `Корзина ${parseInt(price) - product["ProductPrice"]} ₽`;
                 }
             } else if (locationCall === "busket") {
+                product["Quantity"] -= 1;
                 updateTotalPrice();
             }
         } else {
@@ -26,6 +28,7 @@ export function RequestReduce(product, setQuantity, locationCall, deleteCard, up
                 }
                 setButtonAddVisible(true);
             } else if (locationCall === "busket") {
+                product["Quantity"] = 0;
                 deleteCard();
                 updateTotalPrice();
             }

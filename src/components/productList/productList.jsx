@@ -13,10 +13,10 @@ const Menu = ({ productCategories, productInfo }) => {
                     <div className='list'>
                         {productInfo
                             .filter(product => category['CategoryId'] === product['CategoryId'])
-                            .map((product) => {
+                            .map((product, id) => {
                                 return (
                                     <ProductItem
-                                        key={product["ProductId"]}
+                                        key={id}
                                         product={product}
                                     />
                                 );

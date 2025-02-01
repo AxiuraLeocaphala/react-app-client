@@ -10,7 +10,8 @@ import './App.css';
 function Busket() {
     const timerRef = useRef(null);
     const tastyCart = useLoaderData();
-    const productListBusket = tastyCart.data;
+    const productListBusket = tastyCart.data[0];
+    const isChange = tastyCart.data[1];
     const ProductListBusketMemo = memo(ProductListBusket);
 
     useTelegramOnBusket();
@@ -26,7 +27,7 @@ function Busket() {
     return ( 
         <VisibilityProvider>
             <PopupMsg/>
-            <ProductListBusketMemo productsInBusket={productListBusket}/>
+            <ProductListBusketMemo productsInBusket={productListBusket} isChange={isChange}/>
         </VisibilityProvider>
     )
 }

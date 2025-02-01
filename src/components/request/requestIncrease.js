@@ -13,6 +13,7 @@ export function RequestIncrease(product, quantity, setQuantity, setComponentQuan
                 tg.MainButton.text = `Корзина ${parseInt(tg.MainButton.text.replace(/\D/g, '')) + product["ProductPrice"]} ₽`;
             }
         } else if (locationCall === "busket") {
+            product["Quantity"] += 1
             updateTotalPrice();
         }
     })
