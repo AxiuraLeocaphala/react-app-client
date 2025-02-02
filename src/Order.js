@@ -12,7 +12,7 @@ function Order() {
     const detailOrder = useLoaderData();
     const OrderListMemo = memo(OrderList);
 
-    useTelegramOnOrder(paymentMethod);
+    useTelegramOnOrder(paymentMethod, detailOrder.data["totalPrice"]);
 
     useEffect(() => {
         tg.ready();

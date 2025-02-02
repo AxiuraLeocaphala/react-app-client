@@ -3,7 +3,7 @@ import './orderList.css';
 
 const OrderList = ({ setPaymentMethod, detailOrder }) => {
     const totalPrice = detailOrder.data['totalPrice'];
-    const phoneNumber = detailOrder.data['phoneNumber'];
+    const isChanged = detailOrder.data['isChanged'];
     const cashRef = useRef();
     const cardRef = useRef();
 
@@ -33,7 +33,6 @@ const OrderList = ({ setPaymentMethod, detailOrder }) => {
 
                 <section>
                     <div className='title'>Дополнительная информация</div>
-                    <div className='phoneNumber'>{phoneNumber}</div>
                     <div className='address'>Адрес: Меридиан, Красноармейская улица, 73</div>
                 </section>
 
@@ -43,6 +42,11 @@ const OrderList = ({ setPaymentMethod, detailOrder }) => {
                         <span>Итого</span>
                         <span className='price'>{totalPrice} ₽</span>
                     </div>
+                    {isChanged && (
+                        <div className="warning">
+                            * Некоторые из выбранных вами блюд попали в стоп-лист, поэтому их стоимость не была учтена
+                        </div>
+                    )}
                 </section>
                 <div className='police'>
                     Нажимая на кнопку “Заказать” вы даете согласие на обработку и 

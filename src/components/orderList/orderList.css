@@ -3,7 +3,7 @@
     top: 0;
     right: 0;
     width: 100%;
-    padding: 5px 15px;
+    margin: 5px 10px;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -40,12 +40,6 @@
     section:nth-child(2) {
         overflow: visible;
         box-shadow: none;
-        .phoneNumber {
-            border-radius: 10px;
-            margin-bottom: 10px; 
-            background-color: var(--tg-theme-secondary-bg-color);
-            padding: 15px 0 20px 15px; 
-        }
         .address {
             border-radius: 10px;
             background-color: var(--tg-theme-secondary-bg-color);
@@ -63,6 +57,9 @@
             span:last-child {
                 font-weight: 700;
             }
+        }
+        .warning {
+            margin-top: 5px;
         }
     }
     .police {

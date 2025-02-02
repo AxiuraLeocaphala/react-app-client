@@ -27,13 +27,15 @@ export function useTelegramOnBusket() {
     });
 }
 
-export function useTelegramOnOrder(paymentDispute) {
-    tg.MainButton.show();
-    tg.MainButton.text = "Заказать";
-    tg.MainButton.onClick(() => {
-        MakeOrder(paymentDispute);
-    })
-
+export function useTelegramOnOrder(paymentDispute, totalPrice) {
     const navigate = useNavigate();
-    tg.BackButton.onClick(() => navigate('/busket'))
+    if (totalPrice > 0) {
+        tg.MainButton.show();
+        tg.MainButton.text = "Заказать";
+        tg.MainButton.onClick(() => {
+            MakeOrder(paymentDispute);
+        })
+    
+        tg.BackButton.onClick(() => navigate('/busket'))
+    }
 }
