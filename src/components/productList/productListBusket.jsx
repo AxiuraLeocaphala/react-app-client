@@ -5,9 +5,7 @@ import './productListBusket.css';
 
 const ProductListBusket = ({ productsInBusket, isChange }) => {
     const [totalPrice, setTotalPrice] = useState(0);
-    const [isEmpty, setIsEmpty] = useState();
-
-    console.log(productsInBusket)
+    const [isEmpty, setIsEmpty] = useState(true);
 
     const checkArray = () => {
         return productsInBusket.every(elem => elem === undefined);
