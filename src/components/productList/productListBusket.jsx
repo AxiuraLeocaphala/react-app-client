@@ -5,25 +5,20 @@ import './productListBusket.css';
 
 const ProductListBusket = ({ productsInBusket, isChange }) => {
     const [totalPrice, setTotalPrice] = useState(0);
-    const [isEmpty, setIsEmpty] = useState(true);
+    const [isEmpty, setIsEmpty] = useState(productsInBusket.length === 0 ? true:false);
+
+    const updateTotalPrice = () => {
+        isEmpty ? setTotalPrice(0):setTotalPrice(countTotalPrice(productsInBusket))
+    }
 
     const checkArray = () => {
         return productsInBusket.every(elem => elem === undefined);
-    };
-    
-    const updateTotalPrice = () => {
-        setTotalPrice(countTotalPrice(productsInBusket));
-        setIsEmpty(checkArray());
     };
 
     const deleteItemBusket = (index) => {
         delete productsInBusket[index];
         setIsEmpty(checkArray());
     };
-
-    useEffect(() => {   
-        updateTotalPrice();
-    });
 
     return (
         <>
