@@ -41,7 +41,7 @@ const ProductListBusket = ({ productsInBusket, isChange }) => {
             {isEmpty ? (
                 <div className="alertItem">ПУСТО</div>
             ) : (
-                <div className="productListBusket" style={isChange && {marginTop: "0"}}>
+                <div className="productListBusket" style={{marginTop: isChange ? "0":"60px"}}>
                     {productsInBusket.map((product, idx) => {
                         return (
                             <ProductItemBusket 

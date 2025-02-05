@@ -13,11 +13,11 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
     const pRef = useRef(null);
     const arrayElems = useRef([null]);
     let timer = useRef(0);
-    const [localQuantity, setLocalQuantity] = useState(product["Quantity"]);
+    // const [localQuantity, setLocalQuantity] = useState(product["Quantity"]);
     
-    useEffect(() => {
-        setLocalQuantity(product["Quantity"])
-    }, [product["Quantity"]])
+    // useEffect(() => {
+    //     setLocalQuantity(product["Quantity"])
+    // }, [product["Quantity"]])
 
     const deleteCard = () => {
         cardProductRef.current.classList.add('hide');
@@ -130,7 +130,7 @@ const ProductItemBusket = ({ index, product, updateTotalPrice, deleteItem }) => 
                     <div className='finalCost'>{product['ProductPrice']} ₽</div>
                     <p ref={pRef}>{product['ProductDescription']}</p>
                     <div className='totalPriceItem'>
-                    <div>{product['ProductPrice'] * localQuantity} ₽</div>
+                    <div>{product['ProductPrice'] * product["Quantity"]} ₽</div>
                     </div>
                     <div className='buttonSpaceBusket'>
                         <Button product={product} locationCall={'busket'} deleteCard={deleteCard} updateTotalPrice={updateTotalPrice}/>
