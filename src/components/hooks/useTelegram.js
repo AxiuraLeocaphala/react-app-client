@@ -24,7 +24,8 @@ export function useTelegramOnBusket(productListBusket) {
 
     tg.BackButton.show();
     tg.BackButton.onClick(() => {
-        navigate("/");
+        navigate("");
+        console.log("redirect");
         tg.BackButton.hide();
     });
 }
