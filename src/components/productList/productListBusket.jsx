@@ -4,8 +4,8 @@ import ProductItemBusket from "../productItem/productItemBusket.jsx";
 import './productListBusket.css';
 
 const ProductListBusket = ({ productsInBusket, isChange }) => {
+    const [totalPrice, setTotalPrice] = useState(productsInBusket === undefined ? 0:countTotalPrice(productsInBusket));
     const [isEmpty, setIsEmpty] = useState(productsInBusket === undefined ? true:false);
-    const [totalPrice, setTotalPrice] = useState(productsInBusket === undefined ? 0:updateTotalPrice());
 
     const updateTotalPrice = () => {
         isEmpty ? setTotalPrice(0):setTotalPrice(countTotalPrice(productsInBusket))
