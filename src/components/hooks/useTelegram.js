@@ -14,11 +14,13 @@ export function useTelegramOnMenu(data) {
     tg.MainButton.onClick(() => navigate("/busket"));
 }
 
-export function useTelegramOnBusket() {
-    tg.MainButton.show();
-    tg.MainButton.text = "Продолжить";
-    const navigate = useNavigate();
-    tg.MainButton.onClick(() => navigate("/order"))
+export function useTelegramOnBusket(productListBusket) {
+    if (productListBusket !== undefined) {
+        tg.MainButton.show();
+        tg.MainButton.text = "Продолжить";
+        const navigate = useNavigate();
+        tg.MainButton.onClick(() => navigate("/order"))
+    }
 
     tg.BackButton.show();
     tg.BackButton.onClick(() => {
