@@ -15,10 +15,10 @@ export function useTelegramOnMenu(data) {
 }
 
 export function useTelegramOnBusket(productListBusket) {
+    const navigate = useNavigate();
     if (productListBusket !== undefined) {
         tg.MainButton.show();
         tg.MainButton.text = "Продолжить";
-        const navigate = useNavigate();
         tg.MainButton.onClick(() => navigate("/order"))
     }
 
