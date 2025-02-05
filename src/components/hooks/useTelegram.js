@@ -17,6 +17,7 @@ export function useTelegramOnMenu(data) {
 
 export function useTelegramOnBusket(productListBusket) {
     const navigate = useNavigate();
+    console.log("use", productListBusket);
     if (productListBusket !== undefined) {
         tg.MainButton.show();
         tg.MainButton.text = "Продолжить";
