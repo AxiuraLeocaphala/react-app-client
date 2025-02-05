@@ -6,7 +6,7 @@ import './productListBusket.css';
 const ProductListBusket = ({ productsInBusket, isChange }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     console.log(productsInBusket)
-    const [isEmpty, setIsEmpty] = useState(productsInBusket.length === 0 ? true:false);
+    const [isEmpty, setIsEmpty] = useState(productsInBusket === undefined ? true:false);
 
     const updateTotalPrice = () => {
         isEmpty ? setTotalPrice(0):setTotalPrice(countTotalPrice(productsInBusket))
