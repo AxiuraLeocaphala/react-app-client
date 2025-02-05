@@ -6,12 +6,13 @@ export const tg = window.Telegram.WebApp;
 tg.expand()
 
 export function useTelegramOnMenu(data) {
+    const navigate = useNavigate();
     tg.MainButton.show();
     const totalPrice = countTotalPrice(data);
     tg.MainButton.text = `Корзина ${totalPrice === 0 ? ("") : (`${totalPrice} ₽`)}`;
-
-    const navigate = useNavigate();
     tg.MainButton.onClick(() => navigate("/busket"));
+
+    tg.BackButton.hide();
 }
 
 export function useTelegramOnBusket(productListBusket) {
@@ -24,7 +25,6 @@ export function useTelegramOnBusket(productListBusket) {
 
     tg.BackButton.show();
     tg.BackButton.onClick(() => {
-        tg.BackButton.hide();
         navigate("/");
     });
 }
