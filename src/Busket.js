@@ -14,6 +14,9 @@ function Busket() {
     const isChange = tastyCart.data[1];
     const ProductListBusketMemo = memo(ProductListBusket);
 
+    console.log(tastyCart);
+    console.log(tastyCart.data[0]);
+
     useTelegramOnBusket();
 
     useEffect(() => {
